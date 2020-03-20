@@ -2,6 +2,7 @@
 
 import tweepy
 
+# Codes availiable in final documentation
 access_token = ""
 access_token_secret = ""
 consumer_key = ""
