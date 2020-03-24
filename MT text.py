@@ -3,7 +3,7 @@ import string
 
 def process_file(filename, skip_header=True):
     """
-    processes Gutenberg files in to plain texts string
+    processes Gutenberg files in to plain texts string without headings
     
     filename: string, file path
     skip_header: boolean, whether to skip the Gutenberg header
@@ -17,11 +17,16 @@ def process_file(filename, skip_header=True):
         skip_gutenberg_header(fp)
 
     for line in fp:
-        if line.startswith('PREFACE'):
+        line = line.lower()
+        if line.startswith('preface'):
             continue
-        if line.startswith('CHAPTER'):
+        if line.startswith('chapter'):
             continue
-        if line.startswith('End of the Project'):
+        if line.startswith('end of the project'):
+            break
+        if line.startswith("transcriber's notes"):
+            break
+        if line.startswith("footnotes"):
             break
 
         line = line.replace('\n', ' ')
@@ -36,8 +41,7 @@ def process_file(filename, skip_header=True):
         for symbol in punc:
             line = line.replace(symbol, f' {symbol} ')
 
-        line = line.lower()
-        text = text + line
+        text += line
             
     return text
 
@@ -54,16 +58,18 @@ def skip_gutenberg_header(fp):
 
 def combine_text(new_file, *texts):
     """
-    append all texts into the new file
+    append all strings into the new file
     new_file: string, path to the new file
     *texts: string tuple
     """
-    new = open(new_file, 'a')
+    new = open(new_file, 'w')
+    t = ''
 
     for text in texts:
         s = ''.join(text)
-        new.write(s)
+        t += s
     
+    new.write(s)
     new.close()
 
 def main():

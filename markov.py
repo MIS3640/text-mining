@@ -44,14 +44,14 @@ def markov(filename, length, currentword):
 
 def main():
     length = 200
-    currentword = 'tom'
+    currentword = 'he'
     chain = markov('Mark Twain/Mark Twain.txt', length, currentword)
 
     print(chain)
 
-    # f = open("new book.txt",'w')
-    # f.write(chain)
-    # f.close()
+    f = open("new book.txt",'w')
+    f.write(chain)
+    f.close()
 
 
 if __name__ == "__main__":
