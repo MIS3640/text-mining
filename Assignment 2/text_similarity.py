@@ -2,12 +2,10 @@ import math
 import string 
 import sys 
   
-# reading the text file 
-# This functio will return a  
-# list of the lines of text  
-# in the file. 
 def read_file(filename):  
-      
+    '''
+    Read File
+    '''
     try: 
         with open(filename, encoding="utf8") as f: 
             data = f.read() 
