@@ -4,7 +4,7 @@ import sys
   
 def read_file(filename):  
     '''
-    Read File
+    Read file.
     '''
     try: 
         with open(filename, encoding="utf8") as f: 
@@ -22,20 +22,21 @@ def read_file(filename):
 translation_table = str.maketrans(string.punctuation+string.ascii_uppercase, 
                                      " "*len(string.punctuation)+string.ascii_lowercase) 
        
-# returns a list of the words 
-# in the file 
+
 def get_words_from_line_list(text):  
-      
+    '''
+    Return a list of the words in the file.
+    '''
     text = text.translate(translation_table) 
     word_list = text.split() 
       
     return word_list 
   
   
-# counts frequency of each word 
-# returns a dictionary which maps 
-# the words to  their frequency. 
 def count_frequency(word_list):  
+    '''
+    Count frequency of each word and return a dictionary which maps the words to their frequency.
+    '''
       
     D = {} 
       
@@ -49,9 +50,11 @@ def count_frequency(word_list):
               
     return D 
   
-# returns dictionary of (word, frequency) 
-# pairs from the previous dictionary. 
-def word_frequencies_for_file(filename):  
+
+def word_frequencies_for_file(filename): 
+    '''
+    Return dictionary of (word,frequency) and pair from the previous dictionary.
+    ''' 
       
     line_list = read_file(filename) 
     word_list = get_words_from_line_list(line_list) 
@@ -65,8 +68,10 @@ def word_frequencies_for_file(filename):
     return freq_mapping 
   
   
-# returns the dot product of two documents 
-def dotProduct(D1, D2):  
+def dotProduct(D1, D2): 
+    '''
+    Returns the dot product of two books.
+    ''' 
     Sum = 0.0
       
     for key in D1: 
@@ -76,9 +81,11 @@ def dotProduct(D1, D2):
               
     return Sum
   
-# returns the angle in radians  
-# between document vectors 
+  
 def vector_angle(D1, D2):  
+    '''
+    Returns the angle in radians between document vectors. 
+    '''
     numerator = dotProduct(D1, D2) 
     denominator = math.sqrt(dotProduct(D1, D1)*dotProduct(D2, D2)) 
       
@@ -96,4 +103,4 @@ def documentSimilarity(filename_1, filename_2):
     print("The distance between the documents is: % 0.6f (radians)"% distance) 
       
 # Driver code 
-documentSimilarity('Assignment 2/walden.txt','Assignment 2/Beyond_good_evil.txt') 
+documentSimilarity('Assignment 2/Walden.txt','Assignment 2/Beyond_good_evil.txt') 
