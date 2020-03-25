@@ -128,10 +128,11 @@ def daily_df(subreddit, size, s_y, s_m, s_d, e_y, e_m, e_d):
 
 def main():
     # dates earlier than 2020, 1, 21 will result in error because there are no submissions
-    # corona = daily_df('Coronavirus', 10, 2020, 1, 21, 2020, 3, 21)
-    # print(corona)
+    corona = daily_df('Coronavirus', 10, 2020, 1, 21, 2020, 3, 21)
+    print(corona)
+
     # corona.to_pickle("./corona.pkl")
-    corona = pd.read_pickle('./corona.pkl')
+    # corona = pd.read_pickle('./corona.pkl')
 
     corona.plot(kind='line',x='date',y='count',ax=plt.gca())
     plt.show()

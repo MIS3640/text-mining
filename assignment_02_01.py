@@ -82,11 +82,11 @@ def nl_score(df):
 
 def main():
     reddit = praw.Reddit(
-        client_id='2kfK8G11nWw-wA',
-        client_secret='k6dnZV59npjP1v1kL1wp4rC9BXs',
-        username='takakikato',
-        password='Blackfeather1!',
-        user_agent='text_mining_api')
+        client_id='client id',
+        client_secret='client secret',
+        username='username',
+        password='password',
+        user_agent='user agent')
 
     # r/all
     all = text_mine(reddit, 'all', 1000)
