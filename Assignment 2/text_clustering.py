@@ -3,8 +3,8 @@ from sklearn.manifold import MDS
 import matplotlib.pyplot as plt
 
 # these are the similarities computed from the previous section
-S = np.asarray([[1., 0.270507],
-    [0.270507, 1.]])
+S = np.asarray([[1., 0.270507,0.525258],
+    [0.270507, 1.,0.608798],[0.525258,0.608798,1.]])
 
 # dissimilarity is 1 minus similarity
 dissimilarities = 1 - S
