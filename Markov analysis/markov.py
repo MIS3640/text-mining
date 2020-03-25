@@ -85,27 +85,26 @@ def format_chain(c):
     s = ''
 
     for i, w in enumerate(c):
-        x = w
         # captialization
         if i == 0:
-            x = w.capitalize()
+            w = w.capitalize()
         else:
             if c[i-1] in end_punc:
-                x = w.capitalize()
+                w = w.capitalize()
         
         # spacing
         if i < len(c)-1:
             if c[i+1] not in punc:
-                s += x + ' '
+                s += w + ' '
             else:
-                s += x
+                s += w
         else:
-            s += x
+            s += w
     
     return s
         
 def main():
-    chain = format_chain(markov('Markov analysis/Mark Twain.txt', length = 150, currentword = 'tom'))
+    chain = format_chain(markov('Markov analysis/Mark Twain.txt', length = 50, currentword = 'i'))
 
     # with open("Markov analysis/new book.txt",'a') as f:
     #     f.write(chain + '\n\n')
