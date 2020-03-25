@@ -1,3 +1,3 @@
 # text-mining
 
-explore text mining techniques and analyze mined data
+Please read [instructions](instructions.md).
