@@ -103,4 +103,6 @@ def documentSimilarity(filename_1, filename_2):
     print("The distance between the documents is: % 0.6f (radians)"% distance) 
       
 # Driver code 
-documentSimilarity('Assignment 2/Walden.txt','Assignment 2/Beyond_good_evil.txt') 
+# documentSimilarity('Assignment 2/Walden.txt','Assignment 2/Beyond_good_evil.txt') 
+# documentSimilarity('Assignment 2/Walden.txt','Assignment 2/Alice.txt')
+documentSimilarity('Assignment 2/Beyond_good_evil.txt','Assignment 2/Alice.txt')
