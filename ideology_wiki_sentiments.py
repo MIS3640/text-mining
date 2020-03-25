@@ -8,6 +8,8 @@ def average(lst):
     return sum(lst) / len(lst)
 
 def word_count(str):
+    """ Returns a (rudimentary) word count of a string
+    """
     count = 0
     for letter in str:
         if ord(letter) == 32:
