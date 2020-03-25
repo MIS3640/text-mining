@@ -1,16 +1,22 @@
-import pandas as pd
 import numpy as np
-from sklearn.cluster import MiniBatchKMeans
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.decomposition import PCA
+from sklearn.manifold import MDS
 import matplotlib.pyplot as plt
 
-from sklearn.datasets import load_files
+# these are the similarities computed from the previous section
+S = np.asarray([[1., 0.270507],
+    [0.270507, 1.]])
 
-import os
-print(os.getcwd())
+# dissimilarity is 1 minus similarity
+dissimilarities = 1 - S
 
-# for reproducibility
-data = load_files('Assignment 2/Walden.txt',description=None,categories=None,load_content=True,shuffle=True,encoding="utf8", decode_error='replace', random_state=0)
-# df = pd.DataFrame(list(zip(data['data'], data['target'])), columns=['text', 'label'])
-# df.head()
+# compute the embedding
+coord = MDS(dissimilarity='precomputed').fit_transform(dissimilarities)
+
+plt.scatter(coord[:, 0], coord[:, 1])
+
+# Label the points
+for i in range(coord.shape[0]):
+    plt.annotate(str(i), (coord[i, :]))
+
+plt.show()
+
