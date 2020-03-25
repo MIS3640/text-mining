@@ -5,7 +5,14 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 def average(lst):
     """ Returns the average of a list of numbers
     """ 
-    return sum(lst) / len(lst) 
+    return sum(lst) / len(lst)
+
+def word_count(str):
+    count = 0
+    for letter in str:
+        if ord(letter) == 32:
+            count += 1
+    return count
 
 # Dictionaries containing leading left/centre/right candidate (admittedly arbitrary person opinion) at the last general
 # or presidental election from G20 countries with (again personal opinion) a strong multi-party democracy
@@ -25,25 +32,31 @@ gbr = {"left":"Jeremy Corbyn", "centre": "Jo Swinson", "right": "Boris Johnson"}
 usa = {"left":"Hillary Clinton", "centre": "Gary Johnson", "right": "Donald Trump"} # united states (okay Johnson is a push for central)
 
 # Created empty lists to add values too
+left_word_count = []
 left_neu = []
 left_compound = []
+centre_word_count = []
 centre_neu = []
 centre_compound = []
+right_word_count = []
 right_neu = []
 right_compound = []
 
 def leaders_wiki_analysis(country):
-    """ Analyses the wikipedia summary of a country's leading left/centre/right politician,
+    """ Analyses the wikipedia summary of a country's leading left/centre/right politician, does a word count,
     determines how much of the content is neutral, and whether it leans positive or negative,
     then appending those scores to the revelent lists
     """
     left_summary = wikipedia.page(country["left"]).summary
+    left_word_count.append(word_count(left_summary))
     left_neu.append(SentimentIntensityAnalyzer().polarity_scores(left_summary)["neu"])
     left_compound.append(SentimentIntensityAnalyzer().polarity_scores(left_summary)["compound"])
     centre_summary = wikipedia.page(country["centre"]).summary
+    centre_word_count.append(word_count(centre_summary))
     centre_neu.append(SentimentIntensityAnalyzer().polarity_scores(centre_summary)["neu"])
     centre_compound.append(SentimentIntensityAnalyzer().polarity_scores(centre_summary)["compound"])
     right_summary = wikipedia.page(country["right"]).summary
+    right_word_count.append(word_count(right_summary))
     right_neu.append(SentimentIntensityAnalyzer().polarity_scores(right_summary)["neu"])
     right_compound.append(SentimentIntensityAnalyzer().polarity_scores(right_summary)["compound"])
 
@@ -57,7 +70,11 @@ def ideology_wiki_sentiments():
     """
     for country in countries:
         leaders_wiki_analysis(country)
-    print(f"The proportion of non-neutral text in the wikipedia summaries is:")
+    print(f"The average word count the wikipedia summaries is:")
+    print(f"Left-wing politicians: {average(left_word_count):4.0f}")
+    print(f"Central politicians:   {average(centre_word_count):4.0f}")
+    print(f"Right-wing politicians:{average(right_word_count):4.0f}")
+    print(f"\nThe proportion of non-neutral text in the wikipedia summaries is:")
     print(f"Left-wing politicians:  {(1-average(left_neu))*100:5.2f}%")
     print(f"Central politicians:    {(1-average(centre_neu))*100:5.2f}%")
     print(f"Right-wing politicians: {(1-average(right_neu))*100:5.2f}%")
