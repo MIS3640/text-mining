@@ -62,10 +62,7 @@ def leaders_wiki_analysis(country):
     right_neu.append(SentimentIntensityAnalyzer().polarity_scores(right_summary)["neu"])
     right_compound.append(SentimentIntensityAnalyzer().polarity_scores(right_summary)["compound"])
 
-# Created a list with the countries
-countries = [arg, aus, bra, can, fra, ger, ind, idn, jap, mex, rsa, kor, gbr, usa]
-
-def ideology_wiki_sentiments():
+def ideology_wiki_sentiments(*countries):
     """ Runs a sentiment analysis of the wiki summaries for each country in the "countries" list,
     and then calculates the average percentage of non-neutral next and the averaged normalised positivity score
     of the three ideologies across all the countries.
@@ -85,4 +82,4 @@ def ideology_wiki_sentiments():
     print(f"Central politicians:    {average(centre_compound):.2f}")
     print(f"Right-wing politicians: {average(right_compound):.2f}")
 
-ideology_wiki_sentiments()
+ideology_wiki_sentiments(arg, aus, bra, can, fra, ger, ind, idn, jap, mex, rsa, kor, gbr, usa)
