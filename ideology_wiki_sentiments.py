@@ -31,7 +31,7 @@ mex = {"left":"Andrés Manuel López Obrador", "centre": "José Antonio Meade", 
 rsa = {"left":"Julius Malema", "centre": "Cyril Ramaphosa", "right": "Mmusi Maimane"} # south africa
 kor = {"left":"Ahn Cheol-soo", "centre": "Kim Chong-in", "right": "Kim Moo-sung"} # south korea
 gbr = {"left":"Jeremy Corbyn", "centre": "Jo Swinson", "right": "Boris Johnson"} # united kingdom
-usa = {"left":"Hillary Clinton", "centre": "Gary Johnson", "right": "Donald Trump"} # united states (okay Johnson is a push for central)
+usa = {"left":"Hillary Clinton", "centre": "Gary Johnson", "right": "Donald Trump"} # united states (okay Johnson is a push for centrist)
 
 # Created empty lists to add values too
 left_word_count = []
@@ -71,15 +71,15 @@ def ideology_wiki_sentiments(*countries):
         leaders_wiki_analysis(country)
     print(f"The average word count the wikipedia summaries is:")
     print(f"Left-wing politicians: {average(left_word_count):4.0f}")
-    print(f"Central politicians:   {average(centre_word_count):4.0f}")
+    print(f"Centrist politicians:  {average(centre_word_count):4.0f}")
     print(f"Right-wing politicians:{average(right_word_count):4.0f}")
     print(f"\nThe proportion of non-neutral text in the wikipedia summaries is:")
     print(f"Left-wing politicians:  {(1-average(left_neu))*100:5.2f}%")
-    print(f"Central politicians:    {(1-average(centre_neu))*100:5.2f}%")
+    print(f"Centrist politicians:   {(1-average(centre_neu))*100:5.2f}%")
     print(f"Right-wing politicians: {(1-average(right_neu))*100:5.2f}%")
     print(f"\nThe normalised positivity score is:")
     print(f"Left-wing politicians:  {average(left_compound):.2f}")
-    print(f"Central politicians:    {average(centre_compound):.2f}")
+    print(f"Centrist politicians:   {average(centre_compound):.2f}")
     print(f"Right-wing politicians: {average(right_compound):.2f}")
 
 ideology_wiki_sentiments(arg, aus, bra, can, fra, ger, ind, idn, jap, mex, rsa, kor, gbr, usa)
