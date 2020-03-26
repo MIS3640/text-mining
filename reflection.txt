@@ -1,0 +1,24 @@
+One of the many ways investigators can trace unknown authors to a known author is through the use of text
+analysis. There has long been a debate over the legitimacy of Shakespeare and his authorship.
+One of the main theories to who he may actually have been is sir Francis Bacon. In this project
+I set out to analyze the texts of the two and see if there were any interesting relationships between
+their works. 
+
+https://en.wikipedia.org/wiki/Baconian_theory_of_Shakespeare_authorship
+
+To do this I used the Gutenberg library to pull both the works of Shakespeare and Bacon. I decided to use
+Macbeth as an example of Shakespeare's work, and Bacon'sEssays and Wisdom of the Ancients. Bacon primarily
+wrote aobut science, and this was one of his only works in flowing english rahter than scientific.
+
+Our program scraped the data from the Gutenberg project website, then created two lists of the words and 
+their counts. We then zipped these files together to create a dictionary in decending order. Initally 
+many of the words at the begining of the list were the same such as 'the' and so on. These are called
+"stop words", I found a data set of all the known stop words at: http://ir.dcs.gla.ac.uk/resources/linguistic_utils/stop_words
+we used these to create a list which could be compared to our list and remove any words that would not
+be useful for our analysis. I initally wanted to use lists to remove these in the final data, but after
+second thought I decided on using dictionary instead and removing the stop words as a list before.
+
+After the analysis, I could not find any speicifc words that would have pointed to Bacon being the author
+behind Shakespeare's plays. In the analysis I was looking for speicifc words that were not nouns that seemed
+out of place. One or two of these could be used to make the argument of shared authorship, but that is not the case.
+
