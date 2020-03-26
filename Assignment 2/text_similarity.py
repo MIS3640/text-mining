@@ -106,3 +106,5 @@ def documentSimilarity(filename_1, filename_2):
 documentSimilarity('Assignment 2/Walden.txt','Assignment 2/Beyond_good_evil.txt') 
 documentSimilarity('Assignment 2/Walden.txt','Assignment 2/Alice.txt')
 documentSimilarity('Assignment 2/Beyond_good_evil.txt','Assignment 2/Alice.txt')
+
+
