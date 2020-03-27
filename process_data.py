@@ -9,7 +9,7 @@ CONSUMER_SECRET = 'RCLFC1tNjhfRHE1lxVLC7p1FQNfLj25RP5TsGzUWx1ZOu550cT'
 t = Twython(CONSUMER_KEY, CONSUMER_SECRET,
 TOKEN, TOKEN_SECRET)
 
-data = t.search(q="Coronavirus", count=280)
+data = t.search(q="Hong Kong", count=280)
 
 for status in data['statuses']:
     print(status['text'])
