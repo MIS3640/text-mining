@@ -69,15 +69,15 @@ positive = format(positive, '.2f')
 negative = format(negative, '.2f')
 neutral = format(neutral, '.2f')
 
-print('This will show how people are reacting to  ' + search + ' by analyzing ' + str(number_tweets_analyze)+ ' tweets.')
+print('General Sentiment for  ' + search + ' by analyzing ' + str(number_tweets_analyze)+ ' tweets.')
 
 # uses the cumulative polarity to return the general sentiment of the sample 
 if (polarity == 0):
-    print('neutral')
+    print('general sentiment is neutral')
 elif(polarity < 0):
-    print('negative')
+    print('general sentiment is negative')
 elif(polarity > 0):
-    print('positive')
+    print('general sentiment is positive')
 
 # code for pie chart https://matplotlib.org/3.1.1/gallery/pie_and_polar_charts/pie_features.html
 
@@ -87,7 +87,7 @@ colors =['yellow', 'red', 'blue']
 
 patches, texts = plt.pie(sizes, colors = colors, startangle = 90)
 plt.legend(patches, labels, loc ="best")
-plt.title('This will show how people are reacting to  ' + search + ' by analyzing ' + str(number_tweets_analyze)+ ' tweets.')
+plt.title('General Sentiment for  ' + search + ' by analyzing ' + str(number_tweets_analyze)+ ' tweets.')
 plt.axis('equal')
 plt.tight_layout()
 plt.show()
