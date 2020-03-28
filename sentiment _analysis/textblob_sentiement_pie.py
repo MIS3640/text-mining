@@ -15,11 +15,6 @@ from tweepy.streaming import StreamListener
 
 
 # the general format for this code was found referencing the tweepy documentation.
-  
-    # def __init__(self):
-    #     self.tweets = []
-    #     self.tweetText = []
-
 # this function will be called later to find the average polarity scores after iterating totals
 
 def percentage(part, whole):
