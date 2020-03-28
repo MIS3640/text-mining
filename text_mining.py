@@ -1,6 +1,7 @@
 from imdbpie import Imdb
 import random
 
+
 imdb = Imdb()
 parasite = (imdb.search_for_title("Parasite")[0])
 reviews = imdb.get_title_user_reviews("tt6751668")
@@ -25,7 +26,7 @@ reviews2 = imdb.get_title_user_reviews("tt1213644")
 # pprint.pprint(review2)
 # pprint.pprint(review3)
 # pprint.pprint(reviews3)
-# pprint.pprint(reviews2)
+pprint.pprint(reviews2)
 
 
 # print(reviews['reviews'][0:]['author']['displayName'])
@@ -33,6 +34,9 @@ reviews2 = imdb.get_title_user_reviews("tt1213644")
 
 
 def printreviews(reviews):
+    """
+    print all and only the reviews of movies
+    """
     p = []
     for n in reviews['reviews']:
         p.append(n['reviewText'])
@@ -139,4 +143,17 @@ print(f"The Compoud for this movie is {score4['compound']}")
 print()
 print("---------------------------------------------------------------------------------------------------------------------------")
 
+parasitereviews2 = printreviews(reviews)
+print(parasitereviews2)
+jokerreviews2 = printreviews(review2)
+unplannedreviews2 = printreviews(review3)
+godfather2 = printreviews(reviews3)
+DisasterMovie2 = printreviews(reviews2)
+
+parasitereviewsscore = scorepersentence(parasitereviews2)
+print(parasitereviewsscore)
+jokerreviewsscore = scorepersentence(jokerreviews2)
+unplannedreviewsscore = scorepersentence(unplannedreviews2)
+godfatherscore = scorepersentence(godfather2)
+DisasterMoviescore = scorepersentence(DisasterMovie2)
 
