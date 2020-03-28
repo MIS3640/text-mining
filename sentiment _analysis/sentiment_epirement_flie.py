@@ -1,5 +1,7 @@
 '''
 this is an expiriemental file, it generates a twitter stream based on keywords
+this is not apart of my main project, just wanted to keep it in the folder for reference later 
+when I go to build this out furture for my own purposes. 
 '''
 
 
