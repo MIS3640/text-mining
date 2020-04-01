@@ -306,3 +306,4 @@ Also discuss your team process in your reflection. How did you plan to divide th
     + a project web page (if you choose this route, make sure there is a link to your web page in your `README.md` file in your Github repo.)
 3. Create a pull request to the upstream repository. Learn [Creating a pull request](https://help.github.com/en/desktop/contributing-to-projects/creating-a-pull-request).
 4. **This step is required for everyone.** Zip the entire project folder to a .zip file and submit it on Canvas/Assignments/Assignment 2. Leave the url to your project github repository in the comment area on Canvas.
+
