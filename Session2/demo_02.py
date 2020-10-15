@@ -1,0 +1,6 @@
+print('Hello,world!')
+print('Hey Jude, don\'t make it bad')
+print("hey Jude,don't make it bad")
+print('1+2+3=',1+2+3)
+name = input()
+print(name)
