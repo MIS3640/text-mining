@@ -1,0 +1,1 @@
+- cleaned each file first to remove all header and footer so only text is there
