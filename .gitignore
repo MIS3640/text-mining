@@ -126,4 +126,4 @@ dmypy.json
 
 # Visual Studio Code
 .vscode/
-TEXT-MINING/config.py
+config.py
