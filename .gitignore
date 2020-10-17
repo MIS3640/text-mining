@@ -125,5 +125,4 @@ dmypy.json
 .pyre/
 
 # Visual Studio Code
-.vscode/
 config.py
