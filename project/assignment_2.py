@@ -28,8 +28,29 @@ def create_dictionary(filename):
     return hist
 
 
+#  Question 1 - What are the top 10 frequent words in each text, with stopwords removed?
+def most_common(hist):
+    """Makes a list of word-freq pairs(tuples) in descending order of frequency that do not include the stopwords.
+
+    hist: map from word to frequency
+    excluding_stopwords: a boolean value. If it is true, do not include any stopwords in the list.
+
+    returns: list of (frequency, word) pairs
+    """
+    t = []
+    stopwords = list("data/stopwords.txt")
+    for word, freq in hist.items():
+        if word not in stopwords:
+            t.append((freq, word))
+        else:
+            continue
+    t.sort(reverse=True)
+    return t
+
+
 def main():
     """code that runs all the functions above to answer our questions with regards to the 10 texts."""
+    # Create Dictionaries
     emma_hist = create_dictionary("data/emma.txt")
     men_hist = create_dictionary("data/little_men.txt")
     women_hist = create_dictionary("data/little_women.txt")
@@ -39,6 +60,12 @@ def main():
     sense_hist = create_dictionary("data/sense_and_sensibility.txt")
     cask_hist = create_dictionary("data/the_cask_of_amontillado.txt")
     raven_hist = create_dictionary("data/the_raven.txt")
+
+    # Number 1. Most Frequent Words
+    t = most_common(emma_hist)
+    print("The most common words are:")
+    for freq, word in t[0:20]:
+        print(word, "\t", freq)
 
 
 if __name__ == "__main__":
