@@ -38,7 +38,7 @@ print(f"actors: {actors}")
 
 
 # 3) Actor info - needs debugging
-"""
+'''
 id = casting[0].getID()
 person = moviesDB.get_person(id)
 bio = moviesDB.get_person_biography(id)
@@ -56,4 +56,4 @@ print(f"trivia: {trivia[0]}")
 
 titleRefsStr = ", ".join(map(str, titleRefs))
 print(f"bio title refs: {titleRefsStr}")
-"""
+'''
