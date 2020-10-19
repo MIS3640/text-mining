@@ -64,6 +64,7 @@ print(f"height: {height}")
 # actor trivia
 print(f"trivia: {trivia[0]}")
 
+# pulls all movies actor stars in
 titleRefsStr = ", ".join(map(str, titleRefs))
 print(f"bio title refs: {titleRefsStr}")
 
