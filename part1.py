@@ -1,7 +1,6 @@
 from twython import Twython
-from config import TOKEN_SECRET_HIDDEN
-from config import CONSUMER_SECRET_HIDDEN
-import string
+from config import TOKEN_SECRET_HIDDEN, CONSUMER_SECRET_HIDDEN
+import re, unicodedata
 """ 
 Resources:
 Twitter Search - https://developer.twitter.com/en/docs/twitter-api/v1/tweets/search/api-reference/get-search-tweets
@@ -17,48 +16,12 @@ CONSUMER_SECRET = CONSUMER_SECRET_HIDDEN
 t = Twython(CONSUMER_KEY, CONSUMER_SECRET, TOKEN, TOKEN_SECRET)
 # data - dict, data['statuses'] - list, status - dict, status['text'] - str
 tlist = list()
-data = t.search(q="trump", lang = "en", result_type="recent", count = 2) 
-strippables = string.punctuation + string.punctuation
+data = t.search(q="hello", lang = "en", result_type="recent", count = 2) 
 for status in data['statuses']:
-   tweet = status['text'].strip(strippables).replace('\n','')
-   tweet = tweet.lower()
+   tweet = status['text'].lower().replace('\n','')  # remove whitespace and make it lowercase
+   tweet = ''.join(re.sub(r'http\S+', '', tweet))  # remove URL
+   tweet = re.sub(r'[^\w\s]', '', tweet)   # remove punctuation
+   tweet = unicodedata.normalize('NFKD', tweet).encode('ascii', 'ignore').decode('utf-8', 'ignore')  # remove emojis
    tlist.append(tweet)
 print(tlist)
-
-
-# for status in data['statuses']:
-#    tlist.append(status['text'])
-
-# strippables = string.punctuation + string.whitespace
-
-# for tweet in tlist:
-#    clean = tweet['text'].strip(strippables)
-#    tweet.lower()
-#    print([clean])
-
-# tlist = []
-# strippables = string.whitespace + string.punctuation
-# for status in tdict['statuses']:
-#    tlist.append(status['text'].strip(strippables).lower())
-# print(tlist)
-
-# for tweet in tlist:
-#    " ".join(re.sub("([^0-9A-Za-z \t])|(\w+:\/\/\S+)", "", txt).split())
-
-# def process_tweets(filename):
-#    hist = {}
-#    fp = open(filename, encoding='UTF8')
-#    for line in fp:
-#       for word in line.split():
-#          hist[word] = hist.get(word,0) + 1
-#    return hist
-
-# print(process_tweets('output.txt'))
-
-# def main():
-#    hist = process_tweets(tdict)
-
-
-# if __name__ == '__main__':
-#    main()
 
