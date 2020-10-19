@@ -1,6 +1,6 @@
 # Characterizing by Word Frequencies - number of times particular words appear in comments section/title/replies?
-
-# Comparing stock market threads and overall economy threads and words used
+# bull/bear/specific stocks
+# Comparing stock market threads and overall economy threads and words used (connotation)
 
 # Sentiment Analysis
 
@@ -18,39 +18,53 @@ reddit = praw.Reddit(
     password="Malden123!",
     user_agent="Reddit Text Mining Version 1",
 )
-subreddit = reddit.subreddit("stockmarket")
+subreddit = reddit.subreddit("economy")
 # submissions = reddit.subreddit(sub).top('day', limit=5)
 # top5 = [(submission.title, submission.selftext) for submission in submissions]
 
 
-def reddit_words():
+def reddit_sub_word_freq():
+    word_freq = {}
+
     hot_python = subreddit.hot(limit=5)
     # .hot, .new, .controversial, .top, .gilded
     for submission in hot_python:
-        print(submission.title)
-        comments = submission.comments
-        for comment in comments:
-            print(30 * "-")
-            print(comment.body)
-            if len(comment.replies) > 0:
-                for reply in comment.replies:
-                    print("Reply:", reply.body)
+        # print(submission.title)
+        count_word_submission(word_freq, submission)
+
+    return word_freq
 
 
-print(reddit_words())
+def count_word_submission(word_freq, submission):
+    comments = submission.comments
+    for comment in comments:
+        count_word_comment(word_freq, comment)
+    
+   
 
 
-# def reddit_mining():
-#     dic = {}
+def count_word_comment(word_freq, comment):
+    strippables = string.punctuation + string.whitespace
 
-#     strippables = string.punctuation + string.whitespace
-#     line = line.replace("-", " ")
-#     for word in line.split():
-#             # word could be 'Sussex.'
-#             word = word.strip(strippables)
-#             word = word.lower()
+    
+    for word in comment.body.split():
+        word = word.replace("-", " ")
+        word = word.strip(strippables)
+        word = word.lower()
+        word_freq[word] = word_freq.get(word, 0) + 1
+        
+    replies = comment.replies.list()
 
-#             # update the dictionary
-#             hist[word] = dic.get(word, 0) + 1
+    for reply in replies:
+        if isinstance(reply, praw.models.Comment):
+            count_word_comment(word_freq, reply)
+        elif isinstance(reply, praw.models.MoreComments):
+            for more_reply in reply.comments():
+                count_word_comment(word_freq, more_reply)
+        else:
+            print('Something went wrong.')
 
-#     return dic
+
+print(reddit_sub_word_freq())
+
+# Need to sort words from greatest to least
