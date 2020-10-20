@@ -4,12 +4,13 @@ from pprint import pprint
 import pandas as pd
 import numpy as np
 import nltk
-import matplotlib.pyplot as plt
-import seaborn as sns
-sns.set(style='darkgrid', context='talk', palette='Dark2')
+from nltk.sentiment.vader import SentimentIntensityAnalyzer as SIA
+
+# TODO: Split into 2 functions and add docstrings
 
 
 import praw
+
 
 reddit = praw.Reddit(
     client_id="MtwTkf_DOPpB_A",
@@ -19,22 +20,40 @@ reddit = praw.Reddit(
     user_agent="Reddit Text Mining Version 1",
 )
 
-headlines = set()
 
-for submission in reddit.subreddit('politics').new(limit=100):
-    headlines.add(submission.title)
-    display.clear_output()
-    # print(len(headlines))
+def submission_sentiment():
+    headlines = set()
+    for submission in reddit.subreddit("stockmarket").new(limit=100):
+        headlines.add(submission.title)
+        display.clear_output()
+        # print(len(headlines))
 
 
-from nltk.sentiment.vader import SentimentIntensityAnalyzer as SIA
+    sia = SIA()
+    results = []
+    # sentiment analysis
+    for line in headlines:
+        score = sia.polarity_scores(line)
+        score["headline"] = line
+        results.append(score)
 
-sia = SIA()
-results = []
+    pprint(results[:10], width=100)
+    df = pd.DataFrame.from_records(results)
 
-for line in headlines:
-    pol_score = sia.polarity_scores(line)
-    pol_score['headline'] = line
-    results.append(pol_score)
+# def pos_neg(df):
+    # categorize pos and neg headlines
+    df["label"] = 0
+    df.loc[df["compound"] > 0.2, "label"] = 1
+    df.loc[df["compound"] < -0.2, "label"] = -1
 
-pprint(results[:3], width=100)
+    print(df.label.value_counts())
+
+    # Prints examples of pos/neg headlines
+    print("Positive headlines:\n")
+    pprint(list(df[df["label"] == 1].headline)[:5], width=200)
+
+    print("\nNegative headlines:\n")
+    pprint(list(df[df["label"] == -1].headline)[:5], width=200)
+
+print(submission_sentiment())
+# print(pos_neg())

@@ -7,6 +7,12 @@
 # Analysis on authors and habbits
 
 
+
+# TODO: Sort words by frequencies from greatest to least 
+# Compare and contrast connotation of vocab in the stock market(ex. bulls vs. bears) and also stock market and economy
+#
+
+
 import praw
 import string
 
@@ -24,26 +30,31 @@ subreddit = reddit.subreddit("economy")
 
 
 def reddit_sub_word_freq():
+    """creates the dictionary of words for a specific category for where the words will be stored and returns frequency"""
     word_freq = {}
 
-    hot_python = subreddit.hot(limit=5)
+    hot_top = subreddit.hot(limit=5)
     # .hot, .new, .controversial, .top, .gilded
-    for submission in hot_python:
+    for submission in hot_top:
         # print(submission.title)
         count_word_submission(word_freq, submission)
 
+   
     return word_freq
 
 
 def count_word_submission(word_freq, submission):
+    """takes and counts the words in the thread titles and updates dictionary"""
     comments = submission.comments
     for comment in comments:
         count_word_comment(word_freq, comment)
-    
+
+   
    
 
 
 def count_word_comment(word_freq, comment):
+    """takes and counts works in the comments and replies to the comments and updates dictionary"""
     strippables = string.punctuation + string.whitespace
 
     
@@ -65,6 +76,39 @@ def count_word_comment(word_freq, comment):
             print('Something went wrong.')
 
 
+reddit_dict = reddit_sub_word_freq()
+
+def most_common(word_freq, excluding_stopwords=False):
+    """Makes a list of word-freq pairs in descending order of frequency.
+
+    returns: list of (frequency, word) pairs
+    """
+    # create a list (tuple)
+    common_words = []
+
+    for word, freq in word_freq.items():
+        t = (freq, word)
+        common_words.append(t)
+
+    common_words.sort(reverse=True)
+
+    return common_words
+
+def print_most_common(word_freq, num=50):
+    """Prints the most commons words in a histgram and their frequencies.
+    num: number of words to print
+    """
+    top_words = most_common(word_freq)
+    for freq, word in top_words[:num]:
+        print(word, freq)
+
+t = most_common(reddit_dict, excluding_stopwords=True)
+print("The most common words are:")
+for freq, word in t[0:50]:
+    print(word, "\t", freq)
+
+
+
+
 print(reddit_sub_word_freq())
 
-# Need to sort words from greatest to least
