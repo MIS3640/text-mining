@@ -389,7 +389,7 @@ def main():
     #     f"The overall sentiment for The Man in the Brown Suit was {brown_suit_average}"
     # )
     # print(f"The overall sentiment for The Raven was {raven_average}")
-    texts_clustering(filename1 = "data/emma.txt",filename2 = 'data/the_raven.txt')
+    texts_clustering(filename1 = "data/emma.txt",filename2 = "data/the_raven.txt")
 
 
 if __name__ == "__main__":
