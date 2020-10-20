@@ -1,14 +1,3 @@
-# Characterizing by Word Frequencies - number of times particular words appear in comments section/title/replies?
-
-# Comparing stock market threads and overall economy threads and words used (connotation)
-
-# Sentiment Analysis
-
-# Analysis on authors and habbits
-
-
-# TODO: Compare and contrast connotation of vocab in the stock market and economy
-
 import praw
 import string
 
@@ -53,12 +42,12 @@ def count_word_comment(word_freq, comment):
         word = word.replace("-", " ")
         word = word.strip(strippables)
         word = word.lower()
-        word_freq[word] = word_freq.get(word, 0) + 1 # counts the frequency
+        word_freq[word] = word_freq.get(word, 0) + 1
 
     replies = comment.replies.list()
 
     for reply in replies:
-        if isinstance(reply, praw.models.Comment): # list consisits of comments and MoreComments so have to use isinstance
+        if isinstance(reply, praw.models.Comment):
             count_word_comment(word_freq, reply)
         elif isinstance(reply, praw.models.MoreComments):
             for more_reply in reply.comments():
@@ -67,39 +56,39 @@ def count_word_comment(word_freq, comment):
             print("Something went wrong.")
 
 
-reddit_dict = reddit_sub_word_freq() # created variable for word_freq to be used below
+# reddit_dict = reddit_sub_word_freq()
 
 
-def most_common(word_freq, excluding_stopwords=False):
-    """Makes a list of word-freq pairs in descending order of frequency.
+# def most_common(word_freq, excluding_stopwords=False):
+#     """Makes a list of word-freq pairs in descending order of frequency.
 
-    returns: list of (frequency, word) pairs
-    """
-    # create a list (tuple)
-    common_words = []
+#     returns: list of (frequency, word) pairs
+#     """
+#     # create a list (tuple)
+#     common_words = []
 
-    for word, freq in word_freq.items():
-        t = (freq, word)
-        common_words.append(t)
+#     for word, freq in word_freq.items():
+#         t = (freq, word)
+#         common_words.append(t)
 
-    common_words.sort(reverse=True)
+#     common_words.sort(reverse=True)
 
-    return common_words
-
-
-def print_most_common(word_freq, num=50):
-    """Prints the most commons words in a histgram and their frequencies.
-    num: number of words to print
-    """
-    top_words = most_common(word_freq)
-    for freq, word in top_words[:num]:
-        print(word, freq)
+#     return common_words
 
 
-t = most_common(reddit_dict, excluding_stopwords=True) # use new variable to pass
-print("The most common words are:")
-for freq, word in t[0:50]:
-    print(word, "\t", freq)
+# def print_most_common(word_freq, num=20):
+#     """Prints the most commons words in a histgram and their frequencies.
+#     num: number of words to print
+#     """
+#     top_words = most_common(word_freq)
+#     for freq, word in top_words[:num]:
+#         print(word, freq)
+
+
+# t = most_common(reddit_dict, excluding_stopwords=True)
+# print("The most common words are:")
+# for freq, word in t[0:20]:
+#     print(word, "\t", freq)
 
 
 print(reddit_sub_word_freq())

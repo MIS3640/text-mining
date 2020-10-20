@@ -22,7 +22,7 @@ reddit = praw.Reddit(
 def submission_sentiment():
     """output the titles of reddit threads and performe sentiment analysis on them"""
     headlines = set()
-    for submission in reddit.subreddit("stockmarket").new(limit=100):
+    for submission in reddit.subreddit("stockmarket").new(limit=1000):
         headlines.add(submission.title)
         display.clear_output()
         # print(len(headlines))
@@ -35,7 +35,7 @@ def submission_sentiment():
         score["headline"] = line
         results.append(score)
 
-    pprint(results[:10], width=100)
+    pprint(results[:10], width=1000)
     df = pd.DataFrame.from_records(results)
     pos_neg(df)  # calling the function to pass in results of next function
 
@@ -45,8 +45,8 @@ def pos_neg(df):
 
     # categorize pos and neg headlines
     df["label"] = 0 
-    df.loc[df["compound"] > 0.2, "label"] = 1
-    df.loc[df["compound"] < -0.2, "label"] = -1
+    df.loc[df["compound"] > 0.1, "label"] = 1
+    df.loc[df["compound"] < -0.1, "label"] = -1
 
     print(df.label.value_counts())
 
