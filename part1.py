@@ -1,4 +1,10 @@
+# from nltk.corpus import brown
+# print(brown.words())
+
 from twython import Twython
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from nltk.tokenize import word_tokenize
+darth = SentimentIntensityAnalyzer()
 from config import TOKEN_SECRET_HIDDEN, CONSUMER_SECRET_HIDDEN
 import re, unicodedata
 """ 
@@ -24,4 +30,19 @@ for status in data['statuses']:
    tweet = unicodedata.normalize('NFKD', tweet).encode('ascii', 'ignore').decode('utf-8', 'ignore')  # remove emojis
    tlist.append(tweet)
 print(tlist)
+
+def tweets_nlp(tweets):
+   for tweet in tweets:
+      translated = word_tokenize(tweet)
+      # print(translated)
+      sentence = tweet
+      score = SentimentIntensityAnalyzer().polarity_scores(sentence)
+      print(score)
+
+def main():
+   tweets = tlist
+   print(tweets_nlp(tweets))
+
+if __name__ == '__main__':
+   main()
 
