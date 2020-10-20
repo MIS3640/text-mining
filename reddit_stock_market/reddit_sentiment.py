@@ -39,8 +39,9 @@ def submission_sentiment():
 
     pprint(results[:10], width=100)
     df = pd.DataFrame.from_records(results)
+    pos_neg(df)
 
-# def pos_neg(df):
+def pos_neg(df):
     # categorize pos and neg headlines
     df["label"] = 0
     df.loc[df["compound"] > 0.2, "label"] = 1
@@ -54,6 +55,7 @@ def submission_sentiment():
 
     print("\nNegative headlines:\n")
     pprint(list(df[df["label"] == -1].headline)[:5], width=200)
+    
 
 print(submission_sentiment())
-# print(pos_neg())
+print(pos_neg())
