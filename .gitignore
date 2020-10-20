@@ -123,3 +123,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Sensitive info
+sensitive.txt
+mateos_sensitive_backup.txt
