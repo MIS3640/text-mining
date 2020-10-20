@@ -1,5 +1,5 @@
 # Characterizing by Word Frequencies - number of times particular words appear in comments section/title/replies?
-# bull/bear/specific stocks
+
 # Comparing stock market threads and overall economy threads and words used (connotation)
 
 # Sentiment Analysis
@@ -8,9 +8,8 @@
 
 
 
-# TODO: Sort words by frequencies from greatest to least 
-# Compare and contrast connotation of vocab in the stock market(ex. bulls vs. bears) and also stock market and economy
-#
+# TODO: Compare and contrast connotation of vocab in the stock market(ex. bulls vs. bears) and also stock market and economy
+
 
 
 import praw

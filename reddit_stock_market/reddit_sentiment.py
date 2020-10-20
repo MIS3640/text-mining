@@ -6,8 +6,6 @@ import numpy as np
 import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer as SIA
 
-# TODO: Split into 2 functions and add docstrings
-
 
 import praw
 
@@ -22,12 +20,12 @@ reddit = praw.Reddit(
 
 
 def submission_sentiment():
+    """output the titles of reddit threads and performe sentiment analysis on them"""
     headlines = set()
     for submission in reddit.subreddit("stockmarket").new(limit=100):
         headlines.add(submission.title)
         display.clear_output()
         # print(len(headlines))
-
 
     sia = SIA()
     results = []
@@ -39,11 +37,14 @@ def submission_sentiment():
 
     pprint(results[:10], width=100)
     df = pd.DataFrame.from_records(results)
-    pos_neg(df)
+    pos_neg(df)  # calling the function to pass in results of next function
+
 
 def pos_neg(df):
+    """Examine and compare positive and negative headlines within a specific topic"""
+
     # categorize pos and neg headlines
-    df["label"] = 0
+    df["label"] = 0 
     df.loc[df["compound"] > 0.2, "label"] = 1
     df.loc[df["compound"] < -0.2, "label"] = -1
 
@@ -55,7 +56,7 @@ def pos_neg(df):
 
     print("\nNegative headlines:\n")
     pprint(list(df[df["label"] == -1].headline)[:5], width=200)
-    
+
 
 print(submission_sentiment())
 print(pos_neg())
