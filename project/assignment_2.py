@@ -2,8 +2,8 @@ import random
 import string
 import sys
 from unicodedata import category
-import nltk
-pip install nltk
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
 
 def create_dictionary(filename):
     """Makes a histogram that contains the words from a file.
@@ -144,183 +144,187 @@ def print_most_Uniquely_common(hist, other_texts, num=20):
         print(word, "\t", freq)
 
 
-#Question 3. Analyze each sentence with an excalamation point and then calculate average to get overall sentiment for exclaimed sentences.
+# Question 3. Analyze the tone of the entire book in order to compare.
 def text_sensitive_analyzer(filename):
-"""analyze each sentence with an exclamation point for each text, then average the positive number given."""
-"""
-1. dictionary 
-for each sentence:
-if sentences start with uppercase and ends with exclamation point
-2. then store it in variable called sent
-3. analyzer with variable
-store the normalized score aka compound in dictionary
-compute an average of the dictionary"""
-    fp = open(filename, encoding="UTF8")
-    d_compound = {}
-    for sentence in fp:
-        if sentence.endswith('!') and sentence.startswith(uppercase):
-            sent = sentence
-            score = SentimentIntensityAnalyzer().polarity_scores(sent)
-            comp = score['compound']
-            d_compound[sentence] = comp
-        else:
-            continue
-    numerator = sum(d_compound.values())
-    denominator = len(d_compound)
-    average = numerator/denominator
-    return average
+    """analyze the text to determine overall tone of book.
+    PSUEDO CODE
+    1. dictionary
+    for each sentence:
+    if sentences start with uppercase and ends with exclamation point
+    2. then store it in variable called sent
+    3. analyzer with variable
+    store the normalized score aka compound in dictionary
+    compute an average of the dictionary
 
-    
+    return: the compound(normalized) number of tone.
+    """
+    fp = open(filename, encoding="UTF8")
+    data = fp.read()
+    # d_compound = {}
+    score = SentimentIntensityAnalyzer().polarity_scores(data)
+    # for sentence in fp:
+    #     if sentence.endswith("!") and sentence.startswith(uppercase):
+    #         sent = sentence
+
+    #         comp = score["compound"]
+    #         d_compound[sentence] = comp
+    #     else:
+    #         continue
+    # numerator = sum(d_compound.values())
+    # denominator = len(d_compound)
+    # average = numerator / denominator
+    return score["compound"]
+
 
 def main():
     """code that runs all the functions above to answer our questions with regards to the 10 texts."""
-    # Create Dictionaries
-    emma_hist = create_dictionary("data/emma.txt")
-    men_hist = create_dictionary("data/little_men.txt")
-    women_hist = create_dictionary("data/little_women.txt")
-    mansfield_hist = create_dictionary("data/mansfield_park.txt")
-    poirot_hist = create_dictionary("data/poirot_investigates.txt")
-    pride_hist = create_dictionary("data/pride_and_prejudice.txt")
-    sense_hist = create_dictionary("data/sense_and_sensibility.txt")
-    cask_hist = create_dictionary("data/the_cask_of_amontillado.txt")
-    brown_suit_hist = create_dictionary("data/the_man_in_the_brown_suit.txt")
-    raven_hist = create_dictionary("data/the_raven.txt")
+    # # Create Dictionaries
+    # emma_hist = create_dictionary("data/emma.txt")
+    # men_hist = create_dictionary("data/little_men.txt")
+    # women_hist = create_dictionary("data/little_women.txt")
+    # mansfield_hist = create_dictionary("data/mansfield_park.txt")
+    # poirot_hist = create_dictionary("data/poirot_investigates.txt")
+    # pride_hist = create_dictionary("data/pride_and_prejudice.txt")
+    # sense_hist = create_dictionary("data/sense_and_sensibility.txt")
+    # cask_hist = create_dictionary("data/the_cask_of_amontillado.txt")
+    # brown_suit_hist = create_dictionary("data/the_man_in_the_brown_suit.txt")
+    # raven_hist = create_dictionary("data/the_raven.txt")
 
-    # Number 1. Most Frequent Words
-    print_most_common(emma_hist)
-    print_most_common(men_hist)
-    print_most_common(women_hist)
-    print_most_common(mansfield_hist)
-    print_most_common(poirot_hist)
-    print_most_common(pride_hist)
-    print_most_common(sense_hist)
-    print_most_common(cask_hist)
-    print_most_common(brown_suit_hist)
-    print_most_common(raven_hist)
+    # # Number 1. Most Frequent Words
+    # print_most_common(emma_hist)
+    # print_most_common(men_hist)
+    # print_most_common(women_hist)
+    # print_most_common(mansfield_hist)
+    # print_most_common(poirot_hist)
+    # print_most_common(pride_hist)
+    # print_most_common(sense_hist)
+    # print_most_common(cask_hist)
+    # print_most_common(brown_suit_hist)
+    # print_most_common(raven_hist)
 
-    # Number 2. Most unique and common words
-    for_emma_hist = nine_text_dictionary(
-        men_hist,
-        women_hist,
-        mansfield_hist,
-        poirot_hist,
-        pride_hist,
-        sense_hist,
-        cask_hist,
-        brown_suit_hist,
-        raven_hist,
-    )
-    for_men_hist = nine_text_dictionary(
-        emma_hist,
-        women_hist,
-        mansfield_hist,
-        poirot_hist,
-        pride_hist,
-        sense_hist,
-        cask_hist,
-        brown_suit_hist,
-        raven_hist,
-    )
-    for_women_hist = nine_text_dictionary(
-        emma_hist,
-        men_hist,
-        mansfield_hist,
-        poirot_hist,
-        pride_hist,
-        sense_hist,
-        cask_hist,
-        brown_suit_hist,
-        raven_hist,
-    )
-    for_mansfield_hist = nine_text_dictionary(
-        emma_hist,
-        men_hist,
-        women_hist,
-        poirot_hist,
-        pride_hist,
-        sense_hist,
-        cask_hist,
-        brown_suit_hist,
-        raven_hist,
-    )
-    for_poirot_hist = nine_text_dictionary(
-        emma_hist,
-        men_hist,
-        women_hist,
-        mansfield_hist,
-        pride_hist,
-        sense_hist,
-        cask_hist,
-        brown_suit_hist,
-        raven_hist,
-    )
-    for_pride_hist = nine_text_dictionary(
-        emma_hist,
-        men_hist,
-        women_hist,
-        mansfield_hist,
-        poirot_hist,
-        sense_hist,
-        cask_hist,
-        brown_suit_hist,
-        raven_hist,
-    )
-    for_sense_hist = nine_text_dictionary(
-        emma_hist,
-        men_hist,
-        women_hist,
-        mansfield_hist,
-        poirot_hist,
-        pride_hist,
-        cask_hist,
-        brown_suit_hist,
-        raven_hist,
-    )
-    for_cask_hist = nine_text_dictionary(
-        emma_hist,
-        men_hist,
-        women_hist,
-        mansfield_hist,
-        poirot_hist,
-        pride_hist,
-        sense_hist,
-        brown_suit_hist,
-        raven_hist,
-    )
-    for_brown_suit_hist = nine_text_dictionary(
-        emma_hist,
-        men_hist,
-        women_hist,
-        mansfield_hist,
-        poirot_hist,
-        pride_hist,
-        sense_hist,
-        cask_hist,
-        raven_hist,
-    )
-    for_raven_hist = nine_text_dictionary(
-        emma_hist,
-        men_hist,
-        women_hist,
-        mansfield_hist,
-        poirot_hist,
-        pride_hist,
-        sense_hist,
-        cask_hist,
-        brown_suit_hist,
-    )
-    print_most_Uniquely_common(emma_hist, for_emma_hist)
-    print_most_Uniquely_common(men_hist, for_men_hist)
-    print_most_Uniquely_common(women_hist, for_women_hist)
-    print_most_Uniquely_common(mansfield_hist, for_mansfield_hist)
-    print_most_Uniquely_common(poirot_hist, for_poirot_hist)
-    print_most_Uniquely_common(pride_hist, for_pride_hist)
-    print_most_Uniquely_common(sense_hist, for_sense_hist)
-    print_most_Uniquely_common(cask_hist, for_cask_hist)
-    print_most_Uniquely_common(brown_suit_hist, for_brown_suit_hist)
-    print_most_Uniquely_common(raven_hist, for_raven_hist)
+    # # Number 2. Most unique and common words
+    # for_emma_hist = nine_text_dictionary(
+    #     men_hist,
+    #     women_hist,
+    #     mansfield_hist,
+    #     poirot_hist,
+    #     pride_hist,
+    #     sense_hist,
+    #     cask_hist,
+    #     brown_suit_hist,
+    #     raven_hist,
+    # )
+    # for_men_hist = nine_text_dictionary(
+    #     emma_hist,
+    #     women_hist,
+    #     mansfield_hist,
+    #     poirot_hist,
+    #     pride_hist,
+    #     sense_hist,
+    #     cask_hist,
+    #     brown_suit_hist,
+    #     raven_hist,
+    # )
+    # for_women_hist = nine_text_dictionary(
+    #     emma_hist,
+    #     men_hist,
+    #     mansfield_hist,
+    #     poirot_hist,
+    #     pride_hist,
+    #     sense_hist,
+    #     cask_hist,
+    #     brown_suit_hist,
+    #     raven_hist,
+    # )
+    # for_mansfield_hist = nine_text_dictionary(
+    #     emma_hist,
+    #     men_hist,
+    #     women_hist,
+    #     poirot_hist,
+    #     pride_hist,
+    #     sense_hist,
+    #     cask_hist,
+    #     brown_suit_hist,
+    #     raven_hist,
+    # )
+    # for_poirot_hist = nine_text_dictionary(
+    #     emma_hist,
+    #     men_hist,
+    #     women_hist,
+    #     mansfield_hist,
+    #     pride_hist,
+    #     sense_hist,
+    #     cask_hist,
+    #     brown_suit_hist,
+    #     raven_hist,
+    # )
+    # for_pride_hist = nine_text_dictionary(
+    #     emma_hist,
+    #     men_hist,
+    #     women_hist,
+    #     mansfield_hist,
+    #     poirot_hist,
+    #     sense_hist,
+    #     cask_hist,
+    #     brown_suit_hist,
+    #     raven_hist,
+    # )
+    # for_sense_hist = nine_text_dictionary(
+    #     emma_hist,
+    #     men_hist,
+    #     women_hist,
+    #     mansfield_hist,
+    #     poirot_hist,
+    #     pride_hist,
+    #     cask_hist,
+    #     brown_suit_hist,
+    #     raven_hist,
+    # )
+    # for_cask_hist = nine_text_dictionary(
+    #     emma_hist,
+    #     men_hist,
+    #     women_hist,
+    #     mansfield_hist,
+    #     poirot_hist,
+    #     pride_hist,
+    #     sense_hist,
+    #     brown_suit_hist,
+    #     raven_hist,
+    # )
+    # for_brown_suit_hist = nine_text_dictionary(
+    #     emma_hist,
+    #     men_hist,
+    #     women_hist,
+    #     mansfield_hist,
+    #     poirot_hist,
+    #     pride_hist,
+    #     sense_hist,
+    #     cask_hist,
+    #     raven_hist,
+    # )
+    # for_raven_hist = nine_text_dictionary(
+    #     emma_hist,
+    #     men_hist,
+    #     women_hist,
+    #     mansfield_hist,
+    #     poirot_hist,
+    #     pride_hist,
+    #     sense_hist,
+    #     cask_hist,
+    #     brown_suit_hist,
+    # # )
+    # print_most_Uniquely_common(emma_hist, for_emma_hist)
+    # print_most_Uniquely_common(men_hist, for_men_hist)
+    # print_most_Uniquely_common(women_hist, for_women_hist)
+    # print_most_Uniquely_common(mansfield_hist, for_mansfield_hist)
+    # print_most_Uniquely_common(poirot_hist, for_poirot_hist)
+    # print_most_Uniquely_common(pride_hist, for_pride_hist)
+    # print_most_Uniquely_common(sense_hist, for_sense_hist)
+    # print_most_Uniquely_common(cask_hist, for_cask_hist)
+    # print_most_Uniquely_common(brown_suit_hist, for_brown_suit_hist)
+    # print_most_Uniquely_common(raven_hist, for_raven_hist)
 
-#Question 3 Answers.
+    # Question 3 Answers.
     emma_average = text_sensitive_analyzer("data/emma.txt")
     men_average = text_sensitive_analyzer("data/little_men.txt")
     women_average = text_sensitive_analyzer("data/little_women.txt")
@@ -331,18 +335,17 @@ def main():
     cask_average = text_sensitive_analyzer("data/the_cask_of_amontillado.txt")
     brown_suit_average = text_sensitive_analyzer("data/the_man_in_the_brown_suit.txt")
     raven_average = text_sensitive_analyzer("data/the_raven.txt")
-    print(f'The overall sentiment for the averaged exclaimed sentences in Emma was {emma_average}')
-    print(f'The overall sentiment for the averaged exclaimed sentences in Little Men was {men_average}')
-    print(f'The overall sentiment for the averaged exclaimed sentences in Little Women was {women_average}')
-    print(f'The overall sentiment for the averaged exclaimed sentences in Mansfield Park was {mansfield_average}')
-    print(f'The overall sentiment for the averaged exclaimed sentences in Poirot Investigate was {poirot_average}')
-    print(f'The overall sentiment for the averaged exclaimed sentences in Pride and Prejudice was {pride_average}')
-    print(f'The overall sentiment for the averaged exclaimed sentences in Sense and Sensibility was {sense_average}')
-    print(f'The overall sentiment for the averaged exclaimed sentences in The Cask of Amontillado was {cask_average}')
-    print(f'The overall sentiment for the averaged exclaimed sentences in The Man in the Brown Suit was {brown_suit_average}')
-    print(f'The overall sentiment for the averaged exclaimed sentences in The Raven was {raven_average}')
+    print(f"The overall sentiment for Emma was {emma_average}")
+    # print(f'The overall sentiment for Little Men was {men_average}')
+    # print(f'The overall sentiment for Little Women was {women_average}')
+    # print(f'The overall sentiment for Mansfield Park was {mansfield_average}')
+    # print(f'The overall sentiment for Poirot Investigate was {poirot_average}')
+    # print(f'The overall sentiment for Pride and Prejudice was {pride_average}')
+    # print(f'The overall sentiment for Sense and Sensibility was {sense_average}')
+    # print(f'The overall sentiment for The Cask of Amontillado was {cask_average}')
+    # print(f'The overall sentiment for The Man in the Brown Suit was {brown_suit_average}')
+    # print(f'The overall sentiment for The Raven was {raven_average}')
 
-  
 
 if __name__ == "__main__":
     main()

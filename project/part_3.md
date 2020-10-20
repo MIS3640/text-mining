@@ -1,1 +1,3 @@
 - cleaned each file first to remove all header and footer so only text is there
+- for NLTK we originally were going to do a runaround version of exclaimation to get tone but that nltk can do based on text
+- didn't remove the credits int he begginning of of the raven
