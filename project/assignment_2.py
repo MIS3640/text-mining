@@ -170,6 +170,9 @@ def text_sensitive_analyzer(filename):
 
 def texts_clustering(filename1, filename2):
     """Test our hypothesis on two texts comparing them to see where they are clustered on a chart based on similarities.
+    
+    Used some code basis from: https://dev.to/coderasha/compare-documents-similarity-using-python-nlp-4odp
+    
     Filenames: string
     Return: chart"""
 
