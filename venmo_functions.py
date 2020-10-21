@@ -56,7 +56,7 @@ def all_words():
     return phrase_list
 
 
-def words_for_user(user_id, limit=500):
+def words_for_user(user_id, limit=51):
     phrase_list = []
     try:
         count = 0
@@ -94,12 +94,14 @@ def process_text_to_dict(arr):
 
 
 def sort_most_common(text_dict):
-    common_sorted = sorted(text_dict.items(), key=lambda item: item[1], reverse=True)[
-        :10
-    ]
+    common_sorted = sorted(
+        text_dict.items(), key=lambda item: item[1], reverse=True
+    )  # add on [:10] if you want short list
+    common_list = []
     for k, v in common_sorted:
         print(f"{k}:{v}")
-    return common_sorted
+        common_list.append([k, v * 20])
+    return common_list
 
 
 def split_count(text):
@@ -130,6 +132,28 @@ def create_emoji_dict(count_dict):
     return emoji_dict
 
 
+def execute_most_common():
+    read_config()
+    set_user()
+
+    word_list = all_words()
+    word_count_dict = process_text_to_dict(word_list)
+    common_list = sort_most_common(word_count_dict)
+    return common_list
+
+
+def execute_emoji_list():
+    read_config()
+    set_user()
+
+    word_list = all_words()
+    # word_list = words_for_user(user.id)
+    word_count_dict = process_text_to_dict(word_list)
+    emoji_dict = create_emoji_dict(word_count_dict)
+    sorted_emoji_list = sort_most_common(emoji_dict)
+    return sorted_emoji_list
+
+
 def execute():
     read_config()
     set_user()
@@ -143,7 +167,8 @@ def execute():
 
 
 if __name__ == "__main__":
-    execute()
+    execute_most_common()
+    # execute()
 
 
 # most common word (kinda complete, need to add skip phrases)
