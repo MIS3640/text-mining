@@ -166,57 +166,57 @@ def text_sensitive_analyzer(filename):
     return score
 
 
-# Question 4. Test our hypothesis on two texts comparing and to see the text clustering of them.
+Question 4. Test our hypothesis on two texts comparing and to see the text clustering of them.
 
-# def texts_clustering(filename1, filename2):
-#     """Test our hypothesis on two texts comparing them to see where they are clustered on a chart based on similarities.
+def texts_clustering(filename1, filename2):
+    """Test our hypothesis on two texts comparing them to see where they are clustered on a chart based on similarities.
 
-#     Used some code basis from: https://dev.to/coderasha/compare-documents-similarity-using-python-nlp-4odp
+    Used some code basis from: https://dev.to/coderasha/compare-documents-similarity-using-python-nlp-4odp
 
-#     Filenames: string
-#     Return: chart"""
+    Filenames: string
+    Return: chart"""
 
-#     #TODO: to ask how to import gensim
-#     fp1 = open(filename1, encoding="UTF8")
-#     fp2 = open(filename2, encoding="UTF8")
-#     data1 = fp1.read()
-#     data2 = fp2.read()
-#     file1_sentence_list = []
-#     with open(data1) as f:  #TODO:  is it okay that we are doing data1 open instead of fp?
-#         tokens = sent_tokenize(f.read())
-#         for line in tokens:
-#             file1_sentence_list.append(line)
-#     gen_words_list = [
-#         [w.lower() for w in word_tokenize(text)] for text in file1_sentence_list
-#     ]
-#     dictionary = gensim.corpora.Dictionary(gen_words_list)
-#     corpus = [dictionary.doc2bow(gen_words_list) for gen_words_list in gen_words_list]
-#     tf_idf = gensim.models.TfidfModel(corpus)
-#     sims = gensim.similarities.Similarity(
-#         "data/workdir", tf_idf[corpus], num_features=len(dictionary)
-#     )  # TODO: is this index file that will be created correctly written?
-#     file2_sentence_list = []
-#     with open(data2) as f:
-#         tokens = sent_tokenize(f.read())
-#         for line in tokens:
-#             file2_sentence_list.append(line)
-#     for line in file2_sentence_list:
-#         query_doc = [w.lower() for w in word_tokenize(line)]
-#         query_doc_bow = dictionary.doc2bow(query_doc)
-#     create bag of words #TODO: is this correct?
-#     query_doc_tf_idf = tf_idf[query_doc_bow] #TODO: does this mean the s part of the equation for clustering?
+    #TODO: to ask how to import gensim
+    fp1 = open(filename1, encoding="UTF8")
+    fp2 = open(filename2, encoding="UTF8")
+    data1 = fp1.read()
+    data2 = fp2.read()
+    file1_sentence_list = []
+    with open(data1) as f:  #TODO:  is it okay that we are doing data1 open instead of fp?
+        tokens = sent_tokenize(f.read())
+        for line in tokens:
+            file1_sentence_list.append(line)
+    gen_words_list = [
+        [w.lower() for w in word_tokenize(text)] for text in file1_sentence_list
+    ]
+    dictionary = gensim.corpora.Dictionary(gen_words_list)
+    corpus = [dictionary.doc2bow(gen_words_list) for gen_words_list in gen_words_list]
+    tf_idf = gensim.models.TfidfModel(corpus)
+    sims = gensim.similarities.Similarity(
+        "data/workdir", tf_idf[corpus], num_features=len(dictionary)
+    )  # TODO: is this index file that will be created correctly written?
+    file2_sentence_list = []
+    with open(data2) as f:
+        tokens = sent_tokenize(f.read())
+        for line in tokens:
+            file2_sentence_list.append(line)
+    for line in file2_sentence_list:
+        query_doc = [w.lower() for w in word_tokenize(line)]
+        query_doc_bow = dictionary.doc2bow(query_doc)
+    create bag of words #TODO: is this correct?
+    query_doc_tf_idf = tf_idf[query_doc_bow] #TODO: does this mean the s part of the equation for clustering?
 
-#     import numpy as np
-#     from sklearn.mainfold import MDS
-#     import matplotlib.pyplot as plt
-#     sum_of_sims = (np.sum(sims[query_doc_tf_idf], dtype = np.float32)) #TODO: ASK PROFESSOR: what does this do? is this just adding the similarities?
-#     # s = np.asarray()
-#     dissimilarities = 1-S
-#     coord = MDS(dissimilarity = 'precomputed').fit_transform(dissimilarities)
-#     plt.scatter(coord[:,0], coord[:,1])
-#     for i in range(coord.shape[0]):
-#         plt.annotate(str(i), (coord[i, :]))
-#     plt.show()
+    import numpy as np
+    from sklearn.mainfold import MDS
+    import matplotlib.pyplot as plt
+    sum_of_sims = (np.sum(sims[query_doc_tf_idf], dtype = np.float32)) #TODO: ASK PROFESSOR: what does this do? is this just adding the similarities?
+    # s = np.asarray()
+    dissimilarities = 1-S
+    coord = MDS(dissimilarity = 'precomputed').fit_transform(dissimilarities)
+    plt.scatter(coord[:,0], coord[:,1])
+    for i in range(coord.shape[0]):
+        plt.annotate(str(i), (coord[i, :]))
+    plt.show()
 
 
 def main():
@@ -245,118 +245,118 @@ def main():
     # print_most_common(brown_suit_hist)
     # print_most_common(raven_hist)
 
-    # Number 2. Most unique and common words
-    for_emma_hist = nine_text_dictionary(
-        men_hist,
-        women_hist,
-        mansfield_hist,
-        poirot_hist,
-        pride_hist,
-        sense_hist,
-        cask_hist,
-        brown_suit_hist,
-        raven_hist,
-    )
-    for_men_hist = nine_text_dictionary(
-        emma_hist,
-        women_hist,
-        mansfield_hist,
-        poirot_hist,
-        pride_hist,
-        sense_hist,
-        cask_hist,
-        brown_suit_hist,
-        raven_hist,
-    )
-    for_women_hist = nine_text_dictionary(
-        emma_hist,
-        men_hist,
-        mansfield_hist,
-        poirot_hist,
-        pride_hist,
-        sense_hist,
-        cask_hist,
-        brown_suit_hist,
-        raven_hist,
-    )
-    for_mansfield_hist = nine_text_dictionary(
-        emma_hist,
-        men_hist,
-        women_hist,
-        poirot_hist,
-        pride_hist,
-        sense_hist,
-        cask_hist,
-        brown_suit_hist,
-        raven_hist,
-    )
-    for_poirot_hist = nine_text_dictionary(
-        emma_hist,
-        men_hist,
-        women_hist,
-        mansfield_hist,
-        pride_hist,
-        sense_hist,
-        cask_hist,
-        brown_suit_hist,
-        raven_hist,
-    )
-    for_pride_hist = nine_text_dictionary(
-        emma_hist,
-        men_hist,
-        women_hist,
-        mansfield_hist,
-        poirot_hist,
-        sense_hist,
-        cask_hist,
-        brown_suit_hist,
-        raven_hist,
-    )
-    for_sense_hist = nine_text_dictionary(
-        emma_hist,
-        men_hist,
-        women_hist,
-        mansfield_hist,
-        poirot_hist,
-        pride_hist,
-        cask_hist,
-        brown_suit_hist,
-        raven_hist,
-    )
-    for_cask_hist = nine_text_dictionary(
-        emma_hist,
-        men_hist,
-        women_hist,
-        mansfield_hist,
-        poirot_hist,
-        pride_hist,
-        sense_hist,
-        brown_suit_hist,
-        raven_hist,
-    )
-    for_brown_suit_hist = nine_text_dictionary(
-        emma_hist,
-        men_hist,
-        women_hist,
-        mansfield_hist,
-        poirot_hist,
-        pride_hist,
-        sense_hist,
-        cask_hist,
-        raven_hist,
-    )
-    for_raven_hist = nine_text_dictionary(
-        emma_hist,
-        men_hist,
-        women_hist,
-        mansfield_hist,
-        poirot_hist,
-        pride_hist,
-        sense_hist,
-        cask_hist,
-        brown_suit_hist,
-    )
-    print_most_Uniquely_common(emma_hist, for_emma_hist)
+    # # Number 2. Most unique and common words
+    # for_emma_hist = nine_text_dictionary(
+    #     men_hist,
+    #     women_hist,
+    #     mansfield_hist,
+    #     poirot_hist,
+    #     pride_hist,
+    #     sense_hist,
+    #     cask_hist,
+    #     brown_suit_hist,
+    #     raven_hist,
+    # )
+    # for_men_hist = nine_text_dictionary(
+    #     emma_hist,
+    #     women_hist,
+    #     mansfield_hist,
+    #     poirot_hist,
+    #     pride_hist,
+    #     sense_hist,
+    #     cask_hist,
+    #     brown_suit_hist,
+    #     raven_hist,
+    # )
+    # for_women_hist = nine_text_dictionary(
+    #     emma_hist,
+    #     men_hist,
+    #     mansfield_hist,
+    #     poirot_hist,
+    #     pride_hist,
+    #     sense_hist,
+    #     cask_hist,
+    #     brown_suit_hist,
+    #     raven_hist,
+    # )
+    # for_mansfield_hist = nine_text_dictionary(
+    #     emma_hist,
+    #     men_hist,
+    #     women_hist,
+    #     poirot_hist,
+    #     pride_hist,
+    #     sense_hist,
+    #     cask_hist,
+    #     brown_suit_hist,
+    #     raven_hist,
+    # )
+    # for_poirot_hist = nine_text_dictionary(
+    #     emma_hist,
+    #     men_hist,
+    #     women_hist,
+    #     mansfield_hist,
+    #     pride_hist,
+    #     sense_hist,
+    #     cask_hist,
+    #     brown_suit_hist,
+    #     raven_hist,
+    # )
+    # for_pride_hist = nine_text_dictionary(
+    #     emma_hist,
+    #     men_hist,
+    #     women_hist,
+    #     mansfield_hist,
+    #     poirot_hist,
+    #     sense_hist,
+    #     cask_hist,
+    #     brown_suit_hist,
+    #     raven_hist,
+    # )
+    # for_sense_hist = nine_text_dictionary(
+    #     emma_hist,
+    #     men_hist,
+    #     women_hist,
+    #     mansfield_hist,
+    #     poirot_hist,
+    #     pride_hist,
+    #     cask_hist,
+    #     brown_suit_hist,
+    #     raven_hist,
+    # )
+    # for_cask_hist = nine_text_dictionary(
+    #     emma_hist,
+    #     men_hist,
+    #     women_hist,
+    #     mansfield_hist,
+    #     poirot_hist,
+    #     pride_hist,
+    #     sense_hist,
+    #     brown_suit_hist,
+    #     raven_hist,
+    # )
+    # for_brown_suit_hist = nine_text_dictionary(
+    #     emma_hist,
+    #     men_hist,
+    #     women_hist,
+    #     mansfield_hist,
+    #     poirot_hist,
+    #     pride_hist,
+    #     sense_hist,
+    #     cask_hist,
+    #     raven_hist,
+    # )
+    # for_raven_hist = nine_text_dictionary(
+    #     emma_hist,
+    #     men_hist,
+    #     women_hist,
+    #     mansfield_hist,
+    #     poirot_hist,
+    #     pride_hist,
+    #     sense_hist,
+    #     cask_hist,
+    #     brown_suit_hist,
+    # )
+    # print_most_Uniquely_common(emma_hist, for_emma_hist)
     # print_most_Uniquely_common(men_hist, for_men_hist)
     # print_most_Uniquely_common(women_hist, for_women_hist)
     # print_most_Uniquely_common(mansfield_hist, for_mansfield_hist)
@@ -390,6 +390,8 @@ def main():
     #     f"The overall sentiment for The Man in the Brown Suit was {brown_suit_average}"
     # )
     # print(f"The overall sentiment for The Raven was {raven_average}")
+
+    #Question 4 Answers.
     # texts_clustering(filename1 = "data/emma.txt",filename2 = "data/the_raven.txt")
 
 
