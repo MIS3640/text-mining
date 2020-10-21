@@ -68,7 +68,6 @@ def top_words(count):
         t = (freq, word)
         top.append(t)
     top.sort(reverse=True)
-    print(top)
     return top
 
 
