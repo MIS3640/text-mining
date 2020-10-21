@@ -12,10 +12,6 @@ imdb = Imdb()
 movieDict =  imdb.search_for_title(movieName)[0] # closest match is the first index
 id = movieDict['imdb_id']
 reviews = imdb.get_title_user_reviews(id)
-
-#pprint.pprint(reviews['reviews'][0])
-# pickle 
-
 allReviews = reviews['reviews'] # get the reviews into a dictionary
 
 
@@ -27,7 +23,7 @@ def countWords():
     
 def countFrequency():
     wordstring=""
-    stopWords = [".","this","the", "to", "time","on","a","not","is","I","we","they","he","are","an","was","and","here","there","that","where","why","don't","in","you","she","of","it","by","be","as","about"]
+    stopWords = ["this","the", "to", "time","on","a","not","is","I","we","they","he","are","an","was","and","here","there","that","where","why","don't","in","you","she","of","it","by","be","as","about"]
     
     # Join all the reviews together and make it as one text first
     for R in allReviews: 
