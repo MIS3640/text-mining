@@ -13,3 +13,7 @@ The custom stopwords are located on lines 22-33. The user may change custom stop
 The number of tweets is located on line 37 and is controlled by "count=1000". The user may change the number of tweets.
 #### Change Number of Top Words
 The number of top words is located in the main() function on line 120 and is controlled by "num=10". The user may change the number of top words. 
+
+
+#### Side Note
+The Assignment 2 Reflection is located within this repository.
