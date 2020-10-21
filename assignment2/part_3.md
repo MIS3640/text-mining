@@ -1,5 +1,3 @@
-# text-mining
-
 ## 1. Project Overview
 
 I choose to use Wikipedia as my data source. I used Characterizing by Word Frequency, Computing Summary Statistics, and Natural Language Processing techniques to analyze and process the data.
