@@ -60,15 +60,14 @@ def print_most_common(hist, num=10):
         print(word, '\t', freq)
 
 def exclusive_dict(d1, d2):
-    """Returns a dictionary with all keys that appear in d1 but not d2.
+    """Returns a dictionary with all keys and frequencies of words that appear in d1 but not d2.
     d1, d2: dictionaries
     """
-    res = {}
-    for key in d1:
-        if key not in d2:
-            res[key] = None
-    return res
-
+    res = {} 
+    for word, freq in d1.items(): 
+        if word not in d2: 
+            res[word] = freq
+    return res 
 
 
 
@@ -76,17 +75,17 @@ def exclusive_dict(d1, d2):
 def main():
     hist = process_file('data/biden.txt')
 
-    print(process_file('data/biden.txt'))
+    # print(process_file('data/biden.txt'))
 
     # print(most_common(hist, excluding_stopwords=True))
 
     # print_most_common(hist, num=30)
 
-    # words = process_file('data/trump.txt')
-    # diff = exclusive_dict(hist, words)
-    # print("The words in biden that aren't in trump are:")
-    # for word in diff.keys():
-    #     print(word, end=' ')
+    trump = process_file('data/trump.txt')
+    # print(exclusive_dict(hist,words))
+
+    excl = exclusive_dict(hist, trump)
+    print_most_common(excl, num=15)
 
 if __name__ == '__main__':
     main()

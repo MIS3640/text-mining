@@ -25,6 +25,19 @@ def sent_analysis(sentences):
             print('{0}: {1}, '.format(k, ss[k]), end='')
         print()
 
+def sent_only_neg(sentences, num):
+    '''takes a dictionary of sentences and their sentiment and returns only the ones that have a neg value
+    num: defines what you want the negative rating to be above (has to be between 0 and 1) '''
+    neg_sent = dict()
+    from nltk.sentiment.vader import SentimentIntensityAnalyzer
+    sid = SentimentIntensityAnalyzer()
+    for sentence in sentences:
+        ss = sid.polarity_scores(sentence)
+        for k in sorted(ss):
+            if ss['neg'] > num:
+                neg_sent[sentence] = ss
+    return neg_sent
+
 def text_words_no_sw(text):
     '''this function takes the text input andsplits it all into individual words.
     It then generates a list of words to be disregarded called "stopwords".
@@ -62,12 +75,14 @@ def main():
     # print(token_sent(text))
 
     sentences = token_sent(text)
-    sent_analysis(sentences)
+    # sent_analysis(sentences)
 
     # print(text_words_no_sw(text))
 
     # filtered_words = text_words_no_sw(text)
     # top_word_plot_no_sw(filtered_words, 20)
+
+    print(sent_only_neg(sentences,0.2))
 
 if __name__ == '__main__':
     main()

@@ -61,17 +61,12 @@ def exclusive_dict(d1,d2):
     """Returns a dictionary with all keys that appear in d1 but not d2.
     d1, d2: dictionaries
     """
-    res = list()
-    for word in d1.items():
-        if word not in d2.items():
-            res.append(word)
-    return res
-    # for  in d1:
-    #     if key not in d2:
-    #         res[key] = None
-    # return res
-
-
+    res = {} 
+    for word, freq in d1.items(): 
+        if word not in d2: 
+            res[word] = freq
+    return res 
+    
 
 
 
@@ -85,11 +80,9 @@ def main():
     # print_most_common(hist, num=30)
 
     biden = process_file('data/biden.txt')
-    exclusive_dict(hist,biden)
-    # diff = exclusive_dict(hist, words)
-    # print("The words in trump that aren't in biden are:")
-    # for word in diff.keys():
-    #     print(word, end=' ')
-
+    # print(exclusive_dict(hist,biden))
+    
+    excl = exclusive_dict(hist, biden)
+    print_most_common(excl, num=15)
 if __name__ == '__main__':
     main()
