@@ -4,10 +4,18 @@
 from twython import Twython
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.tokenize import word_tokenize
+
 darth = SentimentIntensityAnalyzer()
 
 from config import TOKEN_SECRET_HIDDEN, CONSUMER_SECRET_HIDDEN
 import re, unicodedata
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# %matplotlib inline
+
 
 """ 
 Resources:
@@ -42,7 +50,6 @@ data = t.search(
     tweet_mode="extended",
     truncated=False,
 )
-print(data["statuses"])
 for status in data["statuses"]:
     tweet = (
         status["full_text"].lower().replace("\n", "")
@@ -58,21 +65,30 @@ for status in data["statuses"]:
 
 
 def tweets_nlp(tweets):
-    """
-    
-    """
+    """"""
+    scoredict = dict()
     for tweet in tweets:
         # sentence = word_tokenize(tweet)
         score = SentimentIntensityAnalyzer().polarity_scores(tweet)
-        print(f"Tweet: {tweet}")
-        print(f"Score: {score}")
-        print()
+        # print(f"Tweet: {tweet}")
+        # print(f"Score: {score}")
+        # print()
+        scoredict[tweet] = score
+    df = pd.DataFrame.from_dict(scoredict)
+    # return scoredict
+    return df
+    
 
+# def pandascore(scores):
+#     # df = pd.DataFrame(list(scores.items()), columns = ['Neg', 'Neu', 'Pos', 'Compound'])
+#     pd.DataFrame.from_dict(scores)
+#     print(df)
 
 def main():
     tweets = tlist
+    # scores = scoredict
+    # print(pandascore(tweets_nlp(tweets)))
     print(tweets_nlp(tweets))
-
 
 if __name__ == "__main__":
     main()
