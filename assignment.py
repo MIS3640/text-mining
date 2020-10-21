@@ -58,6 +58,9 @@ for status in data["statuses"]:
 
 
 def tweets_nlp(tweets):
+    """
+    
+    """
     for tweet in tweets:
         # sentence = word_tokenize(tweet)
         score = SentimentIntensityAnalyzer().polarity_scores(tweet)
