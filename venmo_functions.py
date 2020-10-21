@@ -12,6 +12,11 @@ import time
 venmo = None
 venmo_config = None
 user = None
+transcations = None
+
+# word cloud lists
+wc_word_list = None
+wc_emoji_list = None
 
 
 def read_config():
@@ -57,6 +62,8 @@ def all_words():
 
 
 def words_for_user(user_id, limit=51):
+    global transcations
+
     phrase_list = []
     try:
         count = 0
@@ -132,9 +139,15 @@ def create_emoji_dict(count_dict):
     return emoji_dict
 
 
+# def venmo_best_friend():
+#     global transcations
+#     friend_list = []
+#     for transcation in transcations:
+
+
 def execute_most_common():
-    read_config()
-    set_user()
+    # read_config()
+    # set_user()
 
     word_list = all_words()
     word_count_dict = process_text_to_dict(word_list)
@@ -143,8 +156,8 @@ def execute_most_common():
 
 
 def execute_emoji_list():
-    read_config()
-    set_user()
+    # read_config()
+    # set_user()
 
     word_list = all_words()
     # word_list = words_for_user(user.id)
@@ -154,16 +167,25 @@ def execute_emoji_list():
     return sorted_emoji_list
 
 
+def get_user_info():
+    return venmo.user.get_my_profile()
+
+
 def execute():
     read_config()
     set_user()
 
     word_list = all_words()
-    # word_list = words_for_user(user.id)
     word_count_dict = process_text_to_dict(word_list)
-    sorted_count_list = sort_most_common(word_count_dict)
+
+    # generate most common word list for word cloud
+    global wc_word_list
+    wc_word_list = sort_most_common(word_count_dict)
+
+    # generat most common emoji list
     emoji_dict = create_emoji_dict(word_count_dict)
-    sorted_emoji_list = sort_most_common(emoji_dict)
+    global wc_emoji_list
+    wc_emoji_list = sort_most_common(emoji_dict)
 
 
 if __name__ == "__main__":
