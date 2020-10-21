@@ -5,7 +5,7 @@ from unicodedata import category
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.tokenize import word_tokenize
 from nltk.tokenize import sent_tokenize
-
+from gensim import corpora, models, similarities
 
 def create_dictionary(filename):
     """Makes a histogram that contains the words from a file.
@@ -177,40 +177,40 @@ def texts_clustering(filename1, filename2):
     Return: chart"""
 
     #TODO: to ask how to import gensim
-    fp1 = open(filename1, encoding="UTF8")
-    fp2 = open(filename2, encoding="UTF8")
-    data1 = fp1.read()
-    data2 = fp2.read()
+    # fp1 = open(filename1, encoding="UTF8")
+    # fp2 = open(filename2, encoding="UTF8")
+    # data1 = fp1.read()
+    # data2 = fp2.read()
     file1_sentence_list = []
-    with open(data1) as f:  #TODO:  is it okay that we are doing data1 open instead of fp?
+    with open(filename1) as f:  #TODO:  is it okay that we are doing data1 open instead of fp?
         tokens = sent_tokenize(f.read())
         for line in tokens:
             file1_sentence_list.append(line)
     gen_words_list = [
         [w.lower() for w in word_tokenize(text)] for text in file1_sentence_list
     ]
-    dictionary = gensim.corpora.Dictionary(gen_words_list)
+    dictionary = corpora.Dictionary(gen_words_list)
     corpus = [dictionary.doc2bow(gen_words_list) for gen_words_list in gen_words_list]
-    tf_idf = gensim.models.TfidfModel(corpus)
-    sims = gensim.similarities.Similarity(
-        "data/workdir", tf_idf[corpus], num_features=len(dictionary)
+    tf_idf = models.TfidfModel(corpus)
+    sims = similarities.Similarity(
+        "data", tf_idf[corpus], num_features=len(dictionary)
     )  # TODO: is this index file that will be created correctly written?
     file2_sentence_list = []
-    with open(data2) as f:
+    with open(filename2) as f:
         tokens = sent_tokenize(f.read())
         for line in tokens:
             file2_sentence_list.append(line)
     for line in file2_sentence_list:
         query_doc = [w.lower() for w in word_tokenize(line)]
         query_doc_bow = dictionary.doc2bow(query_doc)
-    create bag of words #TODO: is this correct?
+    # create bag of words #TODO: is this correct?
     query_doc_tf_idf = tf_idf[query_doc_bow] #TODO: does this mean the s part of the equation for clustering?
 
     import numpy as np
     from sklearn.mainfold import MDS
     import matplotlib.pyplot as plt
     sum_of_sims = (np.sum(sims[query_doc_tf_idf], dtype = np.float32)) #TODO: ASK PROFESSOR: what does this do? is this just adding the similarities?
-    # s = np.asarray()
+    # S = np.asarray()
     dissimilarities = 1-S
     coord = MDS(dissimilarity = 'precomputed').fit_transform(dissimilarities)
     plt.scatter(coord[:,0], coord[:,1])
