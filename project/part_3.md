@@ -27,4 +27,4 @@ The overall sentiment for The Man in the Brown Suit was {'neg': 0.096, 'neu': 0.
 The overall sentiment for The Raven was {'neg': 0.095, 'neu': 0.768, 'pos': 0.137, 'compound': 0.9999}
 
 
-most negative is the cask, then man, then raven. Most postive is little women and least positive is poirot.
+most negative is the cask, then man, then raven. Most postive is little women and least positive is poirot. Most neutral is Poirot followed by the Man in the brown Suit (same author) followed by The Raven.
