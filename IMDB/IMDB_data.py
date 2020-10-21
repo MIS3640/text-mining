@@ -1,7 +1,7 @@
 # THE FOLLOWING CODE IS WHAT I USED TO GATHER DATA OF VARIOUS TYPES
 
 # IN DEPTH DATA FOR SELECTED FILM
-import imdb
+from imdbpie import Imdb
 
 # Need an internet connection to run
 moviesDB = imdb.IMDb()
