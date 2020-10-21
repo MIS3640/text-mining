@@ -16,8 +16,6 @@
 # import pandas as pd
 # import matplotlib.pyplot as plt
 
-# # %matplotlib inline
-
 
 # """ 
 # Resources:
@@ -25,16 +23,6 @@
 # Twitter Standard Operators - https://developer.twitter.com/en/docs/twitter-api/v1/tweets/search/guides/standard-operators
 # Twython Search - https://twython.readthedocs.io/en/latest/usage/starting_out.html#dynamicfunctionarguments
 #  """
-# TODO:
-# 1. Figure out how to hide the config.py (Unless if he needs it to run the code)
-# 2. Is this actually doing anything? "Truncated = False"
-# 3. Figure out if need to tokenize the tweets
-# 4. Docstrings
-# 5. What to improve in the code? - check instructions to ensure all points have been covered
-# 6. Maybe make the "tweet = ..." edits more efficient
-# 7. Potentially have words analysis
-# 8. Print the original tweet vs cleaned tweet for tweets_nlp?
-# 9. Test how accurate the analyzer is - use known sentences and known scores to see if implementation is correct
 
 # def fetch_tweets():
 #     TOKEN = "1308753867992170498-y2tPq70sOhS9VxNeRhnuO4wW6cIdXH"
