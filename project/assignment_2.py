@@ -6,6 +6,11 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.tokenize import word_tokenize
 from nltk.tokenize import sent_tokenize
 from gensim import corpora, models, similarities
+import os
+import numpy as np
+from sklearn.mainfold import MDS
+import matplotlib.pyplot as plt
+
 
 def create_dictionary(filename):
     """Makes a histogram that contains the words from a file.
@@ -166,9 +171,10 @@ def text_sensitive_analyzer(filename):
     return score
 
 
-Question 4. Test our hypothesis on two texts comparing and to see the text clustering of them.
+# Question 4. Test our hypothesis on two texts comparing and to see the text clustering of them.
 
-def texts_clustering(filename1, filename2):
+
+def texts_clustering():
     """Test our hypothesis on two texts comparing them to see where they are clustered on a chart based on similarities.
 
     Used some code basis from: https://dev.to/coderasha/compare-documents-similarity-using-python-nlp-4odp
@@ -176,47 +182,47 @@ def texts_clustering(filename1, filename2):
     Filenames: string
     Return: chart"""
 
-    #TODO: to ask how to import gensim
-    # fp1 = open(filename1, encoding="UTF8")
-    # fp2 = open(filename2, encoding="UTF8")
-    # data1 = fp1.read()
-    # data2 = fp2.read()
-    file1_sentence_list = []
-    with open(filename1) as f:  #TODO:  is it okay that we are doing data1 open instead of fp?
-        tokens = sent_tokenize(f.read())
-        for line in tokens:
-            file1_sentence_list.append(line)
-    gen_words_list = [
-        [w.lower() for w in word_tokenize(text)] for text in file1_sentence_list
-    ]
-    dictionary = corpora.Dictionary(gen_words_list)
-    corpus = [dictionary.doc2bow(gen_words_list) for gen_words_list in gen_words_list]
-    tf_idf = models.TfidfModel(corpus)
-    sims = similarities.Similarity(
-        "data", tf_idf[corpus], num_features=len(dictionary)
-    )  # TODO: is this index file that will be created correctly written?
-    file2_sentence_list = []
-    with open(filename2) as f:
-        tokens = sent_tokenize(f.read())
-        for line in tokens:
-            file2_sentence_list.append(line)
-    for line in file2_sentence_list:
-        query_doc = [w.lower() for w in word_tokenize(line)]
-        query_doc_bow = dictionary.doc2bow(query_doc)
-    # create bag of words #TODO: is this correct?
-    query_doc_tf_idf = tf_idf[query_doc_bow] #TODO: does this mean the s part of the equation for clustering?
 
-    import numpy as np
-    from sklearn.mainfold import MDS
-    import matplotlib.pyplot as plt
-    sum_of_sims = (np.sum(sims[query_doc_tf_idf], dtype = np.float32)) #TODO: ASK PROFESSOR: what does this do? is this just adding the similarities?
-    # S = np.asarray()
-    dissimilarities = 1-S
-    coord = MDS(dissimilarity = 'precomputed').fit_transform(dissimilarities)
-    plt.scatter(coord[:,0], coord[:,1])
-    for i in range(coord.shape[0]):
-        plt.annotate(str(i), (coord[i, :]))
-    plt.show()
+file_docs = []
+filenames = []
+document_for_test = "the_man_in_the_brown_suit"
+for file in os.listdir("data"):
+    if file.endswith(".txt"):
+        if file in ["stopwords.txt", f"{document_for_test}.txt"]:
+            # because we want to test which book is sense_and_sensibility similar to
+            continue
+        print(file)
+        filenames.append(file)
+        file_docs.append(open("data/" + file, "r", encoding="UTF-8").read())
+# print(file_docs)
+gen_words_list = [[w.lower() for w in word_tokenize(text)] for text in file_docs]
+dictionary = corpora.Dictionary(gen_words_list)
+corpus = [dictionary.doc2bow(gen_words_list) for gen_words_list in gen_words_list]
+tf_idf = models.TfidfModel(corpus)
+sims = similarities.Similarity("data", tf_idf[corpus], num_features=len(dictionary))
+file2_sentence_list = []
+with open(f"data/{document_for_test}.txt", "r", encoding="UTF-8") as f:
+    tokens = sent_tokenize(f.read())
+    for line in tokens:
+        file2_sentence_list.append(line)
+for line in file2_sentence_list:
+    query_doc = [w.lower() for w in word_tokenize(line)]
+    query_doc_bow = dictionary.doc2bow(query_doc)
+query_doc_tf_idf = tf_idf[query_doc_bow]
+# print("Comparing Result:", sims[query_doc_tf_idf])
+similarity_list = list(sims[query_doc_tf_idf])
+most_similar_index = similarity_list.index(max(similarity_list))
+print(f"The most similar book to {document_for_test} is", filenames[most_similar_index])
+
+
+sum_of_sims = np.sum(sims[query_doc_tf_idf], dtype=np.float32)
+S = np.asarray(similarity_list)
+dissimilarities = 1 - S
+coord = MDS(dissimilarity="precomputed").fit_transform(dissimilarities)
+plt.scatter(coord[:, 0], coord[:, 1])
+for i in range(coord.shape[0]):
+    plt.annotate(str(i), (coord[i, :]))
+plt.show()
 
 
 def main():
@@ -391,8 +397,8 @@ def main():
     # )
     # print(f"The overall sentiment for The Raven was {raven_average}")
 
-    #Question 4 Answers.
-    # texts_clustering(filename1 = "data/emma.txt",filename2 = "data/the_raven.txt")
+    # Question 4 Answers.
+    texts_clustering()
 
 
 if __name__ == "__main__":
