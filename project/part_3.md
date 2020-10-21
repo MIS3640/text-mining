@@ -27,7 +27,7 @@ Our results for question 1 gathered some interesting insight. A lot of the most 
 The results for question two were quite interesting. A lot of the most frequent words that we saw when we compared to the results from question one, were more of names and variation to names, such as “amy’s.” Another point noticed is that the number of frequencies decreased to less than 100 compared to when we had done question one, suggesting that there were a lot of common words between the texts. In the novel, Emma, we noticed that for question 2, the word “surprized” was considered unique, perhaps due to its unique spelling of the word. In addition, Jo, the main character in Little Women, is also the main character in Little Men, so her name does not show up as most uniquely common for either books when doing question 2.
 
 
-![Little Men Results](https://drive.google.com/file/d/1cUFqDI50qHlMuFyLRCUDd6Hce41Hh2vO/view?usp=sharing)
+![Little Men Results]("C:\Users\sdsouza1\Downloads\Little_Men.jpg")
 
 Emma Results 1:
 The most common words are:
