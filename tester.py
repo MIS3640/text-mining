@@ -2,6 +2,10 @@ from imdbpie import Imdb
 import pprint
 import pickle
 import matplotlib.pyplot as plt
+import nltk
+import nltk.corpus
+from nltk.corpus import stopwords
+print(stopwords.words('english'))
 
 # main Program
 
@@ -27,8 +31,8 @@ def countWords():
     
 def countFrequency():
     wordstring=""
-    stopWords = [".","this","the", "to", "time","on","a","not","is","I","we","they","he","are","an","was","and","here","there","that","where","why","don't","in","you","she","of","it","by","be","as","about"]
-    
+    # stopWords = [".","this","the", "to", "time","on","a","not","is","I","we","they","he","are","an","was","and","here","there","that","where","why","don't","in","you","she","of","it","by","be","as","about"]
+    stopWords = set(stopwords.words('english'))
     # Join all the reviews together and make it as one text first
     for R in allReviews: 
         wordstring +=  R['reviewText']
@@ -72,7 +76,6 @@ def authorGraph():
     plt.ylabel('Review Text Count')
     plt.title('Count of Review Text By Each Author')
     plt.show()
-
 
 
 # word count of ReviewText & graph
