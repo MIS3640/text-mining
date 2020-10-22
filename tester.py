@@ -84,8 +84,4 @@ def authorGraph():
 # word count of ReviewText & graph
 countWords()
 authorGraph()
-<<<<<<< HEAD
 countFrequency()
-=======
-countFrequency()
->>>>>>> ce94abcba00afa81851e4168e2b02f34032eeed0
