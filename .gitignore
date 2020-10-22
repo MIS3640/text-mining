@@ -125,7 +125,6 @@ dmypy.json
 .pyre/
 
 # Sensitive info
-sensitive.txt
 luca_sensitive.txt
 venmo_data.json
 venmo_data.pickle
