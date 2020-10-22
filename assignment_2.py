@@ -33,22 +33,22 @@ df = pd.DataFrame(data)
 #Dropping duplicate values from DataFrame
 df.drop_duplicates(subset ="word", 
                      keep = "first", inplace = True) 
-table = df.sort_values("frequency", ascending = False)
-table
+t = df.sort_values("frequency", ascending = False)
+t
 
 #Basic Information About the DataFrame
-df.shape, 
-df.index, 
-df.columns, 
-df.info(), 
-df.count()
+t.shape, 
+t.index, 
+t.columns, 
+t.info(), 
+t.count()
 
 #Descriptive Statistics About the DataFrame
-df.describe()
+t.describe()
 
 #Performing a Normal Distribution with the Data Above
-mu, sigma = df.mean(), df.std()
-norm_dist = np.random.normal(mu, sigma, 6886)
+mu, sigma = t.mean(), t.std()
+norm_dist = np.random.normal(mu, sigma, 1996)
 
 #Plotting the Normal Distribuition of the Frequency of Words in In our Time Book
 sns.histplot(norm_dist)
@@ -60,4 +60,4 @@ plt.ylabel("Count of Word")
 plt.title("Frequency of Apperance per Amount of Words")
 
 #BoxPlot to Confirm Outliers 
-sns.boxplot(data= table, orient = 'h')
+sns.boxplot(data= t, orient = 'h')
