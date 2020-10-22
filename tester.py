@@ -2,6 +2,10 @@ from imdbpie import Imdb
 import pprint
 import pickle
 import matplotlib.pyplot as plt
+import nltk
+import nltk.corpus
+from nltk.corpus import stopwords
+# print(stopwords.words('english'))
 
 # main Program
 
@@ -12,6 +16,10 @@ imdb = Imdb()
 movieDict =  imdb.search_for_title(movieName)[0] # closest match is the first index
 id = movieDict['imdb_id']
 reviews = imdb.get_title_user_reviews(id)
+
+#pprint.pprint(reviews['reviews'][0])
+# pickle 
+
 allReviews = reviews['reviews'] # get the reviews into a dictionary
 
 
@@ -19,16 +27,18 @@ def countWords():
     for R in allReviews: # Loop to traverse through each Review
         #print (R['author']['displayName'],R['reviewText']) # to debug
         author.append(R['author']['displayName']) # author has display name and author ID
-        wordCnt.append( len (R['reviewText']) ) 
+        wordCnt.append( len (R['reviewText'].split()) ) 
+
     
 def countFrequency():
     wordstring=""
-    stopWords = ["this","the", "to", "time","on","a","not","is","I","we","they","he","are","an","was","and","here","there","that","where","why","don't","in","you","she","of","it","by","be","as","about"]
-    
+    # stopWords = [".","this","the", "to", "time","on","a","not","is","I","we","they","he","are","an","was","and","here","there","that","where","why","don't","in","you","she","of","it","by","be","as","about"]
+    stopWords = set(stopwords.words('english'))
     # Join all the reviews together and make it as one text first
     for R in allReviews: 
         wordstring +=  R['reviewText']
-    
+   
+    wordstring = wordstring.lower()
     wordlist = wordstring.split() # change that text to a list of values , space as terminator
 
     # remove the stop words from the list
@@ -75,4 +85,3 @@ def authorGraph():
 countWords()
 authorGraph()
 countFrequency()
-
