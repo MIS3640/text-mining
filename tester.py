@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import nltk
 import nltk.corpus
 from nltk.corpus import stopwords
-print(stopwords.words('english'))
+# print(stopwords.words('english'))
 
 # main Program
 
@@ -36,7 +36,8 @@ def countFrequency():
     # Join all the reviews together and make it as one text first
     for R in allReviews: 
         wordstring +=  R['reviewText']
-    
+   
+    wordstring = wordstring.lower()
     wordlist = wordstring.split() # change that text to a list of values , space as terminator
 
     # remove the stop words from the list
