@@ -26,7 +26,14 @@ Our results for question 1 gathered some interesting insight. A lot of the most 
 
 The results for question two were quite interesting. A lot of the most frequent words that we saw when we compared to the results from question one, were more of names and variation to names, such as “amy’s.” Another point noticed is that the number of frequencies decreased to less than 100 compared to when we had done question one, suggesting that there were a lot of common words between the texts. In the novel, Emma, we noticed that for question 2, the word “surprized” was considered unique, perhaps due to its unique spelling of the word. In addition, Jo, the main character in Little Women, is also the main character in Little Men, so her name does not show up as most uniquely common for either books when doing question 2.
 
-![Little Men Results](project\Little_Men.jpg)
+Emma Results
+![Emma Results](Emma.jpg)
+
+Little Men Results
+![Little Men Results](Little_Men.jpg)
+
+Little Women Results
+![Little Women Results](Little_Women.jpg)
  
 Our results from question 3 yielded that the highest negative component was for The Cask of Amontillado, followed by The Man in the Brown Suit, followed by The Raven. The least negative was Emma. The most positive on the other hand was Little Women, followed by Little Men, followed by Emma. The least positive was Poirot Investigates. The most neutral was also Poirot Investigates, by The Man in the Brown Suit  (the same author), and The Raven. This was interesting and it kind of made sense to us. Agatha Christie novels are usually filled with suspense and mysteries while Edgar Allen Poe’s books are usually gloomy and about murder. Jane Austen and Louisa May Alcott books are about adventure, coming of age, and love - so really more on the positive side than negative.
 
