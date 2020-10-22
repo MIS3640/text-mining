@@ -126,4 +126,6 @@ dmypy.json
 
 # Sensitive info
 sensitive.txt
-mateos_sensitive_backup.txt
+luca_sensitive.txt
+venmo_data.json
+venmo_data.pickle
