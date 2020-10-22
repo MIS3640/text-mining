@@ -27,7 +27,8 @@ def countWords():
     for R in allReviews: # Loop to traverse through each Review
         #print (R['author']['displayName'],R['reviewText']) # to debug
         author.append(R['author']['displayName']) # author has display name and author ID
-        wordCnt.append( len (R['reviewText']) ) 
+        wordCnt.append( len (R['reviewText'].split()) ) 
+
     
 def countFrequency():
     wordstring=""
@@ -79,8 +80,8 @@ def authorGraph():
     plt.show()
 
 
+
 # word count of ReviewText & graph
 countWords()
 authorGraph()
 countFrequency()
-
