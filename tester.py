@@ -1,4 +1,4 @@
-from imdbpie import Imdb
+rom imdbpie import Imdb
 import pprint
 import pickle
 import matplotlib.pyplot as plt
@@ -84,4 +84,8 @@ def authorGraph():
 # word count of ReviewText & graph
 countWords()
 authorGraph()
+<<<<<<< HEAD
 countFrequency()
+=======
+countFrequency()
+>>>>>>> ce94abcba00afa81851e4168e2b02f34032eeed0
