@@ -1,4 +1,4 @@
-from imdbpie import Imdb
+rom imdbpie import Imdb
 import pprint
 import pickle
 import matplotlib.pyplot as plt
