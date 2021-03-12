@@ -4,6 +4,7 @@ reddit = praw.Reddit(
     client_id="tQrzWPu2ZLugIg",
     client_secret="gxNvyLA3H-MYqk8IIZCxraStrXdbYQ",
     user_agent="windows:pyth0n3xp3rts:v0.1 (by u/python_group_v_2)",
+    
 )
 # assume you have a reddit instance bound to variable `reddit`
 subreddit = reddit.subreddit("wallstreetbets")
