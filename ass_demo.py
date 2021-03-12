@@ -1,6 +1,6 @@
 import random
 
-
+#I added text
 def guess_number(max_number=20, total_tries=6):
     """
     A "Guess the Number" game.
