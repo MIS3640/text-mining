@@ -23,7 +23,8 @@ def subreddit_trawl():
             fout.write(submission.selftext)
             # for word in submission.selftext
 
-def text_analyze(filename):
+#This dictionary function has been cleaned and updated and is in the file called moe_frequency_analysis
+""" def text_analyze(filename):
     stop_words = open('folder_1/filler.txt')
     hist = {}
     fp = open(filename, encoding='latin-1')
@@ -38,3 +39,4 @@ def text_analyze(filename):
     return hist
 # subreddit_trawl()
 print(text_analyze('folder_1/post_text.txt'))
+ """
