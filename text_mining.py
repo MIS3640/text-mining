@@ -15,8 +15,8 @@ def stock_list():
 
 def import_subreddit():
     """
-    imports the top 100 post titles for the day under wallstreetbets subreddit
-    ***Reddit only allows for 100 post pull requests at a time***
+    imports the top 1000 post titles for the day under wallstreetbets subreddit
+    ***Reddit only allows for 1000 post pull requests at a time***
     """
     reddit = praw.Reddit(
         client_id="UV_0pi49dIB77w",
@@ -26,7 +26,7 @@ def import_subreddit():
         user_agent="verkxies1",
     )
     sub = "wallstreetbets"
-    submissions = reddit.subreddit(sub).top("day", limit=10000)
+    submissions = reddit.subreddit(sub).top("day", limit=1000)
     top = [(submission.title) for submission in submissions]
     return top
 
@@ -73,6 +73,10 @@ def ticker_count():
                 d[key] = ticker_one(title)[key] + d[key]
             else:
                 d[key] = ticker_one(title)[key]
+    # Remove I as a ticker, as more often than not "I" is not refering to the stock
+    if 'I' in d:
+        del d['I']
+
     return d
 
 
