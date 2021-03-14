@@ -73,9 +73,10 @@ def order_words_by_frequency(d):
 def most_frequent_words(limit):
     word_freq_list = order_words_by_frequency(d)
     count = 0
-    while count <= limit:
-        for pair in word_freq_list:
-            print(pair)
-            count += 1
+    for pair in word_freq_list:
+        print(pair)
+        count += 1
+        if count == limit:
+            break
 
-print(most_frequent_words(10))
+print(most_frequent_words(20))
