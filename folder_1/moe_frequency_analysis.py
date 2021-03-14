@@ -14,6 +14,8 @@ def filler_words():
 #print(filler_words())
 
 def only_letters(word):
+    """returns True only if string is only made out of letters or spaces. 
+    Will use this to clean Reddit text before creating a histogram"""
     abecedary = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',' ']
     for letter in word:
         if letter not in abecedary:
@@ -26,6 +28,7 @@ def only_letters(word):
 #print(only_letters('m/h\ise'))
 
 def create_histogram(filename):
+    """Creates a dictionary with the keys being every unique word in the Reddit posts and the values being their frequency"""
     filler_words_list = filler_words()
     hist = {}
     fp = open(filename, encoding='latin-1')
@@ -42,6 +45,8 @@ def create_histogram(filename):
 #print(create_histogram('folder_1/post_text.txt'))
 
 def invert_dictionary(d):
+    """Creates a dictionary with key value being the number of times a word appears in the Reddit posts and the value being a list of words
+    that appear in the Reddit post with that frequency"""
     inverse = dict()
     for key in d:
         val = d[key]
@@ -52,4 +57,25 @@ def invert_dictionary(d):
     return inverse
 
 d = create_histogram('folder_1/post_text.txt')
-pprint.pprint(invert_dictionary(d))
+#pprint.pprint(invert_dictionary(d))
+
+def order_words_by_frequency(d):
+    """Creates a list of the unique words in the Reddit posts ordered in descending order by frequency"""
+    word_freq_list = []
+    for word, freq in d.items():
+        t = (freq, word)
+        word_freq_list.append(t)
+    sorted_list = sorted(word_freq_list,reverse=True)
+    return sorted_list
+
+#print(order_words_by_frequency(d))
+
+def most_frequent_words(limit):
+    word_freq_list = order_words_by_frequency(d)
+    count = 0
+    while count <= limit:
+        for pair in word_freq_list:
+            print(pair)
+            count += 1
+
+print(most_frequent_words(10))
