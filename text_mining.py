@@ -14,7 +14,10 @@ def stock_list():
 
 
 def import_subreddit():
-    """imports the top 1000 post titles under wallstreetbets subreddit"""
+    """
+    imports the top 100 post titles for the day under wallstreetbets subreddit
+    ***Reddit only allows for 100 post pull requests at a time***
+    """
     reddit = praw.Reddit(
         client_id="UV_0pi49dIB77w",
         client_secret="xrAIGSNfOco13rjEJii23FB7EDPJBQ",
@@ -23,7 +26,7 @@ def import_subreddit():
         user_agent="verkxies1",
     )
     sub = "wallstreetbets"
-    submissions = reddit.subreddit(sub).top("day", limit=50)
+    submissions = reddit.subreddit(sub).top("day", limit=10000)
     top = [(submission.title) for submission in submissions]
     return top
 
@@ -37,14 +40,23 @@ def word_parse():
 
 
 def ticker_check(word):
-    """This function checks if the word is a stock ticker"""
+    """
+    This function checks if the word is a stock ticker
+
+    word: input a word
+    return: Boolean
+    """
     if word.replace("$", "") in stock_list():
         return True
     return False
 
 
 def ticker_one(title):
-    """This function creates a dictionary of all stock tickers that appear in a title, assigning a value of 1 to each"""
+    """
+    This function creates a dictionary of all stock tickers that appear in a title, assigning a value of 1 to each
+
+    title: input a title
+    return: a dictionary with all stock tickers that appear in the title"""
     d = {}
     for word in title:
         if ticker_check(word):
@@ -64,6 +76,13 @@ def ticker_count():
     return d
 
 
+def sorted_ticker_count():
+    """sorts the ticker frequency from highest to lowest"""
+    d = ticker_count()
+    a = sorted(d.items(), key=lambda x: x[1], reverse=True)
+    return a
+
+
 def main():
     # data = import_subreddit()
     # title_test = ['$gme', 'gme', 'gme', 'at', '330', 'to', 'rob', 'lox', 'and', 'never', 'felt', 'more', 'smarter.', '#robloxnextgme']
@@ -72,7 +91,8 @@ def main():
     # print(word_parse()[-1])
     # print(ticker_check('GME'))
     # print(ticker_one(title_test))
-    print(ticker_count())
+    # print(ticker_count())
+    print(sorted_ticker_count())
 
 
 if __name__ == "__main__":
