@@ -12,22 +12,26 @@ reddit = praw.Reddit(
 subreddit = reddit.subreddit("nosleep")
 
 def subreddit_isolate():
-    count = 1
+    count = 1 
     filename = f"story{count}.txt"
-    while count < 11: 
-        for submission in subreddit.hot(limit=10):
-            new_story = open(f'folder_1/{filename}', 'w') 
-            new_story.write(submission.selftext)
-            new_story.close()
-            count += 1
+    for submission in subreddit.hot(limit=10):
+        new_story = open(f'folder_1/stories/{filename}', 'w') 
+        new_story.write(submission.selftext)
+        new_story.close()
+        count += 1
    
 subreddit_isolate()
 
-import nltk 
+import nltk
+
+# nltk.download() #download packages first before using nltk
 
 def sentiment_analysis(file):
+    from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+    sent = SentimentIntensityAnalyzer()
     with open(file) as story:
-        score = nltk.SentimentIntensityAnalyzer().polarity_scores(story)
+        score = sent.polarity_scores(story) 
+    # score is a dictionary with negativity scores
     return score 
 
 print(sentiment_analysis('folder_1/story1.txt'))
