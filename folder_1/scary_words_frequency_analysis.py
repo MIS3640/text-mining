@@ -81,4 +81,57 @@ def most_frequent_words(limit):
         if count == limit:
             break
 
-print(most_frequent_words(10))
+#print(most_frequent_words(10))
+
+def filler_words():
+    """turn file of filler words into list of words"""
+    f = open('folder_1/filler.txt')
+    filler_words_list = []
+    for line in f:
+        word = line.strip()
+        filler_words_list.append(word)
+    return filler_words_list
+
+def create_histogram(filename):
+    """Creates a dictionary with the keys being every unique word in the Reddit posts and the values being their frequency"""
+    filler_words_list = filler_words()
+    hist = {}
+    fp = open(filename, encoding='latin-1')
+    strippables = string.punctuation + string.whitespace
+    for line in fp:
+        line = line.replace('-', ' ')
+        for word in line.split():
+            word = word.strip(strippables)
+            word = word.lower()
+            if word not in filler_words_list and only_letters(word):
+                hist[word] = hist.get(word, 0) + 1
+    return hist
+
+def count_total_words():
+    """returns total number of words in the Reddit posts"""
+    sum = 0
+    hist = create_histogram('folder_1/post_text.txt')
+    for k in hist:
+        sum += hist[k]
+    return sum
+
+#print(count_total_words())
+
+def count_scary_words():
+    """returns total number of scary words in the Reddit posts"""
+    sum = 0
+    hist = scary_histogram('folder_1/post_text.txt')
+    for k in hist:
+        sum += hist[k]
+    return sum
+
+def percentage_scary_words():
+    """returns the percentage of total words in the Reddit posts that are scary"""
+    number_scary_words = count_scary_words()
+    number_total_words = count_total_words()
+    percentage = (number_scary_words/number_total_words)*100
+    print(number_scary_words)
+    print(number_total_words)
+    print(f'The percentage of words in the Reddit channel that are scary is {round(percentage,2)}%')
+
+#percentage_scary_words()
