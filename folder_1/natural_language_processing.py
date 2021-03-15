@@ -13,8 +13,8 @@ subreddit = reddit.subreddit("nosleep")
 
 def subreddit_isolate():
     count = 1 
-    filename = f"story{count}.txt"
     for submission in subreddit.hot(limit=10):
+        filename = f"story{count}.txt"
         new_story = open(f'folder_1/stories/{filename}', 'w') 
         new_story.write(submission.selftext)
         new_story.close()
