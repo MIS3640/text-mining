@@ -57,9 +57,19 @@ def hist_prom(hist):
 
 
 def analysis(limit_num, compared_to):
+    """
+    Analyzes the top posts of all time in no sleep compared to a large number of posts in the 'hot' section
+    limit_num is the number of top posts to compare
+    Compared to is an argument for a dictionary to compare them to. 
+    This function has 4 new variables:
+        count - counts the number of similar prominent words between the hot and top posts
+        single_post_hist - Is a dictionary that stores the words in a single post
+        new_prom_hist - A dictionary that stores the most prominent words in a single post
+        final_hist_results - A dictionary that stores the similar prominent words between the hot and top posts.
+    """
     filler_words_list = filler_words()
-    with open('folder_1/single_post_text.txt', 'w') as fout:
-        for post in subreddit_.top(limit=limit_num):
+    for post in subreddit_.top(limit=limit_num):
+        with open('folder_1/single_post_text.txt', 'w') as fout:
             count = 0
             fout.write(post.selftext)
             fp = open('folder_1/single_post_text.txt', encoding='latin-1')
