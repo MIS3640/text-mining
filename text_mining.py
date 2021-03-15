@@ -1,6 +1,7 @@
 import praw
-import pickle
 import csv
+import numpy as np
+import matplotlib.pyplot as plt
 
 
 def stock_list():
@@ -73,10 +74,18 @@ def ticker_count():
                 d[key] = ticker_one(title)[key] + d[key]
             else:
                 d[key] = ticker_one(title)[key]
-    # Remove I as a ticker, as more often than not "I" is not refering to the stock
+
+    # Remove a few common words as tickers, as more often than not these words are not refering to the stock
     if 'I' in d:
         del d['I']
-
+    if 'A' in d:
+        del d['A']
+    if 'FOR' in d:
+        del d['FOR']
+    if 'CEO' in d:
+        del d['CEO']
+    if 'YOLO' in d:
+        del d['YOLO']
     return d
 
 
@@ -85,6 +94,28 @@ def sorted_ticker_count():
     d = ticker_count()
     a = sorted(d.items(), key=lambda x: x[1], reverse=True)
     return a
+
+def ticker():
+    tuple_list = sorted_ticker_count()
+
+    first_tuple_elements = [a_tuple[0] for a_tuple in tuple_list]
+    return first_tuple_elements
+    
+def count():
+    tuple_list = sorted_ticker_count()
+
+    second_tuple_elements = [a_tuple[1] for a_tuple in tuple_list]
+    return second_tuple_elements
+
+def barChart():
+    objects = ticker()
+    y_pos = np.arange(len(objects))
+    performance = count()
+    plt.bar(y_pos, performance, align='center', alpha=0.5)
+    plt.xticks(y_pos, objects, rotation = 90)
+    plt.ylabel('Count')
+    plt.title('Bar Chart of Tickers and Their Count')
+    plt.show()
 
 
 def main():
@@ -97,7 +128,13 @@ def main():
     # print(ticker_one(title_test))
     # print(ticker_count())
     print(sorted_ticker_count())
+    result = sorted_ticker_count()
+    print(ticker())
+    print(count())
+    print(barChart())
+    print(result)
 
 
 if __name__ == "__main__":
     main()
+
