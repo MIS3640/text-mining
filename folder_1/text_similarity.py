@@ -89,8 +89,9 @@ def analysis(limit_num, compared_to):
             final_hist_result = {}
             for words in new_prom_hist:
                 if words in compared_to:
-                    final_hist_result[words] = 1
+                    final_hist_result[words] = single_post_hist.get(words)
                     count += 1
+            print(final_hist_result)
             print(f'The final number of similar words in this post is {count}')
 
 
