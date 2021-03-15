@@ -71,6 +71,8 @@ def order_words_by_frequency(d):
 #print(order_words_by_frequency(d))
 
 def most_frequent_words(limit):
+    """prints the most frequent words in the Reddit posts. The 'limit' parameter stands for how many 
+    words will be printed. If limit = 10, then will print top 10 words"""
     word_freq_list = order_words_by_frequency(d)
     count = 0
     for pair in word_freq_list:
