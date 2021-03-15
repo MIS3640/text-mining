@@ -2,6 +2,7 @@ import string
 import os
 import praw
 
+
 reddit = praw.Reddit(
     client_id="tQrzWPu2ZLugIg",
     client_secret="gxNvyLA3H-MYqk8IIZCxraStrXdbYQ",
@@ -22,25 +23,13 @@ def subreddit_isolate():
    
 subreddit_isolate()
 
+import nltk 
 
+def sentiment_analysis(file):
+    with open(file) as story:
+        score = nltk.SentimentIntensityAnalyzer().polarity_scores(story)
+    return score 
 
+print(sentiment_analysis('folder_1/story1.txt'))
 
-
-
-
-
-
-
-
-# # from nltk.sentiment.vader import SentimentIntensityAnalyzer
-
-# def polarity_scores():
-#     """generates polarity scores for each story in the reddit thread, using the isolate_post() function to run through each post (50 posts total)"""
-#     # while loop to redo the analysis for each story
-    
-#         isolate_post()
-#     # do sentiment analysis 
-
-# # sentence = 'Software Design is my favorite class because learning Python is so cool!'
-# # score = SentimentIntensityAnalyzer().polarity_scores(sentence)
-# # print(score)
+# print for other 9 stories as well
