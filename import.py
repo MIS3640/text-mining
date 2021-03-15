@@ -1,22 +1,34 @@
 import urllib.request
 import os
 
-#The Project Gutenberg eBook of A Modest Proposal, by Jonathan Swift
-print(os.getcwd())
+def book_import(book_url, filename):
+    """ 
+    Function that imports the ebook and saves it into a new file
+    """
+    url = book_url
+    response = urllib.request.urlopen(url)
+    data = response.read()  # a `bytes` object
+    text = data.decode('utf-8')
+    fout = open(filename,'w', encoding="utf-8")
+    fout.write(text)
+    fout.close()
+    print(text) # for testing
 
-url1 = 'http://www.gutenberg.org/files/1080/1080-0.txt'
-response1 = urllib.request.urlopen(url1)
-data1 = response1.read()  # a `bytes` object
-text1 = data1.decode('utf-8')
-# text1 = data1.encode("utf-8")
-fout = open('data/the_project_gutenberg.txt','w')
-# fout.write(text1)
-# fout.close()
-print(text1) # for testing
+# A Modest Proposal by Jonathan Swift (UK 18th century)
+book_import('http://www.gutenberg.org/files/1080/1080-0.txt', 'data/a_modest_proposal.txt')
 
+# The Coquette by Hannah Webster Foster (US 18th century)
+book_import('http://www.gutenberg.org/cache/epub/12431/pg12431.txt', 'data/the_coquette.txt')
 
-# url2 = 'http://www.gutenberg.org/files/1080/1080-0.txt'
-# response1 = urllib.request.urlopen(url1)
-# data = response.read()  # a `bytes` object
-# text = data.decode('utf-8')
-# print(text) # for testing
+# Frankenstein by Mary Wollstonecraft (Godwin) Shelley (UK 19th century)
+book_import('http://www.gutenberg.org/files/84/84-0.txt', 'data/frankenstein.txt')
+
+# Cape Cod by Henry David Thoreau (US 19th century)
+book_import('http://www.gutenberg.org/files/34392/34392-0.txt', 'data/cape_cod.txt')
+
+# Mrs Dalloway in Bond Street, by Virginia Woolf (UK 18th century)
+book_import('http://www.gutenberg.org/cache/epub/63107/pg63107.txt', 'data/mrs_dalloway_in_bond_street.txt')
+
+# The Great Gatsby by F. Scott Fitzgerald (US 20th century)
+book_import('http://www.gutenberg.org/files/64317/64317-0.txt', 'data/the_great_gatsby.txt')
+
