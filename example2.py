@@ -1,4 +1,6 @@
 # Load data
+import nltk
+nltk.download('vader_lexicon')
 import pickle
 import pprint
 
