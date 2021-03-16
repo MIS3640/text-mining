@@ -3,6 +3,7 @@ import string
 import sys
 from unicodedata import category
 import urllib.request
+import pickle
 
 url1 = 'http://www.gutenberg.org/files/1080/1080-0.txt'
 response1 = urllib.request.urlopen(url1)
@@ -13,7 +14,11 @@ response2 = urllib.request.urlopen(url2)
 data2 = response2.read()  # a `bytes` object
 text2 = data2.decode('utf-8')
 
+with open('saved_texts.pickle','wb') as f:
+    pickle.dump(text1,f)
+    pickle.dump(text2,f)
 
-
+with open('saved_texts.pickle','rb') as input_file:
+    reloaded_copy_of_texts = pickle.load(input_file)
 
 
