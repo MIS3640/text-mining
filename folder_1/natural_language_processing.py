@@ -12,6 +12,7 @@ reddit = praw.Reddit(
 subreddit = reddit.subreddit("nosleep")
 
 def subreddit_isolate():
+    """"""
     count = 1 
     for submission in subreddit.hot(limit=10):
         filename = f"story{count}.txt"
@@ -20,7 +21,7 @@ def subreddit_isolate():
         new_story.close()
         count += 1
    
-subreddit_isolate()
+# subreddit_isolate()
 
 import nltk
 
@@ -34,6 +35,15 @@ def sentiment_analysis(file):
     # score is a dictionary with negativity scores
     return score 
 
-print(sentiment_analysis('folder_1/story1.txt'))
+print(sentiment_analysis('folder_1/stories/story1.txt'))
+print(sentiment_analysis('folder_1/stories/story2.txt'))
+print(sentiment_analysis('folder_1/stories/story3.txt'))
+print(sentiment_analysis('folder_1/stories/story4.txt'))
+print(sentiment_analysis('folder_1/stories/story5.txt'))
+print(sentiment_analysis('folder_1/stories/story6.txt'))
+print(sentiment_analysis('folder_1/stories/story7.txt'))
+print(sentiment_analysis('folder_1/stories/story8.txt'))
+print(sentiment_analysis('folder_1/stories/story9.txt'))
+print(sentiment_analysis('folder_1/stories/story10.txt'))
 
-# print for other 9 stories as well
+# format nicely
