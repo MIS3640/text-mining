@@ -14,6 +14,10 @@ insurrection = {
     
     # look at sentiment analysis for each value in the dictionary
 def headline_analysis(incident, nameincident):
+    """ Conduct Sensivity Analysis on Incidents covered by different newspaper 
+    Inputs: incident = dictionary with key:value pairs where keys are newspapers and values are fragments from their articles // nameincident = name of the incident, to be used to format outputs nicely and human-readable. 
+    Outputs: conclusions on article sentiments on given event.
+    """
     # generate sentiment analysis for each news paper.
     from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
     sent = SentimentIntensityAnalyzer()

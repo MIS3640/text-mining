@@ -12,7 +12,7 @@ reddit = praw.Reddit(
 subreddit = reddit.subreddit("nosleep")
 
 def subreddit_isolate():
-    """"""
+    """Isolate 10 hottest subreddits post in a seperate text file each"""
     count = 1 
     for submission in subreddit.hot(limit=10):
         filename = f"story{count}.txt"
@@ -28,12 +28,16 @@ import nltk
 # nltk.download() #download packages first before using nltk
 
 def sentiment_analysis(file):
+    """
+    Conduct polarity anaysis on stories to surface negative, positive, or neutral sentiments towards topic of story/
+    Input: txt file to be analyzed
+    Output: dictionary with polarity scores (neg: negative, neutr: neutral, pos: positive, compound: compound score indicating overall sentiments)
+    """
     from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
     sent = SentimentIntensityAnalyzer()
     with open(file) as story:
         score = sent.polarity_scores(story) 
     # score is a dictionary with polarity scores (negative, neutral, positive, compound)
-    if score['compound'] < 
     return score 
 
 print(sentiment_analysis('folder_1/stories/story1.txt'))
@@ -47,4 +51,4 @@ print(sentiment_analysis('folder_1/stories/story8.txt'))
 print(sentiment_analysis('folder_1/stories/story9.txt'))
 print(sentiment_analysis('folder_1/stories/story10.txt'))
 
-# format nicely
+
