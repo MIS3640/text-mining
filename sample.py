@@ -1,18 +1,18 @@
 #print('hello world')
 
 #nick.tweet
-#token = 2178503649-kqpfuLJ64sDWPojjgNT47MreT522yfQUsadxWzk
-#token secret = 4nS8MA96g3DpmK4oCXpBhsS5Ehz2s2xcIaj10ircQ0VjZ
-#api key= C2WeweCvU8DilvziKTrbNadB7
-#API secret= DVs4pZ4yEXPQzdNWsN13tZrcHxXboC1g7DdQNVWF9KP3PmTgqz
+#token =  2178503649-YShNbZnh5DcCARV4wxSdDrhzkl4N9s4kUG5Xqmv
+#token secret = iylb6e9Rd7HoLB1F4Rc8hMCcGXfAuLgzKyMpqsz80Zy4s
+#api key= sdT0eSA6CwgwBcbVn5zE0W7HZ
+#API secret= gYb5HJ6Xbly0Zf4nFkQSIm3mfjXtREDfKUpb3HGIDDI5GEcqUX
 # authentication
 
 
 import tweepy
-TOKEN = '2178503649-kqpfuLJ64sDWPojjgNT47MreT522yfQUsadxWzk'
-TOKEN_SECRET = '4nS8MA96g3DpmK4oCXpBhsS5Ehz2s2xcIaj10ircQ0VjZ'
-CONSUMER_KEY = 'C2WeweCvU8DilvziKTrbNadB7'
-CONSUMER_SECRET = 'DVs4pZ4yEXPQzdNWsN13tZrcHxXboC1g7DdQNVWF9KP3PmTgqz'
+TOKEN = '2178503649-HYmo1ucpYKnvDoQOUzfG8UsDFoKE2xpHd9whMfW'
+TOKEN_SECRET = '8VRn991DZyPp7RjFgRuhaNKM3ty02sWnEBSxYVBUFJwZl'
+CONSUMER_KEY = 'sdT0eSA6CwgwBcbVn5zE0W7HZ'
+CONSUMER_SECRET = 'gYb5HJ6Xbly0Zf4nFkQSIm3mfjXtREDfKUpb3HGIDDI5GEcqUX'
 
 # Authenticate to Twitter
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
