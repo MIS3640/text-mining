@@ -32,7 +32,8 @@ def sentiment_analysis(file):
     sent = SentimentIntensityAnalyzer()
     with open(file) as story:
         score = sent.polarity_scores(story) 
-    # score is a dictionary with negativity scores
+    # score is a dictionary with polarity scores (negative, neutral, positive, compound)
+    if score['compound'] < 
     return score 
 
 print(sentiment_analysis('folder_1/stories/story1.txt'))

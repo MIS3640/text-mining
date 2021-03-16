@@ -8,24 +8,24 @@ paris_agreement_join = {
 
 insurrection = {
     "Fox": "The article alleges that before Jan. 6, the joint session of Congress to certify the presidential election results, Trump 'repeatedly issued false statements asserting that the presidential election results were the product of widespread fraud and should not be accepted by the American people or certified by State or Federal officials.' The article claims that before the Jan. 6 joint session the president addressed a crowd in Washington where he 'reiterated false claims that 'we won this election, and we won it by a landslide,' and' willfully made statements that, in context, encouraged--and forseeably resulted in--lawless action at the Capitol.",
-    "The Huffington Post":"Federal Magistrate Judge Zia Faruqui ordered on Monday that Couy Griffin ― a New Mexico commissioner and founder of an organization called 'Cowboys for Trump' ― be held until trial. Faruqui found that Griffin’s lack of belief in the United States government “as it sits today,” along with his rhetoric endorsing violence against Democrats, indicated that there was no way to release him and still assure the safety of the American public and his future appearances in court. Trump supporters gather outside the Capitol during an insurrectionist attack on the U.S. Capitol on Jan. 6. Trump supporters gather outside the Capitol during an insurrectionist attack on the U.S. Capitol on Jan. 6. Many defendants charged in connection with the U.S. Capitol insurrection will undoubtedly argue, whether at trial or during sentencing, that they were sucked into a false conspiracy about mass voter fraud. Monday’s detention hearing showed how a defendant’s belief in such delusional conspiracies ― combined with rhetoric endorsing violence ― can harm their chances at securing pretrial release",
+    "The Huffington Post":"Seven Republican members of the U.S. Senate voted to find former President Donald Trump guilty of inciting the Jan. 6 insurrection at the U.S. Capitol that left five people dead. By the end of this week, six of the seven may have faced censures from local and state Republican parties back home because of those votes. Together with the 10 Republican House members who voted to impeach Trump, the seven GOP senators made Trump’s second impeachment the most bipartisan in American history. But if those votes foreshadowed a looming civil war within the GOP, the hasty efforts to censure anyone who crossed Trump are a good indication of which side has the larger army. As the riot in the Capitol played out, even the GOP lawmakers who helped incite it briefly attempted to distance themselves from the mess they had created. But rather than a reckoning, the Republican Party is attempting a purge. From Congress to state legislatures, and in the state- and county-level parties that make up its base, the GOP’s rank and file has emerged from an insurrection and a second impeachment trial united against American democracy and the few members of the party still willing to stand up for it.",
     "WSJ": "WASHINGTON—The dramatic conclusion of former President Donald Trump’s second impeachment trial laid bare deep philosophical rifts between Republicans, as GOP senators splintered not only over the question of Mr. Trump’s guilt, but also the future of their party and Mr. Trump’s role in it. Seven GOP senators voted to convict the former president of inciting an insurrection on Jan. 6—not enough to find him guilty but, as Senate Majority Leader Chuck Schumer pointed out, the final tally was the most guilty votes cast by members of a president’s own party in any impeachment trial in American history. The rest of the Senate Republican conference—43 senators in total—voted to acquit Mr. Trump, but not without some angst, reflecting a party schism that has also fractured the House and will likely play out in primary elections in 2022 and 2024."
     }
     
     # look at sentiment analysis for each value in the dictionary
-def headline_analysis(incident):
+def headline_analysis(incident, nameincident):
     # generate sentiment analysis for each news paper.
     from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
     sent = SentimentIntensityAnalyzer()
     for keys in incident:
         score = sent.polarity_scores(incident[keys])
     # summarize the conclusions for each incident 
-        if score['compound'] < 0.5:
-            print(f"{keys}'s sentiments towards {incident} is indicated to be negative.")
-        elif score['compound'] > 0.5:
-            print(f"{keys}'s sentiments towards {incident} is indicated to be positive.")
+        if score['compound'] <= -0.5:
+            print(f"{keys}'s sentiments towards {nameincident} are indicated to be negative.")
+        elif score['compound'] >= 0.5:
+            print(f"{keys}'s sentiments towards {nameincident} are indicated to be positive.")
         else: 
-            print(f"{keys}'s sentiments towards {incident} is indicated to be neutral.")
+            print(f"{keys}'s sentiments towards {nameincident} are indicated to be neutral.")
 
-headline_analysis(paris_agreement_join)
-headline_analysis(insurrection)
+headline_analysis(paris_agreement_join, "the U.S. rejoing the Paris Climate Accord")
+headline_analysis(insurrection, "Trump being convicted for the Insurrection")
