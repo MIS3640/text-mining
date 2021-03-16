@@ -19,11 +19,9 @@ pprint.pprint(review_text)
 
 # example_text = reviews['reviews'][0:3]
 
-
 # Pickling 
 import pickle
 
 # save data to a file
 with open('example_file.pickle','wb') as f:
     pickle.dump(review_text,f)
-
