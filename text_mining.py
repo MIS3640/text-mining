@@ -27,7 +27,7 @@ def import_subreddit():
         user_agent="verkxies1",
     )
     sub = "wallstreetbets"
-    submissions = reddit.subreddit(sub).top("day", limit=1000)
+    submissions = reddit.subreddit(sub).top("day", limit=400)
     top = [(submission.title) for submission in submissions]
     return top
 
