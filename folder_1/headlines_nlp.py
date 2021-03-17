@@ -33,3 +33,10 @@ def headline_analysis(incident, nameincident):
 
 headline_analysis(paris_agreement_join, "the U.S. rejoing the Paris Climate Accord")
 headline_analysis(insurrection, "Trump being convicted for the Insurrection")
+
+def main():
+    headline_analysis(paris_agreement_join, "the U.S. rejoing the Paris Climate Accord")
+    headline_analysis(insurrection, "Trump being convicted for the Insurrection")
+
+if __name__ == "__main__":
+    main()
