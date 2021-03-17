@@ -73,18 +73,17 @@ def ticker_count():
                 d[key] = ticker_one(title)[key] + d[key]
             else:
                 d[key] = ticker_one(title)[key]
-
     # Remove a few common words as tickers, as more often than not these words are not refering to the stock
-    if 'I' in d:
-        del d['I']
-    if 'A' in d:
-        del d['A']
-    if 'FOR' in d:
-        del d['FOR']
-    if 'CEO' in d:
-        del d['CEO']
-    if 'YOLO' in d:
-        del d['YOLO']
+    if "I" in d:
+        del d["I"]
+    if "A" in d:
+        del d["A"]
+    if "FOR" in d:
+        del d["FOR"]
+    if "CEO" in d:
+        del d["CEO"]
+    if "YOLO" in d:
+        del d["YOLO"]
     return d
 
 
@@ -94,26 +93,35 @@ def sorted_ticker_count():
     a = sorted(d.items(), key=lambda x: x[1], reverse=True)
     return a
 
+
 def ticker():
+    """returns index 0 or the first value in the tuple pair from
+    sorted_ticker_count() output"""
     tuple_list = sorted_ticker_count()
 
     first_tuple_elements = [a_tuple[0] for a_tuple in tuple_list]
     return first_tuple_elements
-    
+
+
 def count():
+    """returns index 1 or the second value in the tuple pair from
+    sorted_ticker_count() output"""
     tuple_list = sorted_ticker_count()
 
     second_tuple_elements = [a_tuple[1] for a_tuple in tuple_list]
     return second_tuple_elements
 
+
 def barChart():
+    """creates a bar chart from the outputs of ticker() which will
+    be the x-axis lables and count() which will be the y-axis labels"""
     objects = ticker()
     y_pos = np.arange(len(objects))
     performance = count()
-    plt.bar(y_pos, performance, align='center', alpha=0.5)
-    plt.xticks(y_pos, objects, rotation = 90)
-    plt.ylabel('Count')
-    plt.title('Bar Chart of Tickers and Their Count')
+    plt.bar(y_pos, performance, align="center", alpha=0.5)
+    plt.xticks(y_pos, objects, rotation=90)
+    plt.ylabel("Count")
+    plt.title("Bar Chart of Tickers and Their Count")
     plt.show()
 
 
@@ -136,4 +144,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
