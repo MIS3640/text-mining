@@ -21,10 +21,20 @@ def sent_analysis():
             t = sub_list['review_text'] 
             s = SentimentIntensityAnalyzer().polarity_scores(t)
             sub_list['sentiment_score'] = s
+            del sub_list['review_text']
         # pprint.pprint(sub_list)
     return reloaded_review_text
 
 
-print(sent_analysis())
+sent_dict = sent_analysis()
+pprint.pprint(sent_dict)
+
+### Save data
+import pickle
+with open("sent_data.pickle", "wb") as f:
+    pickle.dump(sent_dict, f)
+
+
+
 
 
