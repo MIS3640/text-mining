@@ -1,7 +1,3 @@
-import random
-import string
-import sys
-from unicodedata import category
 import urllib.request
 import pickle
 
