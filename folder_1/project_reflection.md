@@ -1,15 +1,18 @@
 # Project Overview:
 Our main data source is Reddit. We used a collection of the top 50 posts with most user traffic from the subreddit ‘nosleep’ - a discussion board where authors share original horror stories. We also used fragments from different newspaper publications specifically for sentiment analysis.
+
 We hoped to learn:
-What devices (i.e words) are effective in creating successful horror stories?
-Which words are frequently used across all horror stories
-How can NLP be used to estimate sentiment in text?
+*  What devices (i.e words) are effective in creating successful horror stories?
+* Which words are frequently used across all horror stories
+* How can NLP be used to estimate sentiment in text?
+
 We analyzed the data through the following techniques: 
-Pulled stories into text files using the Reddit API and I/O programming. 
-Cleaned the text using simple functions. 
-Counted word and letter frequencies using dictionaries, lists, and tuples. 
-Compared the similarity of “hot” and “top of all time” posts by word frequency. 
-Conducted sentiment analysis using NLP
+
+* Pulled stories into text files using the Reddit API and I/O programming. 
+* Cleaned the text using simple functions. 
+* Counted word and letter frequencies using dictionaries, lists, and tuples. 
+* Compared the similarity of “hot” and “top of all time” posts by word frequency. 
+* Conducted sentiment analysis using NLP
 
 # Implementation:
 We chose to analyze ‘nosleep’ posts in two main categories, the hot (essentially trending) and top (highest upvoted of all time) sections. This decision was made so that we would be working with only the most popular stories, which is helpful for understanding the basis of a good horror story. When we harvested these stories, we first stored them as .txt files before performing analysis on them. There were also a few libraries that we had to import in order to properly execute this analysis. The main one we used is called praw, which is an API that can gather data from Reddit. Additionally, we imported the library nltk to perform sentiment analysis.
