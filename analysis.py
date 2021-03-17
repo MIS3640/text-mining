@@ -1,7 +1,7 @@
 import sys
 from unicodedata import category
 import string
-
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 
 
@@ -61,6 +61,9 @@ def bottom_ten(hist):
     return x
 
 
+def feeling(filename):
+    score = SentimentIntensityAnalyzer().polarity_scores(sentence)
+    return score
 
 
 
@@ -69,14 +72,13 @@ def bottom_ten(hist):
 def main():
     filename ='Iphone.txt'
     hist = word_summary('Iphone.txt')
-    filename2 ='galaxy_s.txt'
-    hist2 = word_summary('galaxy_s.txt')
+
     # # print(hist)
     # print('Total number of words:', total_words(hist))
     # # # print(ordered_frequency(hist))
     # print('the top ten words are:', top_ten(hist))
     # print('the 10 least used words are:', bottom_ten(hist))
-
+    print(feeling)
 
     
 
