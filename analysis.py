@@ -1,5 +1,8 @@
 import sys
 from unicodedata import category
+import string
+from collections import Counter
+
 def word_summary(filename):
     """this function takes away any strippables"""
     hist = {}
@@ -10,7 +13,7 @@ def word_summary(filename):
     )
     for line in fp:
 
-        line = line.replace('-', ' ').replace(chr(8212), ' ')
+        line = line.replace('-', ' ').replace(chr(8212), ' ').replace('=', ' ')
 
         for word in line.split():
             # word could be 'Sussex.'
@@ -23,15 +26,37 @@ def word_summary(filename):
     return hist
 
 
-def most_frequent(filename):
-    with open('filename', 'r') as f:
-    with 
+def total_words(hist):
+    """returns the total number of words"""
+    return sum(hist.values())
+
+
+def sorted_words(hist):
+    for word in sorted(hist, reverse= True):
+        print(word)
+
+
+def most_frequent(hist):
+    count, itm = 0, ''
+    for item in reversed(hist):
+         hist[item] = hist.get(item, 0) + 1
+         if hist[item] >= count :
+             count, itm = dict[item], item
+
+    return(itm)
+
+    
 
 
 def main():
     filename ='Iphone.txt'
     hist = word_summary('Iphone.txt')
     print(hist)
+    print('Total number of words:', total_words(hist))
+    print(most_frequent(hist))
+   
+    
+
 
 
 
