@@ -7,6 +7,6 @@ with open('saved_texts.pickle','rb') as input_file:
     Jane_Eyre = pickle.load(input_file)
 score1 = SentimentIntensityAnalyzer().polarity_scores(Wuthering_Height)
 score2 = SentimentIntensityAnalyzer().polarity_scores(Jane_Eyre)
-print(score1)
-print(score2)
+print("Wuthering Height: ", score1)
+print("Jane EyreL: ", score2)
 
