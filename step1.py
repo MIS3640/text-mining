@@ -1,3 +1,4 @@
+### STEP 1
 from imdbpie import Imdb
 import pprint
 
@@ -14,8 +15,9 @@ movie_name = [
     "Star Wars: Episode VI - Return of the Jedi",
     "Star Wars: Episode VII - The Force Awakens",
     "Star Wars: Episode VIII - The Last Jedi",
-    "Star Wars: Episode IX - The Rise of Skywalker"
+    "Star Wars: Episode IX - The Rise of Skywalker",
 ]
+
 
 def get_info(movie_list):
     """
@@ -34,7 +36,6 @@ def get_info(movie_list):
         movie_info["review_info"] = []
         for i in range(len(reviews["reviews"]) - 1):
             # to get all the reviews: len(reviews["reviews"]) - 1
-            # ISSUE: only returns 25 reviews per movie
             each_r = {
                 "username": reviews["reviews"][i]["author"]["displayName"],
                 "review_text": reviews["reviews"][i]["reviewText"],
@@ -56,6 +57,7 @@ full_review_text = get_info(movie_name)
 
 ### Pickling & save data to a file called review data
 import pickle
+
 with open("review_data.pickle", "wb") as f:
     pickle.dump(full_review_text, f)
 
