@@ -5,23 +5,21 @@ from unicodedata import category
 
 
 def process_file(filename, skip_header):
-    """Makes a histogram that contains the words from a file.
-    filename: string
-    skip_header: boolean, whether to skip the Gutenberg header
-    returns: map from each word to the number of times it appears.
+    """Opens the file, then removes the header and footer, then seperates all the words individual and 
+    Makes a histogram that contains the words from a file.
     """
     hist = {}
-    fp = open(filename, encoding='UTF8')
+    book = open(filename, encoding='UTF8')
 
     # TODO: explain skip_header
     if skip_header:
-        skip_gutenberg_header(fp)
+        skip_gutenberg_header(book)
 
     strippables = ''.join(
         [chr(i) for i in range(sys.maxunicode) if category(chr(i)).startswith("P")]
     )
 
-    for line in fp:
+    for line in book:
         if line.startswith('*** END OF THIS PROJECT'):
             break
 
@@ -40,11 +38,10 @@ def process_file(filename, skip_header):
     return hist
 
 
-def skip_gutenberg_header(fp):
-    """Reads from fp until it finds the line that ends the header.
-    fp: open file object
+def skip_gutenberg_header(book):
+    """Starts to read the book from the line startswith
     """
-    for line in fp:
+    for line in book:
         if line.startswith('*** START OF THIS PROJECT'):
             break
 
@@ -64,14 +61,6 @@ def most_common(hist, excluding_stopwords=False):
     hist: map from word to frequency
     returns: list of (frequency, word) pairs
     """
-    # Pseudo-code
-    # 1. create a list for return, freq_word_list
-    # 2. Use for to loop over the dictionary, hist
-    #   1. get the word, freq from hist
-    #   2. create a tuple this way (freq, word)
-    #   3. append the tuple to freq_word_list
-    # 3. sort freq_word_list
-    # 4. return it
 
 
 def print_most_common(hist, num=10):
@@ -90,23 +79,23 @@ def subtract(d1, d2):
 
 
 def main():
-    # A Modest Proposal by Jonathan Swift (UK 18th century)
-    hist = process_file('data/a_modest_proposal.txt', skip_header=True)
+    # # A Modest Proposal by Jonathan Swift (UK 18th century)
+    # hist = process_file('data/a_modest_proposal.txt', skip_header=True)
 
     # The Coquette by Hannah Webster Foster (US 18th century)
     hist = process_file('data/the_coquette.txt', skip_header=True)
 
-    # Frankenstein by Mary Wollstonecraft (Godwin) Shelley (UK 19th century)
-    hist = process_file('data/frankenstein.txt', skip_header=True)
+    # # Frankenstein by Mary Wollstonecraft (Godwin) Shelley (UK 19th century)
+    # hist = process_file('data/frankenstein.txt', skip_header=True)
 
-    # Cape Cod by Henry David Thoreau (US 19th century)
-    hist = process_file('data/cape_cod.txt', skip_header=True)
+    # # Cape Cod by Henry David Thoreau (US 19th century)
+    # hist = process_file('data/cape_cod.txt', skip_header=True)
 
-    # Mrs Dalloway in Bond Street, by Virginia Woolf (UK 18th century)
-    hist = process_file('data/mrs_dalloway_in_bond_street.txt', skip_header=True)
+    # # Mrs Dalloway in Bond Street, by Virginia Woolf (UK 18th century)
+    # hist = process_file('data/mrs_dalloway_in_bond_street.txt', skip_header=True)
     
-    # The Great Gatsby by F. Scott Fitzgerald (US 20th century)
-    hist = process_file('data/the_great_gatsby.txt', skip_header=True)
+    # # The Great Gatsby by F. Scott Fitzgerald (US 20th century)
+    # hist = process_file('data/the_great_gatsby.txt', skip_header=True)
 
 
 
