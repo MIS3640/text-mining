@@ -31,13 +31,26 @@ def get_review_text(reviews):
     review_text = reviews['reviews'][random_number]['reviewText']
     return review_text
 
+import nltk
+nltk.download('vader_lexicon')
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
+def sentiment_analysis(review_text):
+    """ 
+    Function that returns a tiple contianing the review text and the sentiment analysis score it recieved
+    """
+    score = SentimentIntensityAnalyzer().polarity_scores(review_text)
+    return review_text, score
+
+
 
 def main():
     reviews = get_imdb_reviews("Parasite")
-    print(reviews)
+    # print(reviews)
     review_text = get_review_text(reviews)
     # print(review_text)
-
+    sentiment = sentiment_analysis(review_text)
+    print(sentiment)
 
 if __name__ == '__main__':
     main()
