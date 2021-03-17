@@ -2,16 +2,6 @@ from imdbpie import Imdb
 
 imdb = Imdb()
 
-# print(imdb.search_for_title("The Dark Knight"))
-# reviews = imdb.get_title_user_reviews("tt0468569")
-
-# import pprint
-# pprint.pprint(reviews)
-
-# print(reviews['reviews'][0]['author']['displayName'])
-# print(reviews['reviews'][0]['reviewText'])
-
-
 def get_imdb_reviews(movie_title):
     """
     Function that returns all the reviews for a given movie title
@@ -20,9 +10,6 @@ def get_imdb_reviews(movie_title):
     imdb_id = movie["imdb_id"]
     reviews = imdb.get_title_user_reviews(imdb_id)
     return reviews
-
-
-# print(get_imdb_reviews("Parasite"))
 
 
 def get_review_text(reviews, review_number=0, rand=True):
@@ -53,8 +40,10 @@ def sentiment_analysis(review_text):
     score = SentimentIntensityAnalyzer().polarity_scores(review_text)
     return review_text, score
 
-
 def lexical_diversity(review_text):
+    """
+    Function that calculates the lexical diversity of a review
+    """
     return len(set(review_text)) / len(review_text)
 
 
@@ -84,9 +73,10 @@ def histogram(s):
 
 
 def sorted_hist(hist, exclude_stopwords=True):
-    """Sorts a word frequency dictionary from greatest to smallest frequency
-    hist : dictionary with word frequency"""
-
+    """ 
+    Sorts a word frequency dictionary from greatest to smallest frequency
+    hist : dictionary with word frequency
+    """
     lst = []
     stopwords = open("stopword.txt", encoding="UTF8")
     # print(stopwords)
@@ -115,7 +105,7 @@ def main():
     review_text = get_review_text(reviews, review_number=random_review, rand=False)
     # print(review_text)
     sentiment = sentiment_analysis(review_text)
-    print(sentiment, reviews["reviews"][random_review]["authorRating"])
+    print(f'{sentiment}, [This reviewer gave the movie a score of {reviews["reviews"][random_review]["authorRating"]}]')
     # lexical_div = lexical_diversity(review_text)
     # print(lexical_div)
     # review_text = get_review_text(reviews, 0, rand=False)
