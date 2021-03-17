@@ -1,7 +1,9 @@
 import sys
 from unicodedata import category
 import string
-from collections import Counter
+
+
+
 
 def word_summary(filename):
     """this function takes away any strippables"""
@@ -31,32 +33,52 @@ def total_words(hist):
     return sum(hist.values())
 
 
-def sorted_words(hist):
-    for word in sorted(hist, reverse= True):
-        print(word)
+def ordered_frequency(hist):
+    """this function returns an ordered list of words by frequency"""
+    x = sorted(hist.items(), key=lambda item: item[1], reverse= True)
+    return x
+
+    # dict = {}
+    # count, itm = 0, ''
+    # for item in reversed(hist):
+    #      dict[item] = dict.get(item, 0) + 1
+    #      if dict[item] >= count :
+    #          count, itm = dict[item], item
+
+    # return(itm)
 
 
-def most_frequent(hist):
-    count, itm = 0, ''
-    for item in reversed(hist):
-         hist[item] = hist.get(item, 0) + 1
-         if hist[item] >= count :
-             count, itm = dict[item], item
+def top_ten(hist):
+    """this function returns the top 10 frequent words"""
+    x = sorted(hist.items(), key=lambda item: item[1], reverse= True)[0:10]
+    return x
 
-    return(itm)
 
-    
+
+def bottom_ten(hist):
+    """this function returns the top 10 frequent words"""
+    x = sorted(hist.items(), key=lambda item: item[1], reverse= False)[0:10]
+    return x
+
+
+
+
+
 
 
 def main():
     filename ='Iphone.txt'
     hist = word_summary('Iphone.txt')
-    print(hist)
-    print('Total number of words:', total_words(hist))
-    print(most_frequent(hist))
-   
-    
+    filename2 ='galaxy_s.txt'
+    hist2 = word_summary('galaxy_s.txt')
+    # # print(hist)
+    # print('Total number of words:', total_words(hist))
+    # # # print(ordered_frequency(hist))
+    # print('the top ten words are:', top_ten(hist))
+    # print('the 10 least used words are:', bottom_ten(hist))
 
+
+    
 
 
 

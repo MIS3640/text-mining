@@ -1,3 +1,4 @@
+from collections import Counter
 import sys
 from unicodedata import category
 def word_summary(filename):
@@ -28,7 +29,6 @@ def word_summary(filename):
 
 def most_frequent(hist): 
 	counter = 0
-	num = hist[0] 
 	
 	for i in hist: 
 		curr_frequency = hist.count(i) 
@@ -38,8 +38,7 @@ def most_frequent(hist):
 
 	return num 
 
-hist = [2, 1, 2, 2, 1, 3] 
-print(most_frequent(hist)) 
+
 
     
 
@@ -48,6 +47,7 @@ def main():
     filename ='Iphone.txt'
     hist = word_summary('Iphone.txt')
     #print(hist)
+    print(most_frequent(hist)) 
 
 
 
