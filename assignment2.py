@@ -42,6 +42,8 @@ def sentiment_analysis(review_text):
     score = SentimentIntensityAnalyzer().polarity_scores(review_text)
     return review_text, score
 
+def lexical_diversity(review_text):
+    return len(set(review_text)) / len(review_text)
 
 
 def main():
@@ -50,7 +52,10 @@ def main():
     review_text = get_review_text(reviews)
     # print(review_text)
     sentiment = sentiment_analysis(review_text)
-    print(sentiment)
+    # print(sentiment)
+    lexical_div = lexical_diversity(review_text)
+    print(lexical_div)
+
 
 if __name__ == '__main__':
     main()
