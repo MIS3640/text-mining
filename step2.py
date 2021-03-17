@@ -31,3 +31,9 @@ def remove_punct(imdb_data_list):
 cleaned = remove_punct(reloaded_review_text)
 pprint.pprint(cleaned)
 
+### Save data
+import pickle
+with open("review_data.pickle", "wb") as f:
+    pickle.dump(cleaned, f)
+
+    
