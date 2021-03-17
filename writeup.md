@@ -7,11 +7,9 @@
 ##### **Assignment 2**
 
 ## Project Overview
---------------
 Our goal is to look at the Star Wars movie series and explore the viewer reviews. By this, we can compare their sentiments with movie ratings to see if they align. We use data from IMDB data sources. We use natural language processing(NLTK) to work with the harvested human language data to perform sentiment analysis. We hope to examine the correlation between the reviews and the ratings. Furthermore, we would try to learn the overview trend of the people's opinions on the movie series. 
 
 ## Implementation
---------------
 We implemented the following three steps to achieve our goal for this investigation.
 
 *Step 1: Data Loading*
@@ -29,8 +27,11 @@ Our sentiment analysis is done using the natural language toolkit or the "nltk" 
 For further analysis, we will be comparing the sentiment scores for each Star Wars movie to the numeric score on IMDB - focusing on two numerical variables: the compound score(-1,1) and the IMDB rating (0,10). Coordinates for each movie will be graphed to visualize if there is any correlation between the variables. In addition, the compound score will be plotted on a bar graph to see how they differ for each movie of the Star Wars sequel. 
 
 ## Results
---------------
 After running the above four steps, we arrived at the following results. 
+![](https://lh6.googleusercontent.com/CUEwJj_yQW4dRPaDJ9f24yyoR3RbsidMsfHpnq9Z10sLP-gEAiQl9AwEP-hURmnThc3yIrkakcLv1F25gYbHgPfJw4N3Okh_ySug7iPIlm0u1VY4TULwNNvw_uypcA1tK-FDtNSD)
+###### Figure 1
+
+Figure 1 is an example of the output of the sentiment analysis for each movie, classified by each reviwer.
 
 ![](https://lh5.googleusercontent.com/pfDdcexvyLqCmGEQl4nFCpZ5HJe9ay3wx5CRAl6mB38kCMYgZ0oN7F6lXHJf6CKNOh_IfcXT8ViS5bH52M-1veTYPa23zWV0X9iy4bU4YGYYMo5pZB7nFTyZx4gKQd7lbjSjN168) 
 ###### Graph 1
@@ -41,5 +42,4 @@ Graph 1 is a scatter plot showing the relationship between IMDB ratings and comp
 Graph 2 shows how users' sentiment towards Star Wars changes over time. The earliest movies (IV, V, and VI) released between 1975-1985 received more positive reviews, despite the less advancement of the use of special effects. After gaining some popularity in the market, Star Wars I, II, and III were released in the 2000s. On average, they received positive feedback from the audience, though it was relatively lower than the earlier ones. The last three movies were the results of a recent revival of the movie franchise. They have been widely criticized for their poorer quality. With the expectation built up from the previous movies, it would be reasonable that fans could be easily disappointed. Considering how much technology has evolved over the years, it is clear that special effects in the scenes are not a priority for the audience. 
 
 ## Reflection
---------------
 From a process point of view, what went well was that the data loading process was easy to access and manage. The first stage of sentiment analysis was also not too difficult to perform. For the given timeframe, we believed that our project was appropriately scoped. By mapping out every step of the process and writing pseudocode before coding, we had a good plan for unit testing. With more time, we wish to dig deeper into further customizing the sentiment analysis. This is our first time coding as a group; thus, understanding that the key to completing the project is to collaborate is crucial. We wish we knew more about python visualization and the used library and its functions before starting the project. Initially, we thought pair programming through zoom call would work, but coding takes time, so doing it individually works better. Then, we combined the work for each step and discussed further actions. One prominent issue was that whenever there was a coding issue, the whole team was stuck, and we did not know what to do. To solve the problem, we asked Professor Li to help. Next time, we hope to collaborate more through pair programming and divide the task appropriately with the time constraints and skills.
