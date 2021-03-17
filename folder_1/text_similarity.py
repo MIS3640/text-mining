@@ -58,7 +58,7 @@ def hist_prom(hist, number_appears):
     In general the histogram this function is being performed on a histogram of all the words in the hot posts on "nosleep
     The argument hist is the histogram the analysis is being performed on while number_appears is the number of appearances required
     by a word to be considered prominent.
-    The returned histogram has prominent words as keys and their prominence as values""""
+    The returned histogram has prominent words as keys and their prominence as values"""
     prom_hist = {}
     for keys in hist:
         if int(hist.get(keys)) > number_appears:
@@ -84,7 +84,7 @@ def analysis(limit_num, compared_to):
     post_num = 0
     for post in subreddit_.top(limit=limit_num):
         with open('folder_1/single_post_text.txt', 'w') as fout:
-            post_num +=1
+            post_num += 1
             count = 0
             fout.write(post.selftext)
             fp = open('folder_1/single_post_text.txt', encoding='latin-1')
@@ -106,7 +106,7 @@ def analysis(limit_num, compared_to):
                 if words in compared_to:
                     final_hist_result[words] = single_post_hist.get(words)
                     count += 1
-            print(f'{final_hist_result} \n')
+            print(f'{final_hist_result}')
             print(f'The final number of similar words in post {post_num} is {count} \n')
 
 
