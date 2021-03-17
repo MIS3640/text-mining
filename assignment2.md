@@ -2,14 +2,16 @@
 
 ## Team members: James Lee, Emily Muramoto, Lina Li 
 
-### Writeup
+### Project Overview
 For this project, we utilized two sources, a CSV file that contains all the US traded stocks, and the importation of the top 100 reddit titles under r/wallstreetbets. We processed the CSV file by appending every stock ticker into a list. We processed the reddit titles by cross referencing each word in each title against the stock ticker list to identify which stock the post would target. We analyzed the data using a frequency analysis, hoping to identify the trending stocks in r/wallstreetbets. 
 
-
+### Implementation 
 Our first course of action was to upload a csv file that contained all of the stock tickers —  and other information about the stock — traded in the United States. We created a function to compile all of the stock tickers into a list, later used to identify whether or not a word is a stock ticker. Afterwards, we acquired the top 100 post titles from r/wallstreetbets and compared the words in each title against our list of stock tickers to identify if the post is referencing any specific stocks. We counted the frequency of post titles that a stock would appear in and implemented it into a dictionary — with the key as the ticker and the value as the frequency. Next, we sorted it by descending order to identify which stocks are currently trending on the subreddit. Lastly, we compiled our findings into a bar graph to create a visual representation, in order to help with the analysis. 
 
 
 One of the design decisions that we had to make that had multiple alternatives was the compilation of the stock tickers into a list. That function could have returned either a dictionary or a list, as the final usage was to see if a word from the reddit post title was in the list. However, we opted to utilize a list instead of a dictionary, because we did not have a value to assign to the stock ticker. If we were to use a dictionary, the values would have been a random assignment with no meaning. 
+
+### Results
 From this project, we were able to find the stocks that were mentioned the most in the subreddit. As you can see from the bar graph below, GME (Gamestop) and AMC (AMC Entertainment Holdings) were mentioned the most, which was unsuprising given the recent news that this specific subreddit was responsible for their increase in stock value. Besides these two, it was interesting to see the other stocks that were mentioned in the subreddit, including BB (Blackberry) and NOK (Nokia). With this information, we could analyze and see which stock the subreddit is planning on targeting next by seeing what stock is also being talked about more. 
 
 
