@@ -3,6 +3,7 @@ import string
 import sys
 import pickle
 import nltk
+
 nltk.download("stopwords")
 from nltk.corpus import stopwords
 
@@ -68,7 +69,7 @@ def most_common(h, excluding_stopwords=False):
     """
     common_words = []
     for word, freq in h.items():
-        if word not in stopwords.words("english") or [
+        if word in stopwords.words("english") or word in [
             "mr",
             "would",
             "said",
@@ -76,6 +77,8 @@ def most_common(h, excluding_stopwords=False):
             "jane",
             "john",
         ]:
+            h[word] = None
+        else:
             t = (freq, word)
             common_words.append(t)
 
