@@ -1,7 +1,3 @@
-import random
-import string
-import sys
-from unicodedata import category
 import urllib.request
 import pickle
 
@@ -18,7 +14,5 @@ with open('saved_texts.pickle','wb') as f:
     pickle.dump(text1,f)
     pickle.dump(text2,f)
 
-with open('saved_texts.pickle','rb') as input_file:
-    reloaded_copy_of_texts = pickle.load(input_file)
 
 
