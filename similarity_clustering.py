@@ -1,10 +1,11 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
-nltk.download("punkt")
+import string
 import pickle
 import nltk
-
-nltk.download("stopwords")
+nltk.download('punkt')
+nltk.download('stopwords')
 from nltk.corpus import stopwords
+
 
 # Unpickling the text files
 with open("saved_texts.pickle", "rb") as input_file:
