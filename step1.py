@@ -1,24 +1,23 @@
-# Get data
 from imdbpie import Imdb
 import pprint
 
 imdb = Imdb()
 
-# Get movie imdb-id
+### Get info from imdb (title, id, number of reviews, reviews text)
 
 movie_name = [
     "Star Wars: Episode I - The Phantom Menace",
     "Star Wars: Episode II - Attack of the Clones",
     "Star Wars: Episode III - Revenge of the Sith",
-    # "Star Wars: Episode IV - A New Hope",
-    # "Star Wars: Episode V - The Empire Strikes Back",
-    # "Star Wars: Episode VI - Return of the Jedi",
+    "Star Wars: Episode IV - A New Hope",
+    "Star Wars: Episode V - The Empire Strikes Back",
+    "Star Wars: Episode VI - Return of the Jedi",
     # "Star Wars: Episode VII - The Force Awakens",
     # "Star Wars: Episode VIII - The Last Jedi",
     # "Star Wars: Episode IX - The Rise of Skywalker"
 ]
 
-# Get info from imdb (title, id, number of reviews, reviews text)
+
 def get_info(movie_list):
     """
     Retrieves movie title, movie ID, number of reviews, rating of the review,
@@ -34,20 +33,18 @@ def get_info(movie_list):
         movie_info["number_of_reviews"] = len(reviews["reviews"])
 
         movie_info["review_info"] = []
-        for i in range(50):
+        for i in range(len(reviews["reviews"]) - 1):
             # to get all the reviews: len(reviews["reviews"]) - 1
-            # ISSUE: only returns 25 reviews per movie 
+            # ISSUE: only returns 25 reviews per movie
             each_r = {
                 "username": reviews["reviews"][i]["author"]["displayName"],
-                # 'imdb_rating':,
                 "review_text": reviews["reviews"][i]["reviewText"],
             }
-
-            if reviews["reviews"][i]["authorRating"] == None:
-                each_r["imdb_rating"] = "N/A"
-            else:
+            try:
                 each_r["imdb_rating"] = reviews["reviews"][i]["authorRating"]
-
+            except KeyError:
+                continue
+            # print(reviews["reviews"][i]["authorRating"])
             movie_info["review_info"].append(each_r)
 
         movie_sum.append(movie_info)
@@ -55,7 +52,13 @@ def get_info(movie_list):
 
 
 full_review_text = get_info(movie_name)
-pprint.pprint(full_review_text)
+# pprint.pprint(full_review_text)
+
+
+### Pickling & save data to a file called review data
+import pickle
+with open("review_data.pickle", "wb") as f:
+    pickle.dump(full_review_text, f)
 
 
 """The format of the new dictionary
@@ -68,10 +71,3 @@ review_text:
     review_text:___,
     user_rating: ___
     }]"""
-
-
-# Pickling & save data to a file called review data
-import pickle
-
-with open("review_data.pickle", "wb") as f:
-    pickle.dump(full_review_text, f)
