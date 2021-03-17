@@ -15,6 +15,7 @@ print(subreddit.title)         # output: reddit development
 print(subreddit.description)   # output: a subreddit for discussion of ...
 # assume you have a Subreddit instance bound to variable `subreddit`
 def subreddit_trawl():
+    """Searches through a subreddit for the 50 most trending posts and writes them into a text file."""
     with open('folder_1/post_text.txt','w') as fout:
         d = {}
         for submission in subreddit.hot(limit=50):

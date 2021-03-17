@@ -12,9 +12,9 @@ reddit = praw.Reddit(
 subreddit = reddit.subreddit("nosleep")
 
 def subreddit_isolate():
-    """Isolate 10 hottest subreddits post in a seperate text file each"""
+    """Isolate 10 hottest posts in the subreddit into a seperate text file for each one labeled story1.txt to story10.txt"""
     count = 1 
-    for submission in subreddit.hot(limit=10):
+    for submission in subreddit.top(limit=10):
         filename = f"story{count}.txt"
         new_story = open(f'folder_1/stories/{filename}', 'w') 
         new_story.write(submission.selftext)
@@ -25,7 +25,7 @@ def subreddit_isolate():
 
 import nltk
 
-# nltk.download() #download packages first before using nltk
+""" You must use nltk.download()  to download the packages first before using nltk below."""
 
 def sentiment_analysis(file):
     """
