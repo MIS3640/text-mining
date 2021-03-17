@@ -31,3 +31,7 @@ def clean_text_round2(text):
 round2 = lambda x: clean_text_round2(x)
 data_clean = pd.DataFrame(data_clean.reviews.apply(round2))
 print(data_clean)
+
+new_dict = data_clean.to_dict() # converts dataframe back to dictionary
+pprint.pprint(new_dict)
+print(type(new_dict))
