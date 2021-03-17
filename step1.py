@@ -12,11 +12,10 @@ movie_name = [
     "Star Wars: Episode IV - A New Hope",
     "Star Wars: Episode V - The Empire Strikes Back",
     "Star Wars: Episode VI - Return of the Jedi",
-    # "Star Wars: Episode VII - The Force Awakens",
-    # "Star Wars: Episode VIII - The Last Jedi",
-    # "Star Wars: Episode IX - The Rise of Skywalker"
+    "Star Wars: Episode VII - The Force Awakens",
+    "Star Wars: Episode VIII - The Last Jedi",
+    "Star Wars: Episode IX - The Rise of Skywalker"
 ]
-
 
 def get_info(movie_list):
     """
