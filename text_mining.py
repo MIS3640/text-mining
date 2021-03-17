@@ -135,11 +135,11 @@ def main():
     # print(ticker_one(title_test))
     # print(ticker_count())
     print(sorted_ticker_count())
-    result = sorted_ticker_count()
-    print(ticker())
-    print(count())
+    # result = sorted_ticker_count()
+    # print(ticker())
+    # print(count())
     print(barChart())
-    print(result)
+    # print(result)
 
 
 if __name__ == "__main__":
