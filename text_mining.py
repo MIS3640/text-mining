@@ -16,8 +16,7 @@ def stock_list():
 
 def import_subreddit():
     """
-    imports the top 1000 post titles for the day under wallstreetbets subreddit
-    ***Reddit only allows for 1000 post pull requests at a time***
+    imports the top 100 post titles for the day under wallstreetbets subreddit
     """
     reddit = praw.Reddit(
         client_id="UV_0pi49dIB77w",
@@ -27,7 +26,7 @@ def import_subreddit():
         user_agent="verkxies1",
     )
     sub = "wallstreetbets"
-    submissions = reddit.subreddit(sub).top("day", limit=400)
+    submissions = reddit.subreddit(sub).top("day", limit=100)
     top = [(submission.title) for submission in submissions]
     return top
 
