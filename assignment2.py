@@ -40,6 +40,24 @@ def get_review_text(reviews, review_number=0, rand=True):
     return review_text
 
 
+import nltk
+
+# nltk.download("vader_lexicon")
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
+
+def sentiment_analysis(review_text):
+    """
+    Function that returns a tiple contianing the review text and the sentiment analysis score it recieved
+    """
+    score = SentimentIntensityAnalyzer().polarity_scores(review_text)
+    return review_text, score
+
+
+def lexical_diversity(review_text):
+    return len(set(review_text)) / len(review_text)
+
+
 def histogram(s):
     """
     Returns count of each item in s
@@ -69,7 +87,6 @@ def sorted_hist(hist, exclude_stopwords=True):
     """Sorts a word frequency dictionary from greatest to smallest frequency
     hist : dictionary with word frequency"""
 
-
     lst = []
     stopwords = open("stopword.txt", encoding="UTF8")
     # print(stopwords)
@@ -91,15 +108,24 @@ def sorted_hist(hist, exclude_stopwords=True):
 
 
 def main():
+    import random
+    random_review = random.randint(1, 20)
     reviews = get_imdb_reviews("Parasite")
     # print(reviews)
-    review_text = get_review_text(reviews, 0, rand=False)
+    review_text = get_review_text(reviews, review_number=random_review, rand=False)
+    # print(review_text)
+    sentiment = sentiment_analysis(review_text)
+    print(sentiment, reviews["reviews"][random_review]["authorRating"])
+    # lexical_div = lexical_diversity(review_text)
+    # print(lexical_div)
+    # review_text = get_review_text(reviews, 0, rand=False)
     # print(review_text)
     # print(type(review_text))
-    hist = histogram(review_text)
+    # hist = histogram(review_text)
     # print(hist)
     import pprint
-    pprint.pprint(sorted_hist(hist))
+
+    # pprint.pprint(sorted_hist(hist))
 
 
 if __name__ == "__main__":
