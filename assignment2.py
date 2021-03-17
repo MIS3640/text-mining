@@ -2,16 +2,6 @@ from imdbpie import Imdb
 
 imdb = Imdb()
 
-# print(imdb.search_for_title("The Dark Knight"))
-# reviews = imdb.get_title_user_reviews("tt0468569")
-
-# import pprint
-# pprint.pprint(reviews)
-
-# print(reviews['reviews'][0]['author']['displayName'])
-# print(reviews['reviews'][0]['reviewText'])
-
-
 def get_imdb_reviews(movie_title):
     """
     Function that returns all the reviews for a given movie title
@@ -20,9 +10,6 @@ def get_imdb_reviews(movie_title):
     imdb_id = movie["imdb_id"]
     reviews = imdb.get_title_user_reviews(imdb_id)
     return reviews
-
-
-# print(get_imdb_reviews("Parasite"))
 
 
 def get_review_text(reviews, review_number=0, rand=True):
@@ -39,18 +26,22 @@ def get_review_text(reviews, review_number=0, rand=True):
         review_text = reviews["reviews"][review_number]["reviewText"]
     return review_text
 
+
 import nltk
 nltk.download('vader_lexicon')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 def sentiment_analysis(review_text):
     """ 
-    Function that returns a tiple contianing the review text and the sentiment analysis score it recieved
+    Function that returns a tuple contianing the review text and the sentiment analysis score it recieved
     """
     score = SentimentIntensityAnalyzer().polarity_scores(review_text)
     return review_text, score
 
 def lexical_diversity(review_text):
+    """
+    Function that calculates the lexical diversity of a review
+    """
     return len(set(review_text)) / len(review_text)
 
 
@@ -80,10 +71,10 @@ def histogram(s):
 
 
 def sorted_hist(hist, exclude_stopwords=True):
-    """Sorts a word frequency dictionary from greatest to smallest frequency
-    hist : dictionary with word frequency"""
-
-
+    """ 
+    Sorts a word frequency dictionary from greatest to smallest frequency
+    hist : dictionary with word frequency
+    """
     lst = []
     stopwords = open("stopword.txt", encoding="UTF8")
     # print(stopwords)
@@ -107,17 +98,15 @@ def sorted_hist(hist, exclude_stopwords=True):
 def main():
     reviews = get_imdb_reviews("Parasite")
     # print(reviews)
-    review_text = get_review_text(reviews)
-    # print(review_text)
+    review_text = get_review_text(reviews, rand=True)
+    print(review_text)
+    # print(type(review_text))
     sentiment = sentiment_analysis(review_text)
-    # print(sentiment)
+    print(sentiment)
     lexical_div = lexical_diversity(review_text)
     print(lexical_div)
-    review_text = get_review_text(reviews, 0, rand=False)
-    # print(review_text)
-    # print(type(review_text))
     hist = histogram(review_text)
-    # print(hist)
+    # # print(hist)
     import pprint
     pprint.pprint(sorted_hist(hist))
 
