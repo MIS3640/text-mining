@@ -39,16 +39,18 @@ def sentiment_analysis(file):
         score = sent.polarity_scores(story) 
     # score is a dictionary with polarity scores (negative, neutral, positive, compound)
     return score 
+def main():
+    print(sentiment_analysis('folder_1/stories/story1.txt'))
+    print(sentiment_analysis('folder_1/stories/story2.txt'))
+    print(sentiment_analysis('folder_1/stories/story3.txt'))
+    print(sentiment_analysis('folder_1/stories/story4.txt'))
+    print(sentiment_analysis('folder_1/stories/story5.txt'))
+    print(sentiment_analysis('folder_1/stories/story6.txt'))
+    print(sentiment_analysis('folder_1/stories/story7.txt'))
+    print(sentiment_analysis('folder_1/stories/story8.txt'))
+    print(sentiment_analysis('folder_1/stories/story9.txt'))
+    print(sentiment_analysis('folder_1/stories/story10.txt'))
 
-print(sentiment_analysis('folder_1/stories/story1.txt'))
-print(sentiment_analysis('folder_1/stories/story2.txt'))
-print(sentiment_analysis('folder_1/stories/story3.txt'))
-print(sentiment_analysis('folder_1/stories/story4.txt'))
-print(sentiment_analysis('folder_1/stories/story5.txt'))
-print(sentiment_analysis('folder_1/stories/story6.txt'))
-print(sentiment_analysis('folder_1/stories/story7.txt'))
-print(sentiment_analysis('folder_1/stories/story8.txt'))
-print(sentiment_analysis('folder_1/stories/story9.txt'))
-print(sentiment_analysis('folder_1/stories/story10.txt'))
-
+if __name__ == "__main__":
+    main()
 
