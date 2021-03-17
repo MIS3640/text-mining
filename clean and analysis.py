@@ -93,20 +93,20 @@ def main():
     # A Modest Proposal by Jonathan Swift (UK 18th century)
     hist = process_file('data/a_modest_proposal.txt', skip_header=True)
 
-    # # The Coquette by Hannah Webster Foster (US 18th century)
-    # hist = process_file('data/the_coquette.txt', skip_header=True)
+    # The Coquette by Hannah Webster Foster (US 18th century)
+    hist = process_file('data/the_coquette.txt', skip_header=True)
 
-    # # Frankenstein by Mary Wollstonecraft (Godwin) Shelley (UK 19th century)
-    # hist = process_file('data/frankenstein.txt', skip_header=True)
+    # Frankenstein by Mary Wollstonecraft (Godwin) Shelley (UK 19th century)
+    hist = process_file('data/frankenstein.txt', skip_header=True)
 
-    # # Cape Cod by Henry David Thoreau (US 19th century)
-    # hist = process_file('data/cape_cod.txt', skip_header=True)
+    # Cape Cod by Henry David Thoreau (US 19th century)
+    hist = process_file('data/cape_cod.txt', skip_header=True)
 
-    # # Mrs Dalloway in Bond Street, by Virginia Woolf (UK 18th century)
-    # hist = process_file('data/mrs_dalloway_in_bond_street.txt', skip_header=True)
+    # Mrs Dalloway in Bond Street, by Virginia Woolf (UK 18th century)
+    hist = process_file('data/mrs_dalloway_in_bond_street.txt', skip_header=True)
     
-    # # The Great Gatsby by F. Scott Fitzgerald (US 20th century)
-    # hist = process_file('data/the_great_gatsby.txt', skip_header=True)
+    # The Great Gatsby by F. Scott Fitzgerald (US 20th century)
+    hist = process_file('data/the_great_gatsby.txt', skip_header=True)
 
 
 
@@ -115,22 +115,48 @@ def main():
     print('Number of different words:', different_words(hist))
 
 
-    # t = most_common(hist, excluding_stopwords=True)
-    # print('The most common words are:')
-    # for freq, word in t[0:20]:
-    #     print(word, '\t', freq)
+    t = most_common(hist, excluding_stopwords=True)
+    print('The most common words are:')
+    for freq, word in t[0:20]:
+        print(word, '\t', freq)
 
-    # words = process_file('words.txt', skip_header=False)
+    words = process_file('words.txt', skip_header=False)
 
-    # diff = subtract(hist, words)
-    # print("The words in the book that aren't in the word list are:")
-    # for word in diff.keys():
-    #     print(word, end=' ')
+    diff = subtract(hist, words)
+    print("The words in the book that aren't in the word list are:")
+    for word in diff.keys():
+        print(word, end=' ')
 
-    # print("\n\nHere are some random words from the book")
-    # for i in range(100):
-    #     print(random_word(hist), end=' ')
+    print("\n\nHere are some random words from the book")
+    for i in range(100):
+        print(random_word(hist), end=' ')
 
 
 if __name__ == '__main__':
-    main()
+    main() 
+
+import numpy as np
+from sklearn.manifold import MDS
+import matplotlib.pyplot as plt
+
+# these are the similarities computed from the previous section
+S = np.asarray([[1., 0.90850572, 0.96451312, 0.97905034, 0.78340575],
+    [0.90850572, 1., 0.95769915, 0.95030073, 0.87322494],
+    [0.96451312, 0.95769915, 1., 0.98230284, 0.83381607],
+    [0.97905034, 0.95030073, 0.98230284, 1., 0.82953109],
+    [0.78340575, 0.87322494, 0.83381607, 0.82953109, 1.]])
+
+# dissimilarity is 1 minus similarity
+dissimilarities = 1 - S
+
+# compute the embedding
+coord = MDS(dissimilarity='precomputed').fit_transform(dissimilarities)
+
+plt.scatter(coord[:, 0], coord[:, 1])
+
+# Label the points
+for i in range(coord.shape[0]):
+    plt.annotate(str(i), (coord[i, :]))
+
+
+plt.show() 
