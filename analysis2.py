@@ -23,15 +23,31 @@ def word_summary(filename):
     return hist
 
 
-def most_frequent(filename):
-    with open('filename', 'r') as f:
-    with 
+# Program to find most frequent 
+# element in a list 
+
+def most_frequent(hist): 
+	counter = 0
+	num = hist[0] 
+	
+	for i in hist: 
+		curr_frequency = hist.count(i) 
+		if(curr_frequency> counter): 
+			counter = curr_frequency 
+			num = i 
+
+	return num 
+
+hist = [2, 1, 2, 2, 1, 3] 
+print(most_frequent(hist)) 
+
+    
 
 
 def main():
     filename ='Iphone.txt'
     hist = word_summary('Iphone.txt')
-    print(hist)
+    #print(hist)
 
 
 
