@@ -11,8 +11,6 @@ def filler_words():
         filler_words_list.append(word)
     return filler_words_list
 
-#print(filler_words())
-
 def only_letters(word):
     """returns True only if string is only made out of letters or spaces. 
     Will use this to clean Reddit text before creating a histogram"""
@@ -21,11 +19,6 @@ def only_letters(word):
         if letter not in abecedary:
             return False
     return True
-
-#print(only_letters('Moise'))
-#print(only_letters('Babson is cool'))
-#print(only_letters('m4h5ise'))
-#print(only_letters('m/h\ise'))
 
 def create_histogram(filename):
     """Creates a dictionary with the keys being every unique word in the Reddit posts and the values being their frequency"""
@@ -42,7 +35,7 @@ def create_histogram(filename):
                 hist[word] = hist.get(word, 0) + 1
     return hist
 
-#print(create_histogram('folder_1/post_text.txt'))
+d = create_histogram('folder_1/post_text.txt')
 
 def invert_dictionary(d):
     """Creates a dictionary with key value being the number of times a word appears in the Reddit posts and the value being a list of words
@@ -56,9 +49,6 @@ def invert_dictionary(d):
             inverse[val].append(key)
     return inverse
 
-d = create_histogram('folder_1/post_text.txt')
-#pprint.pprint(invert_dictionary(d))
-
 def order_words_by_frequency(d):
     """Creates a list of the unique words in the Reddit posts ordered in descending order by frequency"""
     word_freq_list = []
@@ -67,8 +57,6 @@ def order_words_by_frequency(d):
         word_freq_list.append(t)
     sorted_list = sorted(word_freq_list,reverse=True)
     return sorted_list
-
-#print(order_words_by_frequency(d))
 
 def most_frequent_words(limit):
     """prints the most frequent words in the Reddit posts. The 'limit' parameter stands for how many 
@@ -81,4 +69,14 @@ def most_frequent_words(limit):
         if count == limit:
             break
 
-print(most_frequent_words(20))
+def main():
+    reddit_file = 'folder_1/post_text.txt'
+    #pprint.pprint(create_histogram(reddit_file)) #uncomment to print full histogram
+    d = create_histogram(reddit_file)
+    #pprint.pprint(invert_dictionary(d)) #uncomment to print full inverted histogram
+    #pprint.pprint(order_words_by_frequency(d)) #uncomment to print full list of letters with their frequency
+    top_words = 20
+    pprint.pprint(most_frequent_words(top_words))
+
+if __name__ == "__main__":
+    main()

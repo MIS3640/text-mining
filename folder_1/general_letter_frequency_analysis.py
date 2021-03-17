@@ -11,11 +11,6 @@ def only_letters(word):
             return False
     return True
 
-#print(only_letters('Moise'))
-#print(only_letters('Babson is cool'))
-#print(only_letters('m4h5ise'))
-#print(only_letters('m/h\ise'))
-
 def create_letter_histogram(filename):
     """Creates a dictionary with the keys being every unique letter in the Reddit posts and the values being their frequency"""
     hist = {}
@@ -35,7 +30,7 @@ def create_letter_histogram(filename):
                         hist[letter] += 1
     return hist
 
-#print(create_letter_histogram('folder_1/post_text.txt'))
+d = create_letter_histogram('folder_1/post_text.txt')
 
 def invert_letter_dictionary(d):
     """Creates a dictionary with key value being the number of times a letter appears in the Reddit posts and the value being a list of letters
@@ -49,9 +44,6 @@ def invert_letter_dictionary(d):
             inverse[val].append(key)
     return inverse
 
-d = create_letter_histogram('folder_1/post_text.txt')
-#pprint.pprint(invert_letter_dictionary(d))
-
 def order_letters_by_frequency(d):
     """Creates a list of the unique letters in the Reddit posts ordered in descending order by frequency"""
     letter_freq_list = []
@@ -60,8 +52,6 @@ def order_letters_by_frequency(d):
         letter_freq_list.append(t)
     sorted_list = sorted(letter_freq_list,reverse=True)
     return sorted_list
-
-#print(order_letters_by_frequency(d))
 
 def most_frequent_letters(limit):
     """prints the most frequent letters in the Reddit posts. The 'limit' parameter stands for how many 
@@ -74,4 +64,14 @@ def most_frequent_letters(limit):
         if count == limit:
             break
 
-print(most_frequent_letters(20))
+def main():
+    reddit_file = 'folder_1/post_text.txt'
+    #pprint.pprint(create_letter_histogram(reddit_file)) #uncomment to print full histogram
+    d = create_letter_histogram(reddit_file)
+    #pprint.pprint(invert_letter_dictionary(d)) #uncomment to print full inverted histogram
+    #pprint.pprint(order_letters_by_frequency(d)) #uncomment to print full list of letters with their frequency
+    top_letters = 20
+    pprint.pprint(most_frequent_letters(top_letters))
+
+if __name__ == "__main__":
+    main()

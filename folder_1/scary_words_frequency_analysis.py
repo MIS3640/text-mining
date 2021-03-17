@@ -11,8 +11,6 @@ def scary_words():
         scary_words_list.append(word)
     return scary_words_list
 
-#print(scary_words())
-
 def only_letters(word):
     """returns True only if string is only made out of letters or spaces. 
     Will use this to clean Reddit text before creating a histogram"""
@@ -21,11 +19,6 @@ def only_letters(word):
         if letter not in abecedary:
             return False
     return True
-
-#print(only_letters('Moise'))
-#print(only_letters('Babson is cool'))
-#print(only_letters('m4h5ise'))
-#print(only_letters('m/h\ise'))
 
 def scary_histogram(filename):
     """Creates a dictionary with the keys being scary words in the Reddit posts and the values being their frequency"""
@@ -42,8 +35,6 @@ def scary_histogram(filename):
                 hist[word] = hist.get(word, 0) + 1
     return hist
 
-#print(scary_histogram('folder_1/post_text.txt'))
-
 def invert_scary_dictionary(d):
     """Creates a dictionary with key value being the number of times a scary word appears in the Reddit posts and the value being a list of scary words
     that appear in the Reddit post with that frequency"""
@@ -57,7 +48,6 @@ def invert_scary_dictionary(d):
     return inverse
 
 d = scary_histogram('folder_1/post_text.txt')
-#pprint.pprint(invert_scary_dictionary(d))
 
 def order_scary_words_by_frequency(d):
     """Creates a list of the unique scary words in the Reddit posts ordered in descending order by frequency"""
@@ -67,8 +57,6 @@ def order_scary_words_by_frequency(d):
         word_freq_list.append(t)
     sorted_list = sorted(word_freq_list,reverse=True)
     return sorted_list
-
-#print(order_scary_words_by_frequency(d))
 
 def most_frequent_words(limit):
     """prints the most frequent scary words in the Reddit posts. The 'limit' parameter stands for how many 
@@ -80,8 +68,6 @@ def most_frequent_words(limit):
         count += 1
         if count == limit:
             break
-
-#print(most_frequent_words(10))
 
 def filler_words():
     """turn file of filler words into list of words"""
@@ -115,8 +101,6 @@ def count_total_words():
         sum += hist[k]
     return sum
 
-#print(count_total_words())
-
 def count_scary_words():
     """returns total number of scary words in the Reddit posts"""
     sum = 0
@@ -134,4 +118,18 @@ def percentage_scary_words():
     print(number_total_words)
     print(f'The percentage of words in the Reddit channel that are scary is {round(percentage,2)}%')
 
-#percentage_scary_words()
+def main():
+    reddit_file = 'folder_1/post_text.txt'
+    #pprint.pprint(scary_histogram(reddit_file)) #uncomment to print full histogram
+    d = scary_histogram(reddit_file)
+    #pprint.pprint(invert_scary_dictionary(d)) #uncomment to print full inverted histogram
+    #pprint.pprint(order_scary_words_by_frequency(d)) #uncomment to print full list of letters with their frequency
+    top_words = 20
+    pprint.pprint(most_frequent_words(top_words))
+    #print(count_total_words()) #uncomment to print total number of words in posts
+    #print(count_scary_words()) #uncomment to print total number of scary words in posts
+    percentage_scary_words() #prints % of words that are scary
+
+
+if __name__ == "__main__":
+    main()
