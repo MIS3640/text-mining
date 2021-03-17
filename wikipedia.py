@@ -11,3 +11,4 @@ wikipedia = MediaWiki()
 babson = wikipedia.page("Iphone")
 print(babson.title)
 print(babson.content)
+
