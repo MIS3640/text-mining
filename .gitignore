@@ -123,3 +123,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+folder_1/reddit_harvest.py
+kiernan/kiernan.py
+folder_1/read_only_instance.py
