@@ -1,7 +1,7 @@
 import sys
 from unicodedata import category
 import string
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
 
 
 
@@ -38,15 +38,6 @@ def ordered_frequency(hist):
     x = sorted(hist.items(), key=lambda item: item[1], reverse= True)
     return x
 
-    # dict = {}
-    # count, itm = 0, ''
-    # for item in reversed(hist):
-    #      dict[item] = dict.get(item, 0) + 1
-    #      if dict[item] >= count :
-    #          count, itm = dict[item], item
-
-    # return(itm)
-
 
 def top_ten(hist):
     """this function returns the top 10 frequent words"""
@@ -54,16 +45,40 @@ def top_ten(hist):
     return x
 
 
-
-def bottom_ten(hist):
-    """this function returns the top 10 frequent words"""
-    x = sorted(hist.items(), key=lambda item: item[1], reverse= False)[0:10]
+def after_10(hist):
+    """this function returns the top 11-20 frequent words"""
+    x = sorted(hist.items(), key=lambda item: item[1], reverse= True)[11:20]
     return x
 
 
-def feeling(filename):
-    score = SentimentIntensityAnalyzer().polarity_scores(sentence)
-    return score
+def after_20(hist):
+    """this function returns the top 21-30 frequent words"""
+    x = sorted(hist.items(), key=lambda item: item[1], reverse= True)[21:30]
+    return x
+
+#
+def uncommonwords(hist):
+    """this function returns a list of words that are only used once"""
+    x = filter(lambda hist: 1 in hist, hist)
+    return list(x)
+
+
+
+
+def bottom_ten(hist):
+    """this function returns the top 10 frequent words"""
+    x = sorted(hist.items(), key=lambda item: item[1], reverse= False)[0:3350]
+    return x
+
+
+def uncommonwords(hist):
+    """this function returns a list of words that are only used once"""
+    x = filter(lambda hist: 'the' in hist, hist)
+    return list(x)
+
+def unique_words(hist):   
+    return len(hist)
+    
 
 
 
@@ -72,13 +87,20 @@ def feeling(filename):
 def main():
     filename ='Iphone.txt'
     hist = word_summary('Iphone.txt')
-
+    
+    
     # # print(hist)
     # print('Total number of words:', total_words(hist))
-    # # # print(ordered_frequency(hist))
+    print("there are",unique_words(hist),"unique words in this wikipedia page")
+    print(ordered_frequency(hist))
+    print(type(ordered_frequency(hist)))
     # print('the top ten words are:', top_ten(hist))
-    # print('the 10 least used words are:', bottom_ten(hist))
-    print(feeling)
+    # print('the next top ten words are:', after_10(hist))
+    # print('the next top ten words are:', after_20(hist))
+    print(uncommonwords(hist))
+    # list_uncom = uncommonwords(hist)
+    # print("there are", num_words_once(list_uncom),)
+    # print('the ten least used words are:', bottom_ten(hist))
 
     
 
