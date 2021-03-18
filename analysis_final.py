@@ -63,7 +63,7 @@ def unique_words(hist):
 
 def bottom_ten(hist):
     """this function returns the top 10 frequent words"""
-    x = sorted(hist.items(), key=lambda item: item[1], reverse= False)[0:3350]
+    x = sorted(hist.items(), key=lambda item: item[1], reverse= False)[0:10]
     return x
 
 
@@ -103,19 +103,19 @@ def main():
     
     
     # print(hist)
-    print('Total number of words:', total_words(hist))
-    print("there are",unique_words(hist),"unique words in this wikipedia page")
-    print(ordered_frequency(hist)) 
+    # print('Total number of words:', total_words(hist))
+    # print("there are",unique_words(hist),"unique words in this wikipedia page")
+    # print(ordered_frequency(hist)) 
     # print(type(ordered_frequency(hist)))
 
-    print('the top ten words are:', top_ten(hist))
-    print('the next top ten words are:', after_10(hist))
-    print('the next top ten words are:', after_20(hist))
+    # print('the top ten words are:', top_ten(hist))
+    # print('the next top ten words are:', after_10(hist))
+    # print('the next top ten words are:', after_20(hist))
 
-    print('the ten least used words are:', bottom_ten(hist))
+    # print('the ten least used words are:', bottom_ten(hist))
 
-    print(words_the(hist))
-    print("the number of words that have the in it is", len(words_the(hist)))
+    # print(words_the(hist))
+    # print("the number of words that have the in it is", len(words_the(hist)))
 
     print(words_phone(hist))
     print("the number of words that have phone in it is",len(words_phone(hist)))
