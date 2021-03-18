@@ -1,7 +1,7 @@
 import sys
 from unicodedata import category
 import string
-import collections
+import pprint
 
 
 def word_summary(filename):
@@ -83,8 +83,13 @@ def words_tech(hist):
     x = filter(lambda hist: 'tech' in hist, hist)
     return list(x)
 
+def words_apple(hist):
+    """this function returns a list of words that have apple in it"""
+    x = filter(lambda hist: 'apple' in hist, hist)
+    return list(x)
 
-# def anagram_the
+
+    
 
     
 
@@ -97,29 +102,31 @@ def main():
     hist = word_summary('Iphone.txt')
     
     
-    # # print(hist)
-    # print('Total number of words:', total_words(hist))
-    # print("there are",unique_words(hist),"unique words in this wikipedia page")
-    # print(ordered_frequency(hist))
+    # print(hist)
+    print('Total number of words:', total_words(hist))
+    print("there are",unique_words(hist),"unique words in this wikipedia page")
+    print(ordered_frequency(hist)) 
     # print(type(ordered_frequency(hist)))
 
-    # print('the top ten words are:', top_ten(hist))
-    # print('the next top ten words are:', after_10(hist))
-    # print('the next top ten words are:', after_20(hist))
+    print('the top ten words are:', top_ten(hist))
+    print('the next top ten words are:', after_10(hist))
+    print('the next top ten words are:', after_20(hist))
 
-    # print("there are", num_words_once(list_uncom),)
-    # print('the ten least used words are:', bottom_ten(hist))
+    print('the ten least used words are:', bottom_ten(hist))
 
-    # print(words_the(hist))
-    # print(len(words_the(hist)))
+    print(words_the(hist))
+    print("the number of words that have the in it is", len(words_the(hist)))
 
-    # print(words_phone(hist))
-    # print(len(words_phone(hist)))
+    print(words_phone(hist))
+    print("the number of words that have phone in it is",len(words_phone(hist)))
 
-    # print(words_tech(hist))
-    # print(len(words_tech(hist)))
+    print(words_tech(hist))
+    print("the number of words that have tech in it is",len(words_tech(hist)))
 
+    print(words_apple(hist))
+    print("the number of words that have apple in it is",len(words_apple(hist)))
 
+   
     
 
 
