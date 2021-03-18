@@ -4,9 +4,11 @@ import random
 import sys
 from unicodedata import category
 import nltk
+from nltk.corpus import stopwords 
+from nltk.tokenize import word_tokenize
+nltk.set_proxy('http://127.0.0.1:2802')
 nltk.download('punkt')
-
-
+nltk.download('stopwords')
 
 def download_book(url):
     """
@@ -39,12 +41,12 @@ text6 = download_book(url_Paradise)
 
 
 # Program to measure the similarity between two texts using cosine similarity. 
-from nltk.corpus import stopwords 
-from nltk.tokenize import word_tokenize 
+
+
 
 # tokenization 
-text1_list = word_tokenize(text5)  
-text2_list = word_tokenize(text6) 
+text1_list = word_tokenize(text4)  
+text2_list = word_tokenize(text5) 
 
 # sw contains the list of stopwords
 sw = stopwords.words('english')  
@@ -74,24 +76,30 @@ for i in range(len(rvector)):
 cosine = c / float((sum(l1)*sum(l2))**0.5) 
 print("similarity: ", cosine) 
 
-# import numpy as np
-# from sklearn.manifold import MDS
-# import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.manifold import MDS
+import matplotlib.pyplot as plt
 
-# # these are the similarities computed from the previous section
-# S = np.asarray()
+# these are the similarities computed from the previous section
+S = np.asarray([[1, 0.405840877077917, 0.583399634410048, 0.592856152221665,0.539470828139999,0.387598235354629]
+[0.405840877077917, 1, 0.419747266788418, 0.412688190059770, 0.386710678519393, 0.432336134790601]
+[0.583399634410048, 0.419747266788418, 1, 0.568688414138699, 0.522467346811204, 0.397952306807963]
+[0.592856152221665, 0.412688190059770, 0.568688414138699, 1, 0.502786232321456, 0.399008249004968]
+[0.539470828139999, 0.386710678519393, 0.522467346811204, 0.502786232321456, 1, 0.351377435042073]
+[0.387598235354629, 0.432336134790601, 0.397952306807963, 0.399008249004968, 0.351377435042073, 1]]
+)
 
-# # dissimilarity is 1 minus similarity
-# dissimilarities = 1 - S
+# dissimilarity is 1 minus similarity
+dissimilarities = 1 - S
 
-# # compute the embedding
-# coord = MDS(dissimilarity='precomputed').fit_transform(dissimilarities)
+# compute the embedding
+coord = MDS(dissimilarity='precomputed').fit_transform(dissimilarities)
 
-# plt.scatter(coord[:, 0], coord[:, 1])
+plt.scatter(coord[:, 0], coord[:, 1])
 
-# # Label the points
-# for i in range(coord.shape[0]):
-#     plt.annotate(str(i), (coord[i, :]))
+# Label the points
+for i in range(coord.shape[0]):
+    plt.annotate(str(i), (coord[i, :]))
 
 
-# plt.show()
+plt.show()
