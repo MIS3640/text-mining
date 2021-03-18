@@ -11,7 +11,6 @@ def process_file(filename, skip_header):
     hist = {}
     book = open(filename, encoding='UTF8')
 
-    # TODO: explain skip_header
     if skip_header:
         skip_gutenberg_header(book)
 
@@ -20,7 +19,7 @@ def process_file(filename, skip_header):
     )
 
     for line in book:
-        if line.startswith('*** END OF THIS PROJECT'):
+        if line.startswith('*** END'):
             break
 
         line = line.replace('-', ' ').replace(
@@ -31,7 +30,6 @@ def process_file(filename, skip_header):
             # word could be 'Sussex.'
             word = word.strip(strippables)
             word = word.lower()
-
             # update the dictionary
             hist[word] = hist.get(word, 0) + 1
 
@@ -42,7 +40,7 @@ def skip_gutenberg_header(book):
     """Starts to read the book from the line startswith
     """
     for line in book:
-        if line.startswith('*** START OF THIS PROJECT'):
+        if line.startswith('*** START'):
             break
 
 
@@ -79,11 +77,11 @@ def subtract(d1, d2):
 
 
 def main():
-    # # A Modest Proposal by Jonathan Swift (UK 18th century)
-    # hist = process_file('data/a_modest_proposal.txt', skip_header=True)
+    # A Modest Proposal by Jonathan Swift (UK 18th century)
+    hist = process_file('data/a_modest_proposal.txt', skip_header=True)
 
-    # The Coquette by Hannah Webster Foster (US 18th century)
-    hist = process_file('data/the_coquette.txt', skip_header=True)
+    # # The Coquette by Hannah Webster Foster (US 18th century)
+    # hist = process_file('data/the_coquette.txt', skip_header=True)
 
     # # Frankenstein by Mary Wollstonecraft (Godwin) Shelley (UK 19th century)
     # hist = process_file('data/frankenstein.txt', skip_header=True)
@@ -129,11 +127,7 @@ from sklearn.manifold import MDS
 import matplotlib.pyplot as plt
 
 # these are the similarities computed from the previous section
-S = np.asarray([[1., 0.90850572, 0.96451312, 0.97905034, 0.78340575],
-    [0.90850572, 1., 0.95769915, 0.95030073, 0.87322494],
-    [0.96451312, 0.95769915, 1., 0.98230284, 0.83381607],
-    [0.97905034, 0.95030073, 0.98230284, 1., 0.82953109],
-    [0.78340575, 0.87322494, 0.83381607, 0.82953109, 1.]])
+S =
 
 # dissimilarity is 1 minus similarity
 dissimilarities = 1 - S
