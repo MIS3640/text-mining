@@ -1,0 +1,33 @@
+I created this project that would provide a word cloud that displays all the key words for the movies. In order to do so, I have to install IMDB movie 
+review system and word cloud system. I mainly use texting mining and string to analyze the information collected. I hope to create a system that when 
+people put in the movie id, there will be a word cloud showing all the critical words that would represent for this particular movie. I also hope that through 
+this project, I would learn more on text mining which is a crucial part to my final group project on identifying plagierism. 
+
+There are couple major components in my coding in order to achieve my goal. One is to install the right packages. Through researching, I identify IMDB and Word 
+Cloud as the two major systems that should be contained. I also found out that I need nltk to work with human language data. It basically provides easy-to-use 
+interfaces to strengthen my system. 
+
+In order to precisely display the key words, I decided to use "if" to specify out the key words. Fo this part of coding:
+for w in word_tokens:
+        w = w.lower()
+        if w not in stop_words and w not in string.punctuation and w not in movie_sw:
+            filtered_sentence += w + " "
+    return filtered_sentence
+This helps rule out the redundant words through researching. I researched online and found a way to efficiently add couple conditions together in one line. it 
+words pretty well. 
+
+I put down three movies examples to demonstrate my project. Here are three graphs that i got from running the code: 
+(I don't know how to paste the graphs here... i will try to include the pictures when turning zip file through canvas. if that did not work either, i will email 
+you the three graphs!)
+The graphs perfectly show all the major key words that could represent for the movies. Therefore, when people put in the movie names they want to research on,
+they would also recieve these information so that they could decide whether or not this movie fits their types. In fact, since I have watched all three of these
+movies, the words displayed indeed correctly categorize the movies.
+
+One thing interesting about the result i discover is that most frequent words are usually the type of the movie which is very useful. Then, there are additional
+words like popular names of the charactor and the country of the movie are being displayed as well. All these words come up the most in the movie reviews system.
+
+From a process view of point, i think the packages installed went really well. The example given in the instruction with IMDB gives me idea to achieve this 
+system. I could probably add more codes to reduce the irrelevant words that were shown in the reviews to let the world cloud show more precise. This is a great
+practice to do in advanced to our completion to our own group final project. Text-mining is definitely the major part of the final project. this assignment taught
+me to correctly use the sources and how to write the right codes in general. i wish i could know more on the reviews system to come up with more conditions to
+simplize the result. 
