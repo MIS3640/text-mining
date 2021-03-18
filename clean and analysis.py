@@ -115,8 +115,8 @@ def main():
 
     t = most_common(hist, excluding_stopwords=True)
     print('The most common words are:')
-    for freq, word in t[0:20]:
-        print(word, '\t', freq)
+    for frequent, word in t[0:20]: 'data/a_modest_proposal.txt'
+    print(word, '\t', frequent)
 
     words = process_file('words.txt', skip_header=False)
 
@@ -131,7 +131,21 @@ def main():
 
 
 if __name__ == '__main__':
-    main() 
+ 
+
+    wordstring = 'data/a_modest_proposal.txt'
+    wordstring += 'data/the_coquette.txt'
+
+wordlist = wordstring.split()
+
+wordfreq = []
+for w in wordlist:
+    wordfreq.append(wordlist.count(w))
+
+print("String\n" + wordstring +"\n")
+print("List\n" + str(wordlist) + "\n")
+print("Frequencies\n" + str(wordfreq) + "\n")
+print("Pairs\n" + str(list(zip(wordlist, wordfreq))))
 
 import math 
 import string 
@@ -144,7 +158,7 @@ import sys
 def read_file(filename): 'data/a_modest_proposal.txt'
 	
 try: 
-	with open(filename, 'r') as f: 
+	with open('data/a_modest_proposal.txt', 'r') as f: 
 			data = f.read() 
 	  
 	
@@ -167,3 +181,4 @@ def get_words_from_line_list(text):
 	word_list = text.split() 
 	
 	return word_list 
+
