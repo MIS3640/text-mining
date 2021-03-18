@@ -37,9 +37,6 @@ def most_frequent(hist):
 			num = i 
 
 	return num 
-
-
-
     
 
 
