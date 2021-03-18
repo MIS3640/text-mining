@@ -1,0 +1,49 @@
+# Part 3: Project Writeup and Reflection
+
+# Nick Gutierrez
+
+[Aiden Asuncion-Duong](mailto:aasuncionduong1@babson.edu)
+
+# MIS3640, Section 2
+
+# 3/17/21
+
+1. **Project Overview**
+
+For this Text Analysis and Text Mining assignment, our team decided to use Wikipedia as our data source. In terms of analysis techniques, we decided to pursue Characterizing by Word Frequencies and computing Summary Statistics. We used characterizing by word frequencies in order to see how many times certain words appeared in our text. In our case, the text was a Wikipedia page about the Apple iPhone. We computed summary statistics to find what the top 10 words were on the page as well as the next 2 sets of top words (11-20, 21-30). Our main goal of this project is to develop python functions that would look through a Wikipedia page and tell us whether the page talks about phones or not.
+
+1. **Implementation**
+
+The major algorithms that we utilized throughout this analysis was done by checking the frequencies of words as well as checking how many times a specific word is used in different words.
+
+One of the most important components of our analysis was the original filtered histogram, which we used in almost every function. The histogram allowed us to sort and filter through our Wikipedia page as a text file so that we could apply the changes needed to perform our text analysis and create the various functions that can be seen in our code.
+
+For example, the portion of our project dedicated to characterizing word frequencies was accomplished by using a function to return a list of words ordered by frequency. To find the frequencies of the words on the Wikipedia page, we used a variable, ordered\_frequency, that opened a list that iterated through the words we had in our dictionary and outputted the list of the most frequently used words. We took this a step further by building functions that showed us the top 30 most frequent words, broken down by 3 groups of 10 (ex: Top 10, then next 10, then last 10). For this part, we used a similar method in creating a variable called top\_ten that iterated through the words in our dictionary to give us a list of the top 10 most frequently used words. We mimicked this process to get the next 2 sets of 10 frequently used words, and the bottom 10 frequently used words. As the last part of our analysis, we used a function to return a list of words that have the word phone in it as well as a list of words that have the word tech in it. Similar to the other two functions that we came up with, this one, called def words\_tech(hist) helped us go through our dictionary from Wikipedia and filter and return a list of words with the word &quot;phone&quot; phone in it. We then repeated the same process for a list of words with the word &quot;tech&quot; in it.
+
+1. **Results**
+
+The analysis of the iPhone Wikipedia page proved to be difficult towards the beginning part of the assignment as getting cleaning data proved to be very complex. Within the text, there were many words that had punctuation characters, symbols, or even numbers attached to the words. The function written to get rid of most of these symbols and characters proved to be very effective at getting rid of strippables but there were some words that got past the algorithm. For example words such as windows.the, &#39;508&quot;.with&#39;, and us$10 were able to make it past the final function. After this initial challenge, filtering and sorting the data proved to be much less of a challenge. Looking at the order of words based on frequency we have a very high usage of common prepositions which is to be expected since this is an article. We also see high usage of nouns such as iPhone, phone, and models because these are all words that have to deal with the iPhone. Taking a look at the top 10 words, we see a significant difference between the 7th most used word and the 8th most used word, which can be attributed to the fact that the top 7 words are prepositions used in almost every sentence.
+
+After looking at common word frequencies, we then decided to look at common words that relate to the iphone such as phone, tech, and apple to see how many times these keywords are used in other words throughout the article. Looking at the results; the word phone appeared the most with 23 uses, the word apple appeared the second highest amount of times in different words with 16 uses, and tech was found in 8 different words throughout the article. If we were to run the same functions on a different wikipedia page, we should be able to find out whether the page talks about a phone or not without reading the page based on the number of different words that contain phone, tech, and apple.
+
+**Sample of the Ordered Word Frequencies:**
+
+![](RackMultipart20210318-4-1udoheu_html_191ac857954f25f1.png)
+
+**Top 30 Highest Word Frequencies** :
+
+![](RackMultipart20210318-4-1udoheu_html_3c17c5b226c2f0fd.png)
+
+**Number of words that have Phone, Tech, and Apple in it**
+
+![](RackMultipart20210318-4-1udoheu_html_81af72ba1aab3f13.png)
+
+**List of words that have Phone, Tech, and Apple in it**
+
+![](RackMultipart20210318-4-1udoheu_html_ccfbba986359005f.png)
+
+1. **Reflection**
+
+Looking back on our whole project, we believe that we were able to start off strong structurally because of our previous knowledge, exercises, notebooks, and other resources to help us understand what we needed to do. That being said, at the same time we found it difficult at times to get the function to cooperate with us and give us the results we wanted to see. Another challenge we faced at the beginning was actually getting the data we needed and finding the right data source. For example, we originally wanted to start with Twitter because Nick had a developer account, but every time we tried to run the initial Tweepy functions, we received error messages about expired Tokens. As a Plan B, we ultimately switched to Wikipedia, which was a lot more convenient for us to use. Going forward it might be helpful to take more time to understand the goal of our project as well as maintain consistency with the data sources we want to use so that we do not lose any time in having to start from scratch.
+
+In terms of team structure, we split the work evenly in that we had our whole team working on certain parts of the code and pushing it to GitHub altogether and also divided up the parts of the writeup. Even though the parts were divided up, we were both able to double-check our code and writeup to avoid any possible mistakes. We think that these takeaways and our ability to work together will help us better prepare for our next project.
