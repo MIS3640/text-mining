@@ -73,6 +73,19 @@ def words_the(hist):
     return list(x)
 
 
+def words_phone(hist):
+    """this function returns a list of words that are only used once"""
+    x = filter(lambda hist: 'phone' in hist, hist)
+    return list(x)
+
+def words_tech(hist):
+    """this function returns a list of words that are only used once"""
+    x = filter(lambda hist: 'tech' in hist, hist)
+    return list(x)
+
+
+# def anagram_the
+
     
 
 
@@ -86,17 +99,25 @@ def main():
     
     # # print(hist)
     # print('Total number of words:', total_words(hist))
-    print("there are",unique_words(hist),"unique words in this wikipedia page")
+    # print("there are",unique_words(hist),"unique words in this wikipedia page")
     # print(ordered_frequency(hist))
     # print(type(ordered_frequency(hist)))
+
     # print('the top ten words are:', top_ten(hist))
     # print('the next top ten words are:', after_10(hist))
     # print('the next top ten words are:', after_20(hist))
-    print(uncommonwords(hist))
-    # list_uncom = uncommonwords(hist)
+
     # print("there are", num_words_once(list_uncom),)
     # print('the ten least used words are:', bottom_ten(hist))
 
+    # print(words_the(hist))
+    # print(len(words_the(hist)))
+    # print(words_phone(hist))
+    # print(len(words_phone(hist)))
+    # print(words_tech(hist))
+    # print(len(words_tech(hist)))
+
+    
     
 
 
