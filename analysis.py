@@ -1,8 +1,7 @@
 import sys
 from unicodedata import category
 import string
-
-
+import collections
 
 
 def word_summary(filename):
@@ -56,12 +55,9 @@ def after_20(hist):
     x = sorted(hist.items(), key=lambda item: item[1], reverse= True)[21:30]
     return x
 
-#
-def uncommonwords(hist):
-    """this function returns a list of words that are only used once"""
-    x = filter(lambda hist: 1 in hist, hist)
-    return list(x)
 
+def unique_words(hist):   
+    return len(hist)
 
 
 
@@ -71,13 +67,12 @@ def bottom_ten(hist):
     return x
 
 
-def uncommonwords(hist):
+def words_the(hist):
     """this function returns a list of words that are only used once"""
     x = filter(lambda hist: 'the' in hist, hist)
     return list(x)
 
-def unique_words(hist):   
-    return len(hist)
+
     
 
 
@@ -92,8 +87,8 @@ def main():
     # # print(hist)
     # print('Total number of words:', total_words(hist))
     print("there are",unique_words(hist),"unique words in this wikipedia page")
-    print(ordered_frequency(hist))
-    print(type(ordered_frequency(hist)))
+    # print(ordered_frequency(hist))
+    # print(type(ordered_frequency(hist)))
     # print('the top ten words are:', top_ten(hist))
     # print('the next top ten words are:', after_10(hist))
     # print('the next top ten words are:', after_20(hist))
