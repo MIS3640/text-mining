@@ -123,3 +123,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+clean and analysis.py
