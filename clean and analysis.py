@@ -144,16 +144,16 @@ import sys
 # This functio will return a 
 # list of the lines of text 
 # in the file. 
-def read_file(filename): 
+def read_file(filename): 'data/a_modest_proposal.txt'
 	
-	try: 
-		with open(filename, 'r') as f: 
+try: 
+	with open(filename, 'r') as f: 
 			data = f.read() 
-		return data 
+	  
 	
-	except IOError: 
-		print("Error opening or reading input file: ", filename) 
-		sys.exit() 
+except IOError: 
+	print("Error opening or reading input file: ", filename) 
+	sys.exit() 
 
 # splitting the text lines into words 
 # translation table is a global variable 
