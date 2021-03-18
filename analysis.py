@@ -68,18 +68,18 @@ def bottom_ten(hist):
 
 
 def words_the(hist):
-    """this function returns a list of words that are only used once"""
+    """this function returns a list of words that have the in it"""
     x = filter(lambda hist: 'the' in hist, hist)
     return list(x)
 
 
 def words_phone(hist):
-    """this function returns a list of words that are only used once"""
+    """this function returns a list of words that have phone in it"""
     x = filter(lambda hist: 'phone' in hist, hist)
     return list(x)
 
 def words_tech(hist):
-    """this function returns a list of words that are only used once"""
+    """this function returns a list of words that have tech in it"""
     x = filter(lambda hist: 'tech' in hist, hist)
     return list(x)
 
@@ -112,12 +112,14 @@ def main():
 
     # print(words_the(hist))
     # print(len(words_the(hist)))
+
     # print(words_phone(hist))
     # print(len(words_phone(hist)))
+
     # print(words_tech(hist))
     # print(len(words_tech(hist)))
 
-    
+
     
 
 
