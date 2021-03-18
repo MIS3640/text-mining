@@ -5,16 +5,15 @@ from unicodedata import category
 
 
 def process_file(filename, skip_header):
-    """Makes a histogram that contains the words from a file.
-    filename: string
-    skip_header: boolean, whether to skip the Gutenberg header
-    returns: map from each word to the number of times it appears.
+    """
+    Opens the book from data and start to read it after the header and ends before the footer. Removes all of the punctuation and turns the book into individual words.
+    It then counts the amount of times each word appears and saves it into a histogram
     """
     hist = {}
-    fp = open(filename, encoding='UTF8')
+    book = open(filename, encoding='UTF8')
 
     if skip_header:
-        skip_gutenberg_header(fp)
+        skip_gutenberg_header(book)
 
     strippables = ''.join(
         [chr(i) for i in range(sys.maxunicode) if category(chr(i)).startswith("P")]
@@ -38,9 +37,9 @@ def process_file(filename, skip_header):
     return hist
 
 
-def skip_gutenberg_header(fp):
-    """Reads from fp until it finds the line that ends the header.
-    fp: open file object
+def skip_gutenberg_header(book):
+    """
+    Starts to read the book after the header
     """
     for line in book:
         if line.startswith('*** START'):
