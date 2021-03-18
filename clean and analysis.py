@@ -94,17 +94,17 @@ def main():
     # # The Coquette by Hannah Webster Foster (US 18th century)
     # hist = process_file('data/the_coquette.txt', skip_header=True)
 
-    # Frankenstein by Mary Wollstonecraft (Godwin) Shelley (UK 19th century)
-    hist = process_file('data/frankenstein.txt', skip_header=True)
+    # # Frankenstein by Mary Wollstonecraft (Godwin) Shelley (UK 19th century)
+    # hist = process_file('data/frankenstein.txt', skip_header=True)
 
-    # Cape Cod by Henry David Thoreau (US 19th century)
-    hist = process_file('data/cape_cod.txt', skip_header=True)
+    # # Cape Cod by Henry David Thoreau (US 19th century)
+    # hist = process_file('data/cape_cod.txt', skip_header=True)
 
-    # Mrs Dalloway in Bond Street, by Virginia Woolf (UK 18th century)
-    hist = process_file('data/mrs_dalloway_in_bond_street.txt', skip_header=True)
+    # # Mrs Dalloway in Bond Street, by Virginia Woolf (UK 18th century)
+    # hist = process_file('data/mrs_dalloway_in_bond_street.txt', skip_header=True)
     
-    # The Great Gatsby by F. Scott Fitzgerald (US 20th century)
-    hist = process_file('data/the_great_gatsby.txt', skip_header=True)
+    # # The Great Gatsby by F. Scott Fitzgerald (US 20th century)
+    # hist = process_file('data/the_great_gatsby.txt', skip_header=True)
 
 
 
