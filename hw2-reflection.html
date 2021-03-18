@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW2 Reflection - Santos </title>
+    <style>
+        div {
+            width: 90%;
+            margin-right: auto;
+            margin-left: auto;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: small;
+            line-height: 120%;
+        }
+        .image {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h3>
+            Project Overview
+        </h3>
+        <p>
+            For this homework project I aimed to analyze the reviews for the movie called The Fault in Our Stars. I chose this movie because
+            I had mixed feelings after watching it and couldn't decide whether I liked it or not, so I wanted to know the thoughts of the public. To get the data, I 
+            used a package called imdbpie. As for the technique, I applied Sentiment analysis using the SentimentIntensityAnalyzer() function from nltk package, which 
+            uses Natural Language Processing to process the data. I also looked at the word frequency for the nouns and adjectives using another function from nltk.         
+        </p>
+        <hr>
+        <h3>
+            Implementation 
+        </h3>
+        <p>
+            The first major component of my project is the retrieval of data. In order to get the reviews of The Fault in Our Stars,
+            I had to get its IMDB ID from its IMDB url and used it as a reference to retrieve the data from the imdbpie package. In this project
+            I only retrieved the movie title and the reviews in IMDB. 
+        </p>
+        <p>
+            For the second major component, I had to prepare the data for analysis. This step included tokenization, cleaning the data, and identifying parts-of-speech tags. 
+            Tokenization refers to splitting the chunk of reviews into separate sentences and words. I needed this to access each sentence and word of each review. 
+            Next, I cleaned the data by removing stop words and punctuations. This allowed me to filter out words that are unnecessary. Stop words are words that don't contribute significant meaning
+            to the text analysis (example: to, and, i, etc.) I got the list of stop words from the nltk package, and the list of punctuation marks from the string package. 
+            For the final step in data preparation, I identified the parts-of-speech tag for each word. This way, I was able to identify the nouns and adjectives in the 
+            reviews. 
+        </p>
+        <p>
+            The final major component is data visualization and sentiment analysis. For the first one, I looked at the top 15 nouns in the review. This provides
+            contextual information about the movie, allowing the user to get a sense of what the movie is about. For the second one, I checked the top 15 adjectives. This shows
+            what the IMDB users think of the movie overall. Lastly, I performed a seentiment analysis for 
+            each of the sentences in the review section, to determine if they are either positive, negative, or neutral. For this step I used the SentimentIntensityAnalyzer() function from nltk package, which computes the 
+            sentiment scores for each tokenized sentence (positive, neutral, negative, compound). 
+        </p> 
+
+        <hr>
+        <h3>
+            Results
+        </h3>
+        <p>
+            For the 15 most common nouns, I displayed the results in a Frequency distribution plot, which is a function in the nltk package that counts the number of each type of word. (See image below) 
+            I found out these are (in order of most frequent): movie, book, hazel, cancer, love, story, film, girl, read, guy, augustus, time, life, scene, and end.
+            I suppose that this graph will be useful for someone who hasn't watched the movie as it gives them the idea that the movie is a love story that is based on a book, and features
+            characters named "Hazel" and "Augustus", one of whom has cancer.
+        </p>
+        <div class="image">
+            <img src="images/top15nouns.jpeg" alt="Top 15 nouns in The Fault in Our Stars IMDB review section" width="400px">
+        </div>
+        <p>
+            I also used a Frequency distribution plot to display the result for the 15 most common adjectives (See image below)
+            I got the following results (in order of most frequent): good, best, much, true, real, romantic, great, fantastic, able, emotional, big, green, many, entire, little. 
+            From this list, it's safe to assume that the movie was received in a postive light. It's interesting to see the word "real" included in this list,
+            because in my opinion, nothing about the movie is realistic. However, the word might be referring to "real love", so I might be wrong in my assumption. 
+        </p>
+        <div class="image">
+            <img src="images/top15adj.jpeg" alt="Top 15 adjectives in The Fault in Our Stars IMDB review section" width="400px">
+        </div>
+        <p>
+            For the sentiment analysis, I presented the sentiment scores for each sentence in a table using pandas dataframe. I also created another
+            dataframe to display the summary or descriptive statistics of all the sentiment scores. 
+            The dataframe has 387 rows (See image below) which means that I was able to get the sentiment scores of 387 sentences in the IMDB review section of The Fault in Our Stars.
+            The results from the second dataframe (See second image below) show that the average sentence in the review section had a positive score of 0.149, a neutral score of 0.766, negative score of 0.084, and a compound score of 0.114.
+            What this means is that the average feedback was indifferent or neutral. The more the compound score is closer to 1, the higher the positivity of the text.
+        </p>
+        <div class="image">
+            <img src="images/dataframe.jpeg" alt="Dataframe of Sentiment Analysis" width="600px">
+        </div>
+        <div class="image">
+            <img src="images/descriptive_stat.jpeg" alt="Dataframe of Descriptive Stat of Sentiment Analysis" width="400px">
+        </div>
+        <hr>
+        <h3>
+            Reflection
+        </h3>
+        <p>
+            Overall, for a beginner, I think that this project was a success. There were some technical obstacles that I had to face, such as working with Pandas and simple things like iterating through a list of list, so I had to
+            review past concepts in class while working on this project. There were also a lot of resources online that helped improve my understanding of text analysis using nltk and how to approach my project.
+            In the end, I was able to debug my code and the program worked as how I wanted it to. However, I feel that I could have improved my project by increasing its scope. It would have been better if I analyzed more than 1 movie, 
+            or even compare results between 2-3 movies. I feel that I could have also improved the sentiment analysis by look at the total number of positive and negative reviews.
+            Considering that I completed this project individually, I am still happy with the outcome. I'm really glad that I was able to take advantage of all the learning opportunities, which
+            I wouldn't have if I had teammates. I didn't know how to perform NLP techniques beforehand, but after familirizing myself with terms and processes, I can say that it made me want to learn it more in-depth and even rejuvenated 
+            my interest in coding. I had a lot of fun doing this project. 
+        </p>
+    </div>
+</body>
+</html>
