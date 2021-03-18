@@ -60,7 +60,20 @@ def most_common(hist, excluding_stopwords=False):
     """Makes a list of word-freq pairs in descending order of frequency.
     hist: map from word to frequency
     returns: list of (frequency, word) pairs
+<<<<<<< Updated upstream
     """
+=======
+    """ 
+
+    #Pseudo-code
+    #1. create a list for return, freq_word_list
+    #2. Use for to loop over the dictionary, hist
+    #  1. get the word, freq from hist
+     # 2. create a tuple this way (freq, word)
+      #3. append the tuple to freq_word_list
+    #3. sort freq_word_list
+    #4. return it
+>>>>>>> Stashed changes
 
 
 def print_most_common(hist, num=10):
@@ -103,6 +116,8 @@ def main():
     print('Total number of words:', total_words(hist))
     print('Number of different words:', different_words(hist))
 
+def most_common(hist, including_stopwords=True) 
+
 
     t = most_common(hist, excluding_stopwords=True)
     print('The most common words are:')
@@ -124,28 +139,3 @@ def main():
 if __name__ == '__main__':
     main() 
 
-import numpy as np
-from sklearn.manifold import MDS
-import matplotlib.pyplot as plt
-
-# these are the similarities computed from the previous section
-S = np.asarray([[1., 0.90850572, 0.96451312, 0.97905034, 0.78340575],
-    [0.90850572, 1., 0.95769915, 0.95030073, 0.87322494],
-    [0.96451312, 0.95769915, 1., 0.98230284, 0.83381607],
-    [0.97905034, 0.95030073, 0.98230284, 1., 0.82953109],
-    [0.78340575, 0.87322494, 0.83381607, 0.82953109, 1.]])
-
-# dissimilarity is 1 minus similarity
-dissimilarities = 1 - S
-
-# compute the embedding
-coord = MDS(dissimilarity='precomputed').fit_transform(dissimilarities)
-
-plt.scatter(coord[:, 0], coord[:, 1])
-
-# Label the points
-for i in range(coord.shape[0]):
-    plt.annotate(str(i), (coord[i, :]))
-
-
-plt.show() 
