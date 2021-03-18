@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<head>
+    <title>VenmoDashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container box">
+        <h3>Hello, {{ user["first_name"] }}</h3>
+        <p>Welcome to your Venmo dashboard, below are some interesting statistcs about your Venmo account.</p>
+        <div class="row">
+            <div class="col-lg-6">
+                <h5>Most common words used in Venmo notes</h5>
+                <p>These are the most common words used in your Venmo notes amongst your friends list.</p>
+                <div id="word_canvas" class="word_art"></div>
+            </div>
+            <div class="col-lg-6">
+                <h5>Most common emojis used in Venmo notes</h5>
+                <p>These are the most common emojis used in your Venmo notes amongst your friends list.</p>
+                <div id="emoji_canvas" class="word_art"></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='wordcloud2.js') }}"></script>
+    <script>
+        var word_list = {{ common_list| tojson }};
+        var emoji_ordered = {{ emoji_list| tojson }};
+        WordCloud(document.getElementById('word_canvas'), { list: word_list });
+        WordCloud(document.getElementById('emoji_canvas'), { list: emoji_ordered });
+    </script>
+</body>
+
+</html>

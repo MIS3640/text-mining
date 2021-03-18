@@ -123,3 +123,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Sensitive info
+luca_sensitive.txt
+venmo_data.json
+venmo_data.pickle
