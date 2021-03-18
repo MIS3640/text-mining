@@ -5,21 +5,23 @@ from unicodedata import category
 
 
 def process_file(filename, skip_header):
-    """Opens the file, then removes the header and footer, then seperates all the words individual and 
-    Makes a histogram that contains the words from a file.
+    """Makes a histogram that contains the words from a file.
+    filename: string
+    skip_header: boolean, whether to skip the Gutenberg header
+    returns: map from each word to the number of times it appears.
     """
     hist = {}
-    book = open(filename, encoding='UTF8')
+    fp = open(filename, encoding='UTF8')
 
     # TODO: explain skip_header
     if skip_header:
-        skip_gutenberg_header(book)
+        skip_gutenberg_header(fp)
 
     strippables = ''.join(
         [chr(i) for i in range(sys.maxunicode) if category(chr(i)).startswith("P")]
     )
 
-    for line in book:
+    for line in fp:
         if line.startswith('*** END OF THIS PROJECT'):
             break
 
@@ -38,10 +40,11 @@ def process_file(filename, skip_header):
     return hist
 
 
-def skip_gutenberg_header(book):
-    """Starts to read the book from the line startswith
+def skip_gutenberg_header(fp):
+    """Reads from fp until it finds the line that ends the header.
+    fp: open file object
     """
-    for line in book:
+    for line in fp:
         if line.startswith('*** START OF THIS PROJECT'):
             break
 
@@ -60,9 +63,6 @@ def most_common(hist, excluding_stopwords=False):
     """Makes a list of word-freq pairs in descending order of frequency.
     hist: map from word to frequency
     returns: list of (frequency, word) pairs
-<<<<<<< Updated upstream
-    """
-=======
     """ 
 
     #Pseudo-code
@@ -73,7 +73,6 @@ def most_common(hist, excluding_stopwords=False):
       #3. append the tuple to freq_word_list
     #3. sort freq_word_list
     #4. return it
->>>>>>> Stashed changes
 
 
 def print_most_common(hist, num=10):
@@ -92,31 +91,29 @@ def subtract(d1, d2):
 
 
 def main():
-    # # A Modest Proposal by Jonathan Swift (UK 18th century)
-    # hist = process_file('data/a_modest_proposal.txt', skip_header=True)
+    # A Modest Proposal by Jonathan Swift (UK 18th century)
+    hist = process_file('data/a_modest_proposal.txt', skip_header=True)
 
     # The Coquette by Hannah Webster Foster (US 18th century)
     hist = process_file('data/the_coquette.txt', skip_header=True)
 
-    # # Frankenstein by Mary Wollstonecraft (Godwin) Shelley (UK 19th century)
-    # hist = process_file('data/frankenstein.txt', skip_header=True)
+    # Frankenstein by Mary Wollstonecraft (Godwin) Shelley (UK 19th century)
+    hist = process_file('data/frankenstein.txt', skip_header=True)
 
-    # # Cape Cod by Henry David Thoreau (US 19th century)
-    # hist = process_file('data/cape_cod.txt', skip_header=True)
+    # Cape Cod by Henry David Thoreau (US 19th century)
+    hist = process_file('data/cape_cod.txt', skip_header=True)
 
-    # # Mrs Dalloway in Bond Street, by Virginia Woolf (UK 18th century)
-    # hist = process_file('data/mrs_dalloway_in_bond_street.txt', skip_header=True)
+    # Mrs Dalloway in Bond Street, by Virginia Woolf (UK 18th century)
+    hist = process_file('data/mrs_dalloway_in_bond_street.txt', skip_header=True)
     
-    # # The Great Gatsby by F. Scott Fitzgerald (US 20th century)
-    # hist = process_file('data/the_great_gatsby.txt', skip_header=True)
+    # The Great Gatsby by F. Scott Fitzgerald (US 20th century)
+    hist = process_file('data/the_great_gatsby.txt', skip_header=True)
 
 
 
     print(hist)
     print('Total number of words:', total_words(hist))
     print('Number of different words:', different_words(hist))
-
-def most_common(hist, including_stopwords=True) 
 
 
     t = most_common(hist, excluding_stopwords=True)
@@ -139,3 +136,37 @@ def most_common(hist, including_stopwords=True)
 if __name__ == '__main__':
     main() 
 
+import math 
+import string 
+import sys 
+
+# reading the text file 
+# This functio will return a 
+# list of the lines of text 
+# in the file. 
+def read_file(filename): 
+	
+	try: 
+		with open(filename, 'r') as f: 
+			data = f.read() 
+		return data 
+	
+	except IOError: 
+		print("Error opening or reading input file: ", filename) 
+		sys.exit() 
+
+# splitting the text lines into words 
+# translation table is a global variable 
+# mapping upper case to lower case and 
+# punctuation to spaces 
+translation_table = str.maketrans(string.punctuation+string.ascii_uppercase, 
+									" "*len(string.punctuation)+string.ascii_lowercase) 
+	
+# returns a list of the words 
+# in the file 
+def get_words_from_line_list(text): 
+	
+	text = text.translate(translation_table) 
+	word_list = text.split() 
+	
+	return word_list 
