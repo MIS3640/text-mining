@@ -56,37 +56,6 @@ def different_words(hist):
     return len(hist)
 
 
-def most_common(hist, excluding_stopwords=False):
-    """Makes a list of word-freq pairs in descending order of frequency.
-    hist: map from word to frequency
-    returns: list of (frequency, word) pairs
-    """ 
-
-    #Pseudo-code
-    #1. create a list for return, freq_word_list
-    #2. Use for to loop over the dictionary, hist
-    #  1. get the word, freq from hist
-     # 2. create a tuple this way (freq, word)
-      #3. append the tuple to freq_word_list
-    #3. sort freq_word_list
-    #4. return it
-
-
-def print_most_common(hist, num=10):
-    """Prints the most commons words in a histgram and their frequencies.
-    hist: histogram (map from word to frequency)
-    num: number of words to print
-    """
-    pass
-
-
-def subtract(d1, d2):
-    """Returns a dictionary with all keys that appear in d1 but not d2.
-    d1, d2: dictionaries
-    """
-    pass
-
-
 def main():
     # A Modest Proposal by Jonathan Swift (UK 18th century)
     hist = process_file('data/a_modest_proposal.txt', skip_header=True)
@@ -112,73 +81,74 @@ def main():
     print('Total number of words:', total_words(hist))
     print('Number of different words:', different_words(hist))
 
+if __name__ == "__main__":
+    main()
 
-    t = most_common(hist, excluding_stopwords=True)
-    print('The most common words are:')
-    for frequent, word in t[0:20]: 'data/a_modest_proposal.txt'
-    print(word, '\t', frequent)
+    #Sakshi code
 
-    words = process_file('words.txt', skip_header=False)
+    # t = most_common(hist, excluding_stopwords=True)
+    # print('The most common words are:')
+    # for frequent, word in t[0:20]: 'data/a_modest_proposal.txt'
+    # print(word, '\t', frequent)
 
-    diff = subtract(hist, words)
-    print("The words in the book that aren't in the word list are:")
-    for word in diff.keys():
-        print(word, end=' ')
+    # words = process_file('words.txt', skip_header=False)
 
-    print("\n\nHere are some random words from the book")
-    for i in range(100):
-        print(random_word(hist), end=' ')
+    # diff = subtract(hist, words)
+    # print("The words in the book that aren't in the word list are:")
+    # for word in diff.keys():
+    #     print(word, end=' ')
+
+    # print("\n\nHere are some random words from the book")
+    # for i in range(100):
+    #     print(random_word(hist), end=' ')
 
 
-if __name__ == '__main__':
- 
 
-    wordstring = 'data/a_modest_proposal.txt'
-    wordstring += 'data/the_coquette.txt'
+#     wordstring = 'data/a_modest_proposal.txt'
+#     wordstring += 'data/the_coquette.txt'
 
-wordlist = wordstring.split()
+# wordlist = wordstring.split()
 
-wordfreq = []
-for w in wordlist:
-    wordfreq.append(wordlist.count(w))
+# wordfreq = []
+# for w in wordlist:
+#     wordfreq.append(wordlist.count(w))
 
-print("String\n" + wordstring +"\n")
-print("List\n" + str(wordlist) + "\n")
-print("Frequencies\n" + str(wordfreq) + "\n")
-print("Pairs\n" + str(list(zip(wordlist, wordfreq))))
+# print("String\n" + wordstring +"\n")
+# print("List\n" + str(wordlist) + "\n")
+# print("Frequencies\n" + str(wordfreq) + "\n")
+# print("Pairs\n" + str(list(zip(wordlist, wordfreq))))
 
-import math 
-import string 
-import sys 
+# import math 
+# import string 
+# import sys 
 
 # reading the text file 
 # This functio will return a 
 # list of the lines of text 
 # in the file. 
-def read_file(filename): 'data/a_modest_proposal.txt'
+# def read_file(filename): 'data/a_modest_proposal.txt'
 	
-try: 
-	with open('data/a_modest_proposal.txt', 'r') as f: 
-			data = f.read() 
+# try: 
+# 	with open('data/a_modest_proposal.txt', 'r') as f: 
+# 			data = f.read() 
 	  
 	
-except IOError: 
-	print("Error opening or reading input file: ", filename) 
-	sys.exit() 
+# except IOError: 
+# 	print("Error opening or reading input file: ", filename) 
+# 	sys.exit() 
 
-# splitting the text lines into words 
-# translation table is a global variable 
-# mapping upper case to lower case and 
-# punctuation to spaces 
-translation_table = str.maketrans(string.punctuation+string.ascii_uppercase, 
-									" "*len(string.punctuation)+string.ascii_lowercase) 
+# # splitting the text lines into words 
+# # translation table is a global variable 
+# # mapping upper case to lower case and 
+# # punctuation to spaces 
+# translation_table = str.maketrans(string.punctuation+string.ascii_uppercase, 
+# 									" "*len(string.punctuation)+string.ascii_lowercase) 
 	
-# returns a list of the words 
-# in the file 
-def get_words_from_line_list(text): 
+# # returns a list of the words 
+# # in the file 
+# def get_words_from_line_list(text): 
 	
-	text = text.translate(translation_table) 
-	word_list = text.split() 
+# 	text = text.translate(translation_table) 
+# 	word_list = text.split() 
 	
-	return word_list 
-
+# 	return word_list 
