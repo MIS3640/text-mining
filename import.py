@@ -1,3 +1,4 @@
+#Code developed by Raphael using the class and online ressources
 import urllib.request
 import os
 

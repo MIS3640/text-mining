@@ -1,3 +1,4 @@
+#Code developed by Raphael using the class and online ressources
 from collections import Counter
 from textblob import TextBlob
 import random

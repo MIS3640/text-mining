@@ -1,4 +1,4 @@
-
+#Code developed by Raphael using the class and online ressources
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer 
 
 
